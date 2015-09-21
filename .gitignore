@@ -1,0 +1,8 @@
+node_modules/*
+lib/*
+plan.txt
+bin/*
+spec/helpers
+spec/jasmine_examples
+*.log
+test.js
