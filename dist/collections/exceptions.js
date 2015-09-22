@@ -1,19 +1,39 @@
 "use strict";
 
+var _get = require("babel-runtime/helpers/get")["default"];
+
+var _inherits = require("babel-runtime/helpers/inherits")["default"];
+
+var _classCallCheck = require("babel-runtime/helpers/class-call-check")["default"];
+
 Object.defineProperty(exports, "__esModule", {
-  value: true
+	value: true
 });
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var UnimplementedError = (function (_Error) {
+	_inherits(UnimplementedError, _Error);
 
-var UnsupportedOperationException = function UnsupportedOperationException() {
-  _classCallCheck(this, UnsupportedOperationException);
-};
+	function UnimplementedError(method) {
+		_classCallCheck(this, UnimplementedError);
 
-exports.UnsupportedOperationException = UnsupportedOperationException;
+		_get(Object.getPrototypeOf(UnimplementedError.prototype), "constructor", this).call(this, "This is a bug in gip please file a bug report (including the stack trace) to (URL): " + method + " is not implemented");
+	}
 
-var EmptyListException = function EmptyListException() {
-  _classCallCheck(this, EmptyListException);
-};
+	return UnimplementedError;
+})(Error);
 
-exports.EmptyListException = EmptyListException;
+exports.UnimplementedError = UnimplementedError;
+
+var EmptyCollectionError = (function (_Error2) {
+	_inherits(EmptyCollectionError, _Error2);
+
+	function EmptyCollectionError(msg) {
+		_classCallCheck(this, EmptyCollectionError);
+
+		_get(Object.getPrototypeOf(EmptyCollectionError.prototype), "constructor", this).call(this, msg);
+	}
+
+	return EmptyCollectionError;
+})(Error);
+
+exports.EmptyCollectionError = EmptyCollectionError;

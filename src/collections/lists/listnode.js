@@ -1,40 +1,51 @@
 
-export class ListNode {
+let ListNode = (() => {
 
-	constructor(element) {
-		this.element = element;
-		this.next = null;
-	}
+	let elem = Symbol('elem'),
+		next = Symbol('next');
 
-	get next() {
-		return this._next;
-	}
+	return class ListNode {
+		constructor(element) {
+			this[elem] = element
+			this[next] = null;
+		}
 
-	set next(next) {
-		this._next = next;
-	}
+		get element() {
+			return this[elem];
+		}
 
-	get element() {
-		return this._element;
-	}
+		set element(element) {
+			this[elem] = element;
+		}
 
-	set element(element) {
-		this._element = element;
-	}
-}
+		get next() {
+			return this[next];
+		}
 
-export class DListNode extends ListNode {
+		set next(node) {
+			this[next] = node;
+		}
+	};
+})();
 
-	constructor(element) {
-		super(element);
-		this.prev = null;
-	}
+let DListNode = (() => {
 
-	get prev() {
-		return this._prev;
-	}
+	let prev = Symbol('prev');
 
-	set prev(prev) {
-		this._prev = prev;
-	}
-}
+	return class DListNode extends ListNode {
+		constructor(element) {
+			super(element);
+		}
+
+		get prev() {
+			return this[prev];
+		}
+
+		set prev(node) {
+			this[prev] = node;
+		}
+	};
+
+})();
+
+export default {ListNode: ListNode, DListNode: DListNode};
