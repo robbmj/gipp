@@ -1,34 +1,50 @@
 
-import {ListNode} from "./listnode";
-import IList from "./list.interface";
+import {ListNode} from "./private/__listnodes";
+import List from "./list.interface";
 import {EmptyListException} from "./../exceptions";
+import __LISTSYMBOLS from './private/__listsymbols';
 
-export default (() => {
+export default ((size, head, back, cmpf) => {
 
-	let size = Symbol('size'),
-		head = Symbol('head'),
-		back = Symbol('back');
-
-	return class LinkedList extends IList {
+	 /**
+	  * @classdesc Singly Linked List
+	  * @implements {List}
+	  */
+	class LinkedList extends List {
+		// Time Complexity: O(1), Space Complexity: O(1)
 		/**
 		 * Creates an empty singly linked list
 		 *
-		 * Time Complexity O(1)
-		 * Space Complexity O(1)
+		 * @param {cmpFtn?} - If no comparison function is passed then the [default comparison function]{@link Collection#cmpFtn} is used.
 		 */
-		constructor() {
+		constructor(cmpFtn=null) {
 			super();
 			this[size] = 0;
 			this[head] = null;
 			this[back] = null;
+			this[cmpf] = cmpFtn || super.cmpFtn;
+
 		}
 
-		/**
-		 * ${super.documentation()}
-		 *
-		 * Time Complexity O(1)
-		 * Space Complexity O(1)
-		 */
+		// Time Complexity: O(1), Space Complexity: O(1)
+		get size() {
+			return this[size];
+		}
+
+		// Time Complexity: O(1), Space Complexity: O(1)
+		get isEmpty() {
+			return this[size] === 0;
+		}
+
+		// Time Complexity: O(n) where n is the size of the list, Space Complexity: O(1)
+		*[Symbol.iterator]() {
+			let next = this[head];
+			while (next != null) {
+				yield next.element;
+			}
+		}
+
+		// Time Complexity: O(1), Space Complexity: O(1)
 		add(element) {
 			let node = new ListNode(element);
 			if (this[head] === null) {
@@ -43,12 +59,7 @@ export default (() => {
 			return this;
 		}
 
-		/**
-		 * ${super.documentation()}
-		 *
-		 * Time Complexity O(n)
-		 * Space Complexity O(1)
-		 */
+		// Time Complexity: O(n) where n is the size of elements, Space Complexity: O(1)
 		addAll(...elements) {
 			let i = 0, len = elements.length;
 			for (; i < len; i += 1) {
@@ -57,28 +68,18 @@ export default (() => {
 			return this;
 		}
 
-		/**
-		 * ${super.documentation()}
-		 *
-		 * Time Complexity O(n)
-		 * Space Complexity O(1)
-		 */
+		// Time Complexity: O(n) where n is the size of the list, Space Complexity: O(1)
 		contains(element) {
 			return this.indexOf(element) !== -1;
 		}
 
-		/**
-		 * ${super.documentation()}
-		 *
-		 * Time Complexity O(n)
-		 * Space Complexity O(1)
-		 */
+		// Time Complexity: O(n) where n is the size of the list, Space Complexity: O(1)
 		delete(element) {
 			if (this[size] === 0) {
 				throw new EmptyCollectionError('Can\'t delete from an empty LinkedList');
 			}
 
-			if (this[head].element === element) {
+			if (this[cmpf](this[head].element, element) === 0) {
 				this.shift();
 				return true;
 			}
@@ -90,7 +91,7 @@ export default (() => {
 			let next = this[head].next;
 			let prev = this[head];
 
-			while (next.element !== element) {
+			while (this[cmpf](next.element, element) !== 0) {
 				prev = next;
 				next = next.next;
 
@@ -102,7 +103,8 @@ export default (() => {
 
 			if (next === this[back]) {
 				// element was the last in the list
-				this.pop();
+				prev.next = null;
+				this[size] -= 1;
 				return true;
 			}
 
@@ -112,12 +114,7 @@ export default (() => {
 			return true;
 		}
 
-		/**
-		 * ${super.documentation()}
-		 *
-		 * Time Complexity O(n)
-		 * Space Complexity O(1)
-		 */
+		// Time Complexity: O(n) where n is the size of the list, Space Complexity: O(1)
 		forEach(cb) {
 			super._throwIfNotFunction(cb);
 			let next = this[head];
@@ -128,12 +125,7 @@ export default (() => {
 			return this;
 		}
 
-		/**
-		 * ${super.documentation()}
-		 *
-		 * Time Complexity O(n)
-		 * Space Complexity O(n)
-		 */
+		// Time Complexity: O(n) where n is the size of the list, Space Complexity: O(n) where n is the size of the list
 		map(cb) {
 			super._throwIfNotFunction(cb);
 			let newList = new LinkedList();
@@ -147,29 +139,14 @@ export default (() => {
 			return newList;
 		}
 
-		/**
-		 * ${super.documentation()}
-		 *
-		 * Time Complexity O(1)
-		 * Space Complexity O(1)
-		 */
-		get size() {
-			return this[size];
-		}
-
-		/**
-		 * ${super.documentation()}
-		 *
- 		 * Time Complexity: O(n)
- 		 * Space Complexity: O(1)
-		 */
+		// Time Complexity: O(n) where n is the size of the list, Space Complexity: O(1)
 		indexOf(element) {
 			if (this[size] === 0) {
 				return -1;
 			}
 			let i = 0;
 			let next = this[head];
-			while (next.element !== element) {
+			while (this[cmpf](next.element, element) !== 0) {
 				next = next.next;
 				i++;
 				if (next === null) {
@@ -179,12 +156,7 @@ export default (() => {
 			return i;
 		}
 
-		/**
-		 * ${super.documentation()}
-		 *
- 		 * Time Complexity: O(n)
- 		 * Space Complexity: O(1)
-		 */
+		// Time Complexity: O(n) where n is the size of the list, Space Complexity: O(1)
 		lastIndexOf(element) {
 			if (this[size] === 0) {
 				return -1;
@@ -193,7 +165,7 @@ export default (() => {
 			let lastIndex = -1;
 			let next = this[head];
 			while (next !== null) {
-				if (next.element === element) {
+				if (this[cmpf](next.element, element) === 0) {
 					lastIndex = i;
 				}
 				i++;
@@ -202,12 +174,7 @@ export default (() => {
 			return lastIndex;
 		}
 
-		/**
-		 * ${super.documentation()}
-		 *
-		 * Time Complexity O(1)
-		 * Space Complexity O(1)
-		 */
+		// Time Complexity: O(n) where n is the size of the list, Space Complexity: O(1)
 		pop() {
 			if (this[size] === 0) {
 				throw new EmptyCollectionError('Can\'t pop on an empty LinkedList');
@@ -215,6 +182,7 @@ export default (() => {
 			if (this[size] === 1) {
 				var ret = this[head].element;
 				this[head] = null;
+				this[back] = null;
 				this[size] = 0;
 				return ret;
 			}
@@ -223,55 +191,46 @@ export default (() => {
 			while (next.next !== last) {
 				next = next.next;
 			}
-			this.last = next;
+			this[back] = next;
 			next.next = null;
 			this[size] -= 1;
 			return last.element;
 		}
 
-		/**
-		 *${super.documentation()}
-		 *
-		 * Time Complexity O(1)
-		 * Space Complexity O(1)
-		 */
+		// Time Complexity: O(1), Space Complexity: O(1)
 		push(element) {
 			return this.add(element);
 		}
 
-		/**
-		 * ${super.documentation()}
-		 *
-		 * Time Complexity O(n)
-		 * Space Complexity O(1)
-		 */
+		// Time Complexity: O(n) where n is the size of elements, Space Complexity: O(1)
 		pushAll(...elements) {
 			return this.addAll(...elements);
 		}
 
-		/**
-		 * ${super.documentation()}
-		 *
-		 * Time Complexity O(1)
-		 * Space Complexity O(1)
-		 */
+		// Time Complexity: O(1), Space Complexity: O(1)
 		shift() {
 			if (this[size] === 0) {
 				throw new EmptyCollectionError('Can\'t shift on an empty LinkedList');
 			}
 			let element = this[head].element;
-			this[head] = this[size] === 1 ? null : this[head].next;
+
+			if (this[size] === 1) {
+				this[head] = null;
+				this[back] = null;
+			}
+			else {
+				this[head] = this[head].next;;
+			}
+
 			this[size] -= 1;
 			return element;
 		}
 
-		/**
-		 * ${super.documentation()}
-		 *
-		 * Time Complexity O(1)
-		 * Space Complexity O(1)
-		 */
+		// Time Complexity: O(1), Space Complexity: O(1)
 		unshift(element) {
+			if (this[size] === 0) {
+				return this.add(element);
+			}
 			var node = new ListNode(element);
 			node.next = this[head];
 			this[head] = node;
@@ -279,12 +238,7 @@ export default (() => {
 			return this;
 		}
 
-		/**
-		 * ${super.documentation()}
-		 *
-		 * Time Complexity O(n)
-		 * Space Complexity O(1)
-		 */
+		// Time Complexity: O(1), Space Complexity: O(1)
 		unshiftAll(...elements) {
 			let i = elements.length-1;
 			for (; i >= 0; i -= 1) {
@@ -293,19 +247,26 @@ export default (() => {
 			return this;
 		}
 
+		// Time Complexity: O(n) where n is the size of the list, Space Complexity: O(n) where n is the size of the list
 		/**
 		 * Returns a string representation of the collection.
 		 *
-		 * Time Complexity O(n)
-		 * Space Complexity O(n)
+		 * @return {String} A string representation of the collection.
 		 */
 		toString() {
+			return this._toStr((e) => `${e} -> `);
+		}
+
+		_toStr(cb, trimBy=4) {
 			var s = "[";
-			this.forEach((e) => s += `${e} -> `);
+			this.forEach((e) => { s += cb(e); });
 			if (s.length > 1) {
-				s = s.substring(0, s.length - 4);
+				s = s.substring(0, s.length - trimBy);
 			}
 			return s + "]";
 		}
-	};
-})();
+	}
+
+	return LinkedList;
+
+})(__LISTSYMBOLS.SIZE, __LISTSYMBOLS.HEAD, __LISTSYMBOLS.BACK, __LISTSYMBOLS.CMPF);

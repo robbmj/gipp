@@ -20,24 +20,37 @@ var _collectionInterface2 = _interopRequireDefault(_collectionInterface);
 
 var _exceptions = require("./../exceptions");
 
-var IList = (function (_ICollection) {
-	_inherits(IList, _ICollection);
+/**
+ * The parent interface for all Gip Lists
+ * @interface
+ * @augments Collection
+ */
 
-	function IList() {
-		_classCallCheck(this, IList);
+var List = (function (_Collection) {
+	_inherits(List, _Collection);
 
-		_get(Object.getPrototypeOf(IList.prototype), "constructor", this).apply(this, arguments);
+	/**
+  * @throws {UnimplementedError} If directly instantiated.
+  */
+
+	function List() {
+		_classCallCheck(this, List);
+
+		_get(Object.getPrototypeOf(List.prototype), "constructor", this).call(this);
+		if (this.constructor.name === 'List') {
+			throw new _exceptions.UnimplementedError('List');
+		}
 	}
 
-	_createClass(IList, [{
-		key: "indexOf",
+	/**
+  * The indexOf() method returns the first index at which a given element can be found in the list, or -1 if it is not present.
+  *
+  * @param {E} element - The element to locate in the list.
+  * @return {number} The first index at which a given element can be found in the list, or -1 if it is not present.
+  */
 
-		/**
-   * The indexOf() method returns the first index at which a given element can be found in the list, or -1 if it is not present.
-   *
-   * @param {*} element - element to locate in the list.
-   * @return {number} - the first index at which a given element can be found in the list, or -1 if it is not present.
-   */
+	_createClass(List, [{
+		key: "indexOf",
 		value: function indexOf(element) {
 			throw new _exceptions.UnimplementedError('indexOf');
 		}
@@ -45,8 +58,8 @@ var IList = (function (_ICollection) {
 		/**
    * The lastIndexOf() method returns the last index at which a given element can be found in the list, or -1 if it is not present.
    *
-   * @param {*} element - element to locate in the list.
-   * @return {number} - the last index at which a given element can be found in the list, or -1 if it is not present.
+   * @param {E} element - The element to locate in the list.
+   * @return {number} The last index at which a given element can be found in the list, or -1 if it is not present.
    */
 	}, {
 		key: "lastIndexOf",
@@ -55,11 +68,11 @@ var IList = (function (_ICollection) {
 		}
 
 		/**
-   * Returns the last element in the list
+   * Returns the last element in the list.
    *
-   * Throws an EmptyCollectionError if no elements are contained within the collection
+   * @throws {EmptyCollectionError} If no elements are contained within the collection.
    *
-   * @return {*} - the last element in the list
+   * @return {E} The last element in the list.
    */
 	}, {
 		key: "pop",
@@ -68,10 +81,10 @@ var IList = (function (_ICollection) {
 		}
 
 		/**
-   * Appends element to the end of the list
+   * Appends element to the end of the list.
    *
-   * @param {*} element - the element to be appended to the list
-   * @return {IList} - returns this list
+   * @param {E} element - the element to be appended to the list.
+   * @return {List} Returns this list.
    */
 	}, {
 		key: "push",
@@ -80,18 +93,19 @@ var IList = (function (_ICollection) {
 		}
 
 		/**
-   * Appends each element to the end of the collection
+   * Appends each element to the end of the list.
    *
-   * If using ES 5 `pushAll` must be called using individual arguments:
+   * @param {...E} elements - The element to be appended to the list.
+   * @return {List} Returns this list
    *
-   *	`collection.pushAll(1,2,3,4,5);`
+   * @example
+   * // If using ES 5 pushAll() must be called using individual arguments:
+   * list.pushAll(1,2,3,4,5);
    *
-   * If however you are using ES 2015 `pushAll` can be called in the following ways:
-   *
-   *	`collection.pushAll(1,2,3,4,5);` or `collection.pushAll(...[1,2,3,4,5]);`
-   *
-   * @param {...*} elements - the element to be appended to the collection
-   * @return {ICollection} - returns this collection
+   * @example
+   * // If however you are using ES 2015 pushAll() can be called in the following ways:
+   * list.pushAll(1,2,3,4,5);
+   * list.pushAll(...[1,2,3,4,5]);
    */
 	}, {
 		key: "pushAll",
@@ -100,11 +114,11 @@ var IList = (function (_ICollection) {
 		}
 
 		/**
-   * Returns the first element in the list
+   * Returns the first element in the list.
    *
-   * Throws an EmptyCollectionError if no elements are contained within the collection
+   * @throws {EmptyCollectionError} If no elements are contained within the list.
    *
-   * @return {*} - the first element in the list
+   * @return {E} The first element in the list.
    */
 	}, {
 		key: "shift",
@@ -113,10 +127,10 @@ var IList = (function (_ICollection) {
 		}
 
 		/**
-   * Prepends element to the front of the list
+   * Prepends element to the front of the list.
    *
-   * @param {*} element - the element to be appended to the list
-   * @return {IList} - returns this list
+   * @param {E} element - The element to be appended to the list.
+   * @return {List} Returns this list.
    */
 	}, {
 		key: "unshift",
@@ -125,19 +139,20 @@ var IList = (function (_ICollection) {
 		}
 
 		/**
-   * Prepends each element to the front of the list
-   *
-   * If using ES 5 `unshiftAll` must be called using individual arguments:
-   *
-   *	`collection.unshiftAll(1,2,3,4,5);`
-   *
-   * If however you are using ES 2015 `unshiftAll` can be called in the following ways:
-   *
-   *	`collection.unshiftAll(1,2,3,4,5);` or `collection.unshiftAll(...[1,2,3,4,5]);`
-   *
-   * @param {...*} elements - the element to be appended to the collection
-   * @return {ICollection} - returns this collection
-   */
+  * Prepends each element to the front of the list.
+  *
+  * @param {...E} elements - The element to be prepended to the list.
+  * @return {List} Returns this list
+  *
+  * @example
+  * // If using ES 5 unshiftAll() must be called using individual arguments:
+  * list.unshiftAll(1,2,3,4,5);
+  *
+  * @example
+  * // If however you are using ES 2015 unshiftAll() can be called in the following ways:
+  * list.unshiftAll(1,2,3,4,5);
+  * list.unshiftAll(...[1,2,3,4,5]);
+  */
 	}, {
 		key: "unshiftAll",
 		value: function unshiftAll() {
@@ -145,8 +160,8 @@ var IList = (function (_ICollection) {
 		}
 	}]);
 
-	return IList;
+	return List;
 })(_collectionInterface2["default"]);
 
-exports["default"] = IList;
+exports["default"] = List;
 module.exports = exports["default"];

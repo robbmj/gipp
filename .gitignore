@@ -1,9 +1,13 @@
 node_modules/*
-lib/jasmine_examples
-plan.txt
+build/*
+docs/*
+dist/*
 bin/*
+lib/jasmine_examples
 spec/helpers
 spec/jasmine_examples
+
 *.log
+plan.txt
 test.js
-build/*
+_test.js

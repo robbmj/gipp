@@ -14,7 +14,7 @@ gulp.task('babel', function () {
 });
 
 gulp.task('browserify', function() {
-    return browserify('./dist/gip.js')
+    return browserify('./dist/gip.js', {standalone: 'gip'})
         .bundle()
         //Pass desired output filename to vinyl-source-stream
         .pipe(source('gip.bundle.js'))

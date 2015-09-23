@@ -35,6 +35,7 @@ let DListNode = (() => {
 	return class DListNode extends ListNode {
 		constructor(element) {
 			super(element);
+			this[prev] = null;
 		}
 
 		get prev() {

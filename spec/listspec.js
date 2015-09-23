@@ -1,10 +1,7 @@
 
-
-
 describe("LinkedList Tests", function () {
 
 	var gip = require('./../dist/gip');
-	var ex = require('./../dist/collections/exceptions').EmptyListException;
 	var list;
 
 	beforeEach(function() {
@@ -52,7 +49,7 @@ describe("LinkedList Tests", function () {
 			expect(list.shift).toThrow();
 		});
 
-		it('Should return 0', function () {
+		it('Shift should return 0', function () {
 			list.unshift(0);
 			expect(list.size).toEqual(1);
 			expect(list.shift()).toEqual(0);

@@ -8,7 +8,9 @@ var _createClass = require("babel-runtime/helpers/create-class")["default"];
 
 var _classCallCheck = require("babel-runtime/helpers/class-call-check")["default"];
 
-var _Symbol = require("babel-runtime/core-js/symbol")["default"];
+var _Symbol$iterator = require("babel-runtime/core-js/symbol/iterator")["default"];
+
+var _regeneratorRuntime = require("babel-runtime/regenerator")["default"];
 
 var _interopRequireDefault = require("babel-runtime/helpers/interop-require-default")["default"];
 
@@ -16,7 +18,7 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _listnode = require("./listnode");
+var _private__listnodes = require("./private/__listnodes");
 
 var _listInterface = require("./list.interface");
 
@@ -24,42 +26,77 @@ var _listInterface2 = _interopRequireDefault(_listInterface);
 
 var _exceptions = require("./../exceptions");
 
-exports["default"] = (function () {
+var _private__listsymbols = require('./private/__listsymbols');
 
-	var size = _Symbol('size'),
-	    head = _Symbol('head'),
-	    back = _Symbol('back');
+var _private__listsymbols2 = _interopRequireDefault(_private__listsymbols);
 
-	return (function (_IList) {
-		_inherits(LinkedList, _IList);
+exports["default"] = (function (size, head, back, cmpf) {
 
+	/**
+  * @classdesc Singly Linked List
+  * @implements {List}
+  */
+
+	var LinkedList = (function (_List) {
+		_inherits(LinkedList, _List);
+
+		// Time Complexity: O(1), Space Complexity: O(1)
 		/**
    * Creates an empty singly linked list
    *
-   * Time Complexity O(1)
-   * Space Complexity O(1)
+   * @param {cmpFtn?} - If no comparison function is passed then the [default comparison function]{@link Collection#cmpFtn} is used.
    */
 
 		function LinkedList() {
+			var cmpFtn = arguments.length <= 0 || arguments[0] === undefined ? null : arguments[0];
+
 			_classCallCheck(this, LinkedList);
 
 			_get(Object.getPrototypeOf(LinkedList.prototype), "constructor", this).call(this);
 			this[size] = 0;
 			this[head] = null;
 			this[back] = null;
+			this[cmpf] = cmpFtn || _get(Object.getPrototypeOf(LinkedList.prototype), "cmpFtn", this);
 		}
 
-		/**
-   * ${super.documentation()}
-   *
-   * Time Complexity O(1)
-   * Space Complexity O(1)
-   */
+		// Time Complexity: O(1), Space Complexity: O(1)
 
 		_createClass(LinkedList, [{
+			key: _Symbol$iterator,
+
+			// Time Complexity: O(n) where n is the size of the list, Space Complexity: O(1)
+			value: _regeneratorRuntime.mark(function value() {
+				var next;
+				return _regeneratorRuntime.wrap(function value$(context$3$0) {
+					while (1) switch (context$3$0.prev = context$3$0.next) {
+						case 0:
+							next = this[head];
+
+						case 1:
+							if (!(next != null)) {
+								context$3$0.next = 6;
+								break;
+							}
+
+							context$3$0.next = 4;
+							return next.element;
+
+						case 4:
+							context$3$0.next = 1;
+							break;
+
+						case 6:
+						case "end":
+							return context$3$0.stop();
+					}
+				}, value, this);
+			})
+
+			// Time Complexity: O(1), Space Complexity: O(1)
+		}, {
 			key: "add",
 			value: function add(element) {
-				var node = new _listnode.ListNode(element);
+				var node = new _private__listnodes.ListNode(element);
 				if (this[head] === null) {
 					this[head] = node;
 					this[back] = node;
@@ -71,12 +108,7 @@ exports["default"] = (function () {
 				return this;
 			}
 
-			/**
-    * ${super.documentation()}
-    *
-    * Time Complexity O(n)
-    * Space Complexity O(1)
-    */
+			// Time Complexity: O(n) where n is the size of elements, Space Complexity: O(1)
 		}, {
 			key: "addAll",
 			value: function addAll() {
@@ -92,24 +124,14 @@ exports["default"] = (function () {
 				return this;
 			}
 
-			/**
-    * ${super.documentation()}
-    *
-    * Time Complexity O(n)
-    * Space Complexity O(1)
-    */
+			// Time Complexity: O(n) where n is the size of the list, Space Complexity: O(1)
 		}, {
 			key: "contains",
 			value: function contains(element) {
 				return this.indexOf(element) !== -1;
 			}
 
-			/**
-    * ${super.documentation()}
-    *
-    * Time Complexity O(n)
-    * Space Complexity O(1)
-    */
+			// Time Complexity: O(n) where n is the size of the list, Space Complexity: O(1)
 		}, {
 			key: "delete",
 			value: function _delete(element) {
@@ -117,7 +139,7 @@ exports["default"] = (function () {
 					throw new EmptyCollectionError('Can\'t delete from an empty LinkedList');
 				}
 
-				if (this[head].element === element) {
+				if (this[cmpf](this[head].element, element) === 0) {
 					this.shift();
 					return true;
 				}
@@ -129,7 +151,7 @@ exports["default"] = (function () {
 				var next = this[head].next;
 				var prev = this[head];
 
-				while (next.element !== element) {
+				while (this[cmpf](next.element, element) !== 0) {
 					prev = next;
 					next = next.next;
 
@@ -141,7 +163,8 @@ exports["default"] = (function () {
 
 				if (next === this[back]) {
 					// element was the last in the list
-					this.pop();
+					prev.next = null;
+					this[size] -= 1;
 					return true;
 				}
 
@@ -151,12 +174,7 @@ exports["default"] = (function () {
 				return true;
 			}
 
-			/**
-    * ${super.documentation()}
-    *
-    * Time Complexity O(n)
-    * Space Complexity O(1)
-    */
+			// Time Complexity: O(n) where n is the size of the list, Space Complexity: O(1)
 		}, {
 			key: "forEach",
 			value: function forEach(cb) {
@@ -169,12 +187,7 @@ exports["default"] = (function () {
 				return this;
 			}
 
-			/**
-    * ${super.documentation()}
-    *
-    * Time Complexity O(n)
-    * Space Complexity O(n)
-    */
+			// Time Complexity: O(n) where n is the size of the list, Space Complexity: O(n) where n is the size of the list
 		}, {
 			key: "map",
 			value: function map(cb) {
@@ -190,28 +203,16 @@ exports["default"] = (function () {
 				return newList;
 			}
 
-			/**
-    * ${super.documentation()}
-    *
-    * Time Complexity O(1)
-    * Space Complexity O(1)
-    */
+			// Time Complexity: O(n) where n is the size of the list, Space Complexity: O(1)
 		}, {
 			key: "indexOf",
-
-			/**
-    * ${super.documentation()}
-    *
-   	 * Time Complexity: O(n)
-   	 * Space Complexity: O(1)
-    */
 			value: function indexOf(element) {
 				if (this[size] === 0) {
 					return -1;
 				}
 				var i = 0;
 				var next = this[head];
-				while (next.element !== element) {
+				while (this[cmpf](next.element, element) !== 0) {
 					next = next.next;
 					i++;
 					if (next === null) {
@@ -221,12 +222,7 @@ exports["default"] = (function () {
 				return i;
 			}
 
-			/**
-    * ${super.documentation()}
-    *
-   	 * Time Complexity: O(n)
-   	 * Space Complexity: O(1)
-    */
+			// Time Complexity: O(n) where n is the size of the list, Space Complexity: O(1)
 		}, {
 			key: "lastIndexOf",
 			value: function lastIndexOf(element) {
@@ -237,7 +233,7 @@ exports["default"] = (function () {
 				var lastIndex = -1;
 				var next = this[head];
 				while (next !== null) {
-					if (next.element === element) {
+					if (this[cmpf](next.element, element) === 0) {
 						lastIndex = i;
 					}
 					i++;
@@ -246,12 +242,7 @@ exports["default"] = (function () {
 				return lastIndex;
 			}
 
-			/**
-    * ${super.documentation()}
-    *
-    * Time Complexity O(1)
-    * Space Complexity O(1)
-    */
+			// Time Complexity: O(n) where n is the size of the list, Space Complexity: O(1)
 		}, {
 			key: "pop",
 			value: function pop() {
@@ -261,6 +252,7 @@ exports["default"] = (function () {
 				if (this[size] === 1) {
 					var ret = this[head].element;
 					this[head] = null;
+					this[back] = null;
 					this[size] = 0;
 					return ret;
 				}
@@ -269,42 +261,27 @@ exports["default"] = (function () {
 				while (next.next !== last) {
 					next = next.next;
 				}
-				this.last = next;
+				this[back] = next;
 				next.next = null;
 				this[size] -= 1;
 				return last.element;
 			}
 
-			/**
-    *${super.documentation()}
-    *
-    * Time Complexity O(1)
-    * Space Complexity O(1)
-    */
+			// Time Complexity: O(1), Space Complexity: O(1)
 		}, {
 			key: "push",
 			value: function push(element) {
 				return this.add(element);
 			}
 
-			/**
-    * ${super.documentation()}
-    *
-    * Time Complexity O(n)
-    * Space Complexity O(1)
-    */
+			// Time Complexity: O(n) where n is the size of elements, Space Complexity: O(1)
 		}, {
 			key: "pushAll",
 			value: function pushAll() {
 				return this.addAll.apply(this, arguments);
 			}
 
-			/**
-    * ${super.documentation()}
-    *
-    * Time Complexity O(1)
-    * Space Complexity O(1)
-    */
+			// Time Complexity: O(1), Space Complexity: O(1)
 		}, {
 			key: "shift",
 			value: function shift() {
@@ -312,33 +289,33 @@ exports["default"] = (function () {
 					throw new EmptyCollectionError('Can\'t shift on an empty LinkedList');
 				}
 				var element = this[head].element;
-				this[head] = this[size] === 1 ? null : this[head].next;
+
+				if (this[size] === 1) {
+					this[head] = null;
+					this[back] = null;
+				} else {
+					this[head] = this[head].next;;
+				}
+
 				this[size] -= 1;
 				return element;
 			}
 
-			/**
-    * ${super.documentation()}
-    *
-    * Time Complexity O(1)
-    * Space Complexity O(1)
-    */
+			// Time Complexity: O(1), Space Complexity: O(1)
 		}, {
 			key: "unshift",
 			value: function unshift(element) {
-				var node = new _listnode.ListNode(element);
+				if (this[size] === 0) {
+					return this.add(element);
+				}
+				var node = new _private__listnodes.ListNode(element);
 				node.next = this[head];
 				this[head] = node;
 				this[size] += 1;
 				return this;
 			}
 
-			/**
-    * ${super.documentation()}
-    *
-    * Time Complexity O(n)
-    * Space Complexity O(1)
-    */
+			// Time Complexity: O(1), Space Complexity: O(1)
 		}, {
 			key: "unshiftAll",
 			value: function unshiftAll() {
@@ -353,21 +330,30 @@ exports["default"] = (function () {
 				return this;
 			}
 
+			// Time Complexity: O(n) where n is the size of the list, Space Complexity: O(n) where n is the size of the list
 			/**
     * Returns a string representation of the collection.
     *
-    * Time Complexity O(n)
-    * Space Complexity O(n)
+    * @return {String} A string representation of the collection.
     */
 		}, {
 			key: "toString",
 			value: function toString() {
+				return this._toStr(function (e) {
+					return e + " -> ";
+				});
+			}
+		}, {
+			key: "_toStr",
+			value: function _toStr(cb) {
+				var trimBy = arguments.length <= 1 || arguments[1] === undefined ? 4 : arguments[1];
+
 				var s = "[";
 				this.forEach(function (e) {
-					return s += e + " -> ";
+					s += cb(e);
 				});
 				if (s.length > 1) {
-					s = s.substring(0, s.length - 4);
+					s = s.substring(0, s.length - trimBy);
 				}
 				return s + "]";
 			}
@@ -376,10 +362,19 @@ exports["default"] = (function () {
 			get: function get() {
 				return this[size];
 			}
+
+			// Time Complexity: O(1), Space Complexity: O(1)
+		}, {
+			key: "isEmpty",
+			get: function get() {
+				return this[size] === 0;
+			}
 		}]);
 
 		return LinkedList;
 	})(_listInterface2["default"]);
-})();
+
+	return LinkedList;
+})(_private__listsymbols2["default"].SIZE, _private__listsymbols2["default"].HEAD, _private__listsymbols2["default"].BACK, _private__listsymbols2["default"].CMPF);
 
 module.exports = exports["default"];

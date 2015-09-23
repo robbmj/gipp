@@ -7,27 +7,55 @@ var _classCallCheck = require("babel-runtime/helpers/class-call-check")["default
 var _interopRequireDefault = require("babel-runtime/helpers/interop-require-default")["default"];
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
 var _collectionsListsLinkedlist = require("./collections/lists/linkedlist");
 
 var _collectionsListsLinkedlist2 = _interopRequireDefault(_collectionsListsLinkedlist);
 
-var gip = (function () {
-	function gip() {
-		_classCallCheck(this, gip);
-	}
+var _collectionsListsDoublelinkedlist = require("./collections/lists/doublelinkedlist");
 
-	_createClass(gip, [{
-		key: "LinkedList",
-		value: function LinkedList() {
-			return new _collectionsListsLinkedlist2["default"]();
-		}
-	}]);
+var _collectionsListsDoublelinkedlist2 = _interopRequireDefault(_collectionsListsDoublelinkedlist);
 
-	return gip;
+/**
+ * Gip - Entry Point for library
+ * @namespace
+ */
+
+var Gip = (function () {
+  function Gip() {
+    _classCallCheck(this, Gip);
+  }
+
+  _createClass(Gip, [{
+    key: "LinkedList",
+
+    /**
+    	 * Returns a new linked list
+    	 *
+    	 * @return {LinkedList}
+    	 */
+    value: function LinkedList() {
+      return new _collectionsListsLinkedlist2["default"]();
+    }
+
+    /**
+    	 * Returns a new double linked list
+    	 *
+    	 * @return {DoubleLinkedList}
+    	 */
+  }, {
+    key: "DoubleLinkedList",
+    value: function DoubleLinkedList() {
+      return new _collectionsListsDoublelinkedlist2["default"]();
+    }
+  }]);
+
+  return Gip;
 })();
 
-exports["default"] = new gip();
+var gip = new Gip();
+
+exports["default"] = gip;
 module.exports = exports["default"];

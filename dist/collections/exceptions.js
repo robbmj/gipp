@@ -1,3 +1,8 @@
+
+
+/**
+ * @global
+ */
 "use strict";
 
 var _get = require("babel-runtime/helpers/get")["default"];
@@ -19,10 +24,11 @@ var UnimplementedError = (function (_Error) {
 		_get(Object.getPrototypeOf(UnimplementedError.prototype), "constructor", this).call(this, "This is a bug in gip please file a bug report (including the stack trace) to (URL): " + method + " is not implemented");
 	}
 
+	/**
+  * @global
+  */
 	return UnimplementedError;
 })(Error);
-
-exports.UnimplementedError = UnimplementedError;
 
 var EmptyCollectionError = (function (_Error2) {
 	_inherits(EmptyCollectionError, _Error2);
@@ -36,4 +42,8 @@ var EmptyCollectionError = (function (_Error2) {
 	return EmptyCollectionError;
 })(Error);
 
-exports.EmptyCollectionError = EmptyCollectionError;
+exports["default"] = {
+	UnimplementedError: UnimplementedError,
+	EmptyCollectionError: EmptyCollectionError
+};
+module.exports = exports["default"];
