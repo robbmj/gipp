@@ -2,9 +2,9 @@
 import {UnimplementedError} from "./exceptions";
 
 /**
- * The parent interface for all Gip collections.
+ * The parent interface for all Gipp collections.
  *
- * A Collection in Gip should be homogeneous, however it is not required.
+ * A Collection in Gipp should be homogeneous, however it is not required.
  *
  * If a collection contains non primitive elements then a [comparison function]{@link cmpFtn} must be provided
  * to the collection's constructor.
@@ -21,7 +21,7 @@ class Collection {
 	 * If `E` is a non primitive type, then a [comparison function]{@link cmpFtn} must be provided to the
 	 * the collection's constructor.
 	 *
-	 * Gip will not inforce that a collection be homogeneous. But it is probably a good idea.
+	 * Gipp will not inforce that a collection be homogeneous. But it is probably a good idea.
 	 *
 	 * @typedef {*} E
  	 */

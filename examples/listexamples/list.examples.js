@@ -1,5 +1,5 @@
 
-var gip = require('./../../build/min/gip.bundle.js');
+var gipp = require('./../../build/min/gipp.bundle.js');
 
 var babel = require("babel-core");
 
@@ -15,7 +15,7 @@ console.log = function (item) {
 
 /** example usage of addAll and forEach */
 run(classes, ['addAll', 'forEach'], function _() {
-	var list = gip.LinkedList();
+	var list = gipp.LinkedList();
 	list.addAll(1,2,3);
 
 	list.forEach(function (e) {
@@ -25,7 +25,7 @@ run(classes, ['addAll', 'forEach'], function _() {
 
 /** example usage of pushAll and pop */
 run(classes, ['unshiftAll', 'shift', 'size'], function _() {
-	var list = gip.LinkedList();
+	var list = gipp.LinkedList();
 	list.pushAll(1,2,3);
 
 	while (list.size > 0) {
@@ -34,7 +34,7 @@ run(classes, ['unshiftAll', 'shift', 'size'], function _() {
 });
 
 run(classes, ['unshiftAll', 'shift', 'isEmpty'], function _() {
-	var list = gip.LinkedList();
+	var list = gipp.LinkedList();
 	list.unshiftAll(1,2,3);
 
 	while (!list.isEmpty) {

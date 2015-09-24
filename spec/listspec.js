@@ -1,227 +1,251 @@
 
-describe("LinkedList Tests", function () {
-
-	var gip = require('./../dist/gip');
-	var list;
+describe('LinkedList Tests', function () {
+	var gipp = require('./../dist/gipp');
+	var ctx = {};
 
 	beforeEach(function() {
-    	list = gip.LinkedList();
+    	ctx.list = gipp.LinkedList();
   	});
 
-	it('Should be empty', function () {
-		expect(list.size).toEqual(0);
-	});
+  	listInterfaceTests(ctx);
+});
 
-	it('Should not be empty', function () {
-		list.add(0);
-		expect(list.size).toEqual(1);
-	});
+describe('DoubleLinkedList Tests', function () {
+	var gipp = require('./../dist/gipp');
+	var ctx = {};
 
-	describe('Push - Pop tests', function () {
+	beforeEach(function() {
+    	ctx.list = gipp.DoubleLinkedList();
+  	});
 
-		it('An empty list should throw an exception', function () {
-			expect(list.pop).toThrow();
-		});
+  	listInterfaceTests(ctx);
+});
 
-		it('Should return 0', function () {
-			list.add(0);
-			expect(list.size).toEqual(1);
-			expect(list.pop()).toEqual(0);
+function listInterfaceTests(ctx) {
+
+	describe("LinkedList Tests", function () {
+
+		var list;
+
+		beforeEach(function() {
+	    	list = ctx.list;
+	  	});
+
+		it('Should be empty', function () {
 			expect(list.size).toEqual(0);
 		});
 
-		it('Should return 1', function () {
+		it('Should not be empty', function () {
 			list.add(0);
-			list.add(1);
-			expect(list.size).toEqual(2);
-			expect(list.pop()).toEqual(1);
 			expect(list.size).toEqual(1);
 		});
 
-		it('An empty list should throw an exception', function () {
-			expect(list.pop).toThrow();
-		});
-	});
+		describe('Push - Pop tests', function () {
 
-	describe('Shift - Unshift Tests', function () {
+			it('An empty list should throw an exception', function () {
+				expect(list.pop).toThrow();
+			});
 
-		it('An empty list should throw an exception', function () {
-			expect(list.shift).toThrow();
-		});
+			it('Should return 0', function () {
+				list.add(0);
+				expect(list.size).toEqual(1);
+				expect(list.pop()).toEqual(0);
+				expect(list.size).toEqual(0);
+			});
 
-		it('Shift should return 0', function () {
-			list.unshift(0);
-			expect(list.size).toEqual(1);
-			expect(list.shift()).toEqual(0);
-			expect(list.size).toEqual(0);
-		});
+			it('Should return 1', function () {
+				list.add(0);
+				list.add(1);
+				expect(list.size).toEqual(2);
+				expect(list.pop()).toEqual(1);
+				expect(list.size).toEqual(1);
+			});
 
-		it('Should return 2', function () {
-			list.unshift(1);
-			list.unshift(2);
-			expect(list.size).toEqual(2);
-			expect(list.shift()).toEqual(2);
-			expect(list.size).toEqual(1);
-		});
-
-		it('An empty list should throw an exception', function () {
-			expect(list.shift).toThrow();
-		});
-	});
-
-	describe('IndexOf - LastIndexOf tests', function () {
-
-		it('IndexOf Should return -1', function () {
-			expect(list.size).toEqual(0);
-			expect(list.indexOf(1)).toEqual(-1);
+			it('An empty list should throw an exception', function () {
+				expect(list.pop).toThrow();
+			});
 		});
 
-		it('IndexOf Should return -1', function () {
-			list.add(4);
-			expect(list.size).toEqual(1);
-			expect(list.indexOf(1)).toEqual(-1);
+		describe('Shift - Unshift Tests', function () {
+
+			it('An empty list should throw an exception', function () {
+				expect(list.shift).toThrow();
+			});
+
+			it('Shift should return 0', function () {
+				list.unshift(0);
+				expect(list.size).toEqual(1);
+				expect(list.shift()).toEqual(0);
+				expect(list.size).toEqual(0);
+			});
+
+			it('Should return 2', function () {
+				list.unshift(1);
+				list.unshift(2);
+				expect(list.size).toEqual(2);
+				expect(list.shift()).toEqual(2);
+				expect(list.size).toEqual(1);
+			});
+
+			it('An empty list should throw an exception', function () {
+				expect(list.shift).toThrow();
+			});
 		});
 
-		it('IndexOf Should return 0', function () {
-			list.add(4);
-			expect(list.size).toEqual(1);
-			expect(list.indexOf(4)).toEqual(0);
+		describe('IndexOf - LastIndexOf tests', function () {
+
+			it('IndexOf Should return -1', function () {
+				expect(list.size).toEqual(0);
+				expect(list.indexOf(1)).toEqual(-1);
+			});
+
+			it('IndexOf Should return -1', function () {
+				list.add(4);
+				expect(list.size).toEqual(1);
+				expect(list.indexOf(1)).toEqual(-1);
+			});
+
+			it('IndexOf Should return 0', function () {
+				list.add(4);
+				expect(list.size).toEqual(1);
+				expect(list.indexOf(4)).toEqual(0);
+			});
+
+			it('IndexOf Should return 1', function () {
+				list.add(1);
+				list.add(4);
+				expect(list.size).toEqual(2);
+				expect(list.indexOf(4)).toEqual(1);
+			});
+
+			it('LastIndexOf Should return -1', function () {
+				expect(list.lastIndexOf(0)).toEqual(-1);
+			});
+
+			it('LastIndexOf Should return -1', function () {
+				list.add(1);
+				expect(list.lastIndexOf(0)).toEqual(-1);
+			});
+
+			it('LastIndexOf Should return 0', function () {
+				list.add(1);
+				expect(list.lastIndexOf(1)).toEqual(0);
+			});
+
+			it('LastIndexOf Should return 1', function () {
+				list.add(1);
+				list.add(1);
+				expect(list.lastIndexOf(1)).toEqual(1);
+			});
 		});
 
-		it('IndexOf Should return 1', function () {
-			list.add(1);
-			list.add(4);
-			expect(list.size).toEqual(2);
-			expect(list.indexOf(4)).toEqual(1);
+		describe('Contains Tests', function () {
+			it('Contains should return false', function () {
+				expect(list.contains(1)).toEqual(false);
+			});
+
+			it('Contains should return false', function () {
+				list.add(0);
+				expect(list.contains(1)).toEqual(false);
+			});
+
+			it('Contains should return false', function () {
+				list.add(0);
+				list.add(0);
+				expect(list.contains(1)).toEqual(false);
+			});
+
+			it('Contains should return true', function () {
+				list.add(1);
+				expect(list.contains(1)).toEqual(true);
+			});
+			it('Contains should return true', function () {
+				list.add(0);
+				list.add(1);
+				expect(list.contains(1)).toEqual(true);
+			});
 		});
 
-		it('LastIndexOf Should return -1', function () {
-			expect(list.lastIndexOf(0)).toEqual(-1);
-		});
-
-		it('LastIndexOf Should return -1', function () {
-			list.add(1);
-			expect(list.lastIndexOf(0)).toEqual(-1);
-		});
-
-		it('LastIndexOf Should return 0', function () {
-			list.add(1);
-			expect(list.lastIndexOf(1)).toEqual(0);
-		});
-
-		it('LastIndexOf Should return 1', function () {
-			list.add(1);
-			list.add(1);
-			expect(list.lastIndexOf(1)).toEqual(1);
-		});
-	});
-
-	describe('Contains Tests', function () {
-		it('Contains should return false', function () {
-			expect(list.contains(1)).toEqual(false);
-		});
-
-		it('Contains should return false', function () {
-			list.add(0);
-			expect(list.contains(1)).toEqual(false);
-		});
-
-		it('Contains should return false', function () {
-			list.add(0);
-			list.add(0);
-			expect(list.contains(1)).toEqual(false);
-		});
-
-		it('Contains should return true', function () {
-			list.add(1);
-			expect(list.contains(1)).toEqual(true);
-		});
-		it('Contains should return true', function () {
-			list.add(0);
-			list.add(1);
-			expect(list.contains(1)).toEqual(true);
-		});
-	});
-
-	describe('ForEach Tests', function () {
-		var i = 0;
-		var cb = function (order) {
-			i = 0;
-			return function (e) {
-				expect(e).toEqual(order[i++]);
+		describe('ForEach Tests', function () {
+			var i = 0;
+			var cb = function (order) {
+				i = 0;
+				return function (e) {
+					expect(e).toEqual(order[i++]);
+				};
 			};
-		};
 
-		it('ForEach - AddAll', function () {
-			var a = [0,1,2,3,4,5];
-			list.addAll(0,1,2,3,4,5);
-			list.forEach(cb(a));
-			expect(i).toEqual(a.length);
+			it('ForEach - AddAll', function () {
+				var a = [0,1,2,3,4,5];
+				list.addAll(0,1,2,3,4,5);
+				list.forEach(cb(a));
+				expect(i).toEqual(a.length);
+			});
+
+			it('ForEach - PushAll', function () {
+				var a = [0,1,2,3,4,5];
+				list.pushAll(0,1,2,3,4,5);
+				list.forEach(cb(a));
+				expect(i).toEqual(a.length);
+			});
+
+			it('ForEach - UnshiftAll', function () {
+				var a = [0,1,2,3,4,5];
+				list.unshiftAll(0,1,2,3,4,5);
+				list.forEach(cb(a));
+				expect(i).toEqual(a.length);
+			});
 		});
 
-		it('ForEach - PushAll', function () {
-			var a = [0,1,2,3,4,5];
-			list.pushAll(0,1,2,3,4,5);
-			list.forEach(cb(a));
-			expect(i).toEqual(a.length);
+		describe('Delete Tests', function () {
+			it('Delete should throw an exception if the list is empty', function () {
+				expect(list.delete).toThrow();
+			});
+
+			it('Delete should return false if element is not in the list', function () {
+				list.add(0);
+				expect(list.delete(1)).toEqual(false);
+			});
+
+			it('Delete should return true and list should be empty when deleting the first element in the list and list size = 1', function () {
+				list.add(1);
+				expect(list.delete(1)).toEqual(true);
+				expect(list.size).toEqual(0);
+			});
+
+			it('Delete should return true if element is the last in the list', function () {
+				list.add(1);
+				list.add(2);
+				expect(list.delete(2)).toEqual(true);
+				expect(list.size).toEqual(1);
+			});
+
+			it('Delete should return true if element is in the middle of the list', function () {
+				list.add(1);
+				list.add(2);
+				list.add(3);
+				expect(list.delete(2)).toEqual(true);
+				expect(list.size).toEqual(2);
+			});
 		});
 
-		it('ForEach - UnshiftAll', function () {
-			var a = [0,1,2,3,4,5];
-			list.unshiftAll(0,1,2,3,4,5);
-			list.forEach(cb(a));
-			expect(i).toEqual(a.length);
-		});
-	});
+		describe('Map Tests', function () {
+			var evenOnly = function (e) {
+				return (e & 1) === 0;
+			};
 
-	describe('Delete Tests', function () {
-		it('Delete should throw an exception if the list is empty', function () {
-			expect(list.delete).toThrow();
-		});
+			it('Map should throw a TypeError if not passed a function', function () {
+				expect(list.map).toThrowError(TypeError);
+			});
 
-		it('Delete should return false if element is not in the list', function () {
-			list.add(0);
-			expect(list.delete(1)).toEqual(false);
-		});
+			it('Map should return a list of even numbers', function () {
+				list.addAll(0,1,2,3,4,5,6,7,8,9);
+				var newList = list.map(evenOnly);
 
-		it('Delete should return true and list should be empty when deleting the first element in the list and list size = 1', function () {
-			list.add(1);
-			expect(list.delete(1)).toEqual(true);
-			expect(list.size).toEqual(0);
-		});
-
-		it('Delete should return true if element is the last in the list', function () {
-			list.add(1);
-			list.add(2);
-			expect(list.delete(2)).toEqual(true);
-			expect(list.size).toEqual(1);
-		});
-
-		it('Delete should return true if element is in the middle of the list', function () {
-			list.add(1);
-			list.add(2);
-			list.add(3);
-			expect(list.delete(2)).toEqual(true);
-			expect(list.size).toEqual(2);
-		});
-	});
-
-	describe('Map Tests', function () {
-		var evenOnly = function (e) {
-			return (e & 1) === 0;
-		};
-
-		it('Map should throw a TypeError if not passed a function', function () {
-			expect(list.map).toThrowError(TypeError);
-		});
-
-		it('Map should return a list of even numbers', function () {
-			list.addAll(0,1,2,3,4,5,6,7,8,9);
-			var newList = list.map(evenOnly);
-
-			newList.forEach(function (e) {
-				expect(e & 1).toEqual(0);
+				newList.forEach(function (e) {
+					expect(e & 1).toEqual(0);
+				});
 			});
 		});
 	});
-});
+}

@@ -14,16 +14,16 @@ gulp.task('babel', function () {
 });
 
 gulp.task('browserify', function() {
-    return browserify('./dist/gip.js', {standalone: 'gip'})
+    return browserify('./dist/gipp.js', {standalone: 'gipp'})
         .bundle()
         //Pass desired output filename to vinyl-source-stream
-        .pipe(source('gip.bundle.js'))
+        .pipe(source('gipp.bundle.js'))
         // Start piping stream to tasks!
         .pipe(gulp.dest('./build/'));
 });
 
 gulp.task('compress', function() {
-  return gulp.src('./build/gip.bundle.js')
+  return gulp.src('./build/gipp.bundle.js')
     .pipe(uglify())
     .pipe(gulp.dest('./build/min/'));
 });

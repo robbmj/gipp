@@ -21,7 +21,7 @@ var _collectionInterface2 = _interopRequireDefault(_collectionInterface);
 var _exceptions = require("./../exceptions");
 
 /**
- * The parent interface for all Gip Lists
+ * The parent interface for all Gipp Lists
  * @interface
  * @augments Collection
  */

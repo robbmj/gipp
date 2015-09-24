@@ -3,7 +3,7 @@ import Collection from "./../collection.interface";
 import {UnimplementedError} from "./../exceptions";
 
 /**
- * The parent interface for all Gip Lists
+ * The parent interface for all Gipp Lists
  * @interface
  * @augments Collection
  */

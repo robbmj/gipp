@@ -5,7 +5,7 @@
  */
 class UnimplementedError extends Error {
 	constructor(method) {
-		super(`This is a bug in gip please file a bug report (including the stack trace) to (URL): ${method} is not implemented`);
+		super(`This is a bug in gipp please file a bug report (including the stack trace) to (URL): ${method} is not implemented`);
 	}
 }
 

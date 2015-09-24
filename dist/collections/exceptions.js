@@ -21,7 +21,7 @@ var UnimplementedError = (function (_Error) {
 	function UnimplementedError(method) {
 		_classCallCheck(this, UnimplementedError);
 
-		_get(Object.getPrototypeOf(UnimplementedError.prototype), "constructor", this).call(this, "This is a bug in gip please file a bug report (including the stack trace) to (URL): " + method + " is not implemented");
+		_get(Object.getPrototypeOf(UnimplementedError.prototype), "constructor", this).call(this, "This is a bug in gipp please file a bug report (including the stack trace) to (URL): " + method + " is not implemented");
 	}
 
 	/**

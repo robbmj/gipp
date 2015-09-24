@@ -1,8 +1,16 @@
 {
-  "name": "gip",
-  "version": "1.0.0",
+  "name": "gipp",
+  "version": "0.0.1",
   "description": "Data structures and algo library",
-  "main": "dist/gip.js",
+  "main": "dist/gipp.js",
+  "author": "Michael Robb <michael.robb.prog@gmail.com>",
+  "repository": {
+    "type" : "git"
+  , "url" : "https://github.com/robbmj/gipp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/robbmj/gipp/issues"
+  },
   "scripts": {
     "test": "jasmine",
     "start": "gulp watch",
