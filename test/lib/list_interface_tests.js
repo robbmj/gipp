@@ -1,27 +1,5 @@
 
-describe('LinkedList Tests', function () {
-	var gipp = require('./../gipp-transpiled');
-	var ctx = {};
-
-	beforeEach(function() {
-    	ctx.list = gipp.LinkedList();
-  	});
-
-  	listInterfaceTests(ctx);
-});
-
-describe('DoubleLinkedList Tests', function () {
-	var gipp = require('./../gipp-transpiled');
-	var ctx = {};
-
-	beforeEach(function() {
-    	ctx.list = gipp.DoubleLinkedList();
-  	});
-
-  	listInterfaceTests(ctx);
-});
-
-function listInterfaceTests(ctx) {
+module.exports = function (ctx) {
 
 	describe("LinkedList Tests", function () {
 

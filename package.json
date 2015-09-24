@@ -13,7 +13,7 @@
     "url": "https://github.com/robbmj/gipp/issues"
   },
   "scripts": {
-    "test": "jasmine",
+    "test": "cd test && jasmine",
     "start": "gulp watch",
     "docs": "./node_modules/.bin/jsdoc src -r -d docs -c jsdoc_conf.json"
   },

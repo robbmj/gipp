@@ -5,7 +5,8 @@ build/gipp-transpiled/lib/*
 build/gipp-bundle/gipp.bundle.js
 build/gipp-min-bundle/gipp.bundle.js
 
-docs/*
+test/node_modules/*
+
 bin/*
 
 lib/jasmine_examples

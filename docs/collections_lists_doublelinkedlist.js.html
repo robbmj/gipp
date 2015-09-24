@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: collections/lists/doublelinkedlist.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: collections/lists/doublelinkedlist.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+import {DListNode} from "./private/__listnodes";
+import LinkedList from "./linkedlist";
+import {EmptyListException} from "./../exceptions";
+import __LISTSYMBOLS from './private/__listsymbols';
+
+export default ((size, head, back, cmpf) => {
+
+	/**
+	 * @classdesc Doubly Linked List
+	 * @implements {List}
+	 * @extends LinkedList
+	 */
+	class DoubleLinkedList extends LinkedList {
+		// Time Complexity: O(1), Space Complexity: O(1)
+		/**
+		 * Creates an empty Doubly Linked List
+		 *
+		 * @param {cmpFtn?} - If no comparison function is passed then the [default comparison function]{@link Collection#cmpFtn} is used.
+		 */
+		constructor(cmpFtn=null) {
+			super(cmpFtn);
+		}
+
+		/** @inheritdoc */
+		add(element) {
+			let node = new DListNode(element);
+			if (this[head] === null) {
+				this[head] = node;
+				this[back] = node;
+			}
+			else {
+				node.prev = this[back];
+				this[back].next = node;
+				this[back] = node;
+			}
+			this[size] += 1;
+			return this;
+		}
+
+		/** @inheritdoc */
+		delete(element) {
+			if (this[size] === 0) {
+				throw new EmptyCollectionError('Can\'t delete from an empty LinkedList');
+			}
+
+			if (this[head].element === element) {
+				this.shift();
+				return true;
+			}
+
+			if (this[size] === 1) {
+				return false;
+			}
+
+			let next = this[head].next;
+			let prev = this[head];
+
+			while (this[cmpf](next.element, element) !== 0) {
+				prev = next;
+				next = next.next;
+
+				if (next === null) {
+					// element is not in the list
+					return false;
+				}
+			}
+
+			if (next === this[back]) {
+				// element was the last in the list
+				this.pop();
+				return true;
+			}
+
+			// element was somewhere in the middle;
+			prev.next = next.next;
+			next.next.prev = prev;
+
+			this[size] -= 1;
+			return true;
+		}
+
+		/**
+		 * @todo override lastIndexOf
+		 */
+
+
+		/** @inheritdoc */
+		pop() {
+			if (this[size] === 0) {
+				throw new EmptyCollectionError('Can\'t pop on an empty LinkedList');
+			}
+
+			let element = this[back].element;
+
+			if (this[size] === 1) {
+				this[head] = null;
+				this[back] = null;
+			}
+			else {
+				this[back].prev.next = null;
+				this[back] = this[back].prev;
+			}
+
+			this[size] -= 1;
+
+			return element;
+		}
+
+		/** @inheritdoc */
+		shift() {
+			if (this[size] === 0) {
+				throw new EmptyCollectionError('Can\'t shift on an empty LinkedList');
+			}
+			let element = this[head].element;
+			if (this[size] === 1) {
+				this[head] = null;
+				this[back] = null;
+			}
+			else {
+				this[head] = this[head].next;
+				this[head].prev = null;
+			}
+			this[size] -= 1;
+			return element;
+		}
+
+		/** @inheritdoc */
+		unshift(element) {
+			if (this[size] === 0) {
+				return this.add(element);
+			}
+			var node = new DListNode(element);
+			node.next = this[head];
+			this[head].prev = node;
+			this[head] = node;
+			this[size] += 1;
+			return this;
+		}
+
+		/**
+		 * Same as {@link Collection#forEach} just starts at the tail of the list.
+		 *
+		 * @throws {TypeError} If cb is not a function.
+	 	 *
+	 	 * @param {forEachCallback} cb - The callback that will be applied to each element in the collection.
+	 	 * @return {Collection} Returns this collection.
+	 	 */
+		reverseForEach(cb) {
+			super._throwIfNotFunction(cb);
+			let prev = this[back];
+			while (prev !== null) {
+				cb(prev.element);
+				prev = prev.prev;
+			}
+			return this;
+		}
+
+		toString() {
+			return super._toStr((e) => `${e} &lt;-> `, 5);
+		}
+	}
+
+	return DoubleLinkedList;
+
+})(__LISTSYMBOLS.SIZE, __LISTSYMBOLS.HEAD, __LISTSYMBOLS.BACK, __LISTSYMBOLS.CMPF);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DoubleLinkedList.html">DoubleLinkedList</a></li><li><a href="EmptyCollectionError.html">EmptyCollectionError</a></li><li><a href="LinkedList.html">LinkedList</a></li><li><a href="UnimplementedError.html">UnimplementedError</a></li></ul><h3>Namespaces</h3><ul><li><a href="Gipp.html">Gipp</a></li></ul><h3>Interfaces</h3><ul><li><a href="Collection.html">Collection</a></li><li><a href="List.html">List</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a> on Thu Sep 24 2015 13:02:57 GMT-0400 (EDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
