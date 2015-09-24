@@ -10,11 +10,11 @@ gulp.task('babel', function () {
   return gulp
       .src("./src/**/*.js")
       .pipe(babel({ optional: ["runtime"] }))
-      .pipe(gulp.dest("./build/gipp-transpiled/src/"));
+      .pipe(gulp.dest("./build/gipp-transpiled/lib/"));
 });
 
 gulp.task('browserify', function() {
-    return browserify('./build/gipp-transpiled/src/gipp.js', {standalone: 'gipp'})
+    return browserify('./build/gipp-transpiled/lib/gipp.js', {standalone: 'gipp'})
         .bundle()
         //Pass desired output filename to vinyl-source-stream
         .pipe(source('gipp.bundle.js'))
@@ -28,8 +28,13 @@ gulp.task('compress', function() {
     .pipe(gulp.dest('./build/gipp-min-bundle/'));
 });
 
+gulp.task('copy-src-dir', function () {
+    gulp.src('./src/**/*.js')
+      .pipe(gulp.dest('./build/gipp/lib/'));
+});
+
 gulp.task('watch', function(){
     watch('src/**/*.js', function() {
-        runSequence('babel', 'browserify', 'compress');
+        runSequence('babel', 'browserify', 'compress', 'copy-src-dir');
     });
 });

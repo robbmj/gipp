@@ -1,4 +1,4 @@
 "use strict";
 
-var gipp = require('./src/gipp');
+var gipp = require('./lib/gipp');
 module.exports = gipp;

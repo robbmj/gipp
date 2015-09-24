@@ -1,6 +1,7 @@
 node_modules/*
 
-build/gipp-transpiled/src/*
+build/gipp/lib/*
+build/gipp-transpiled/lib/*
 build/gipp-bundle/gipp.bundle.js
 build/gipp-min-bundle/gipp.bundle.js
 
