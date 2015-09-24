@@ -1,9 +1,12 @@
 node_modules/*
+
+build/gipp-transpiled/src/*
 build/gipp-bundle/gipp.bundle.js
 build/gipp-min-bundle/gipp.bundle.js
+
 docs/*
-gipp-transpiled/src/*
 bin/*
+
 lib/jasmine_examples
 spec/helpers
 spec/jasmine_examples

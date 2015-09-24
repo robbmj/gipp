@@ -10,11 +10,11 @@ gulp.task('babel', function () {
   return gulp
       .src("./src/**/*.js")
       .pipe(babel({ optional: ["runtime"] }))
-      .pipe(gulp.dest("gipp-transpiled/src/"));
+      .pipe(gulp.dest("./build/gipp-transpiled/src/"));
 });
 
 gulp.task('browserify', function() {
-    return browserify('./gipp-transpiled/src/gipp.js', {standalone: 'gipp'})
+    return browserify('./build/gipp-transpiled/src/gipp.js', {standalone: 'gipp'})
         .bundle()
         //Pass desired output filename to vinyl-source-stream
         .pipe(source('gipp.bundle.js'))
