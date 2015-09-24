@@ -1,0 +1,22 @@
+{
+  "name": "gipp-transpiled",
+  "version": "0.0.1",
+  "description": "JavaScript Data Structure Library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robbmj/gipp.git"
+  },
+  "author": "Michael Robb <michael.robb.prog@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/robbmj/gipp/issues"
+  },
+  "homepage": "https://github.com/robbmj/gipp#readme",
+  "dependencies": {
+    "babel-runtime": "^5.8.24"
+  }
+}

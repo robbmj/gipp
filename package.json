@@ -4,6 +4,7 @@
   "description": "Data structures and algo library",
   "main": "dist/gipp.js",
   "author": "Michael Robb <michael.robb.prog@gmail.com>",
+  "homepage": "https://github.com/robbmj/gipp#readme",
   "repository": {
     "type" : "git"
   , "url" : "https://github.com/robbmj/gipp.git"

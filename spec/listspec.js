@@ -1,6 +1,6 @@
 
 describe('LinkedList Tests', function () {
-	var gipp = require('./../dist/gipp');
+	var gipp = require('./../gipp-transpiled');
 	var ctx = {};
 
 	beforeEach(function() {
@@ -11,7 +11,7 @@ describe('LinkedList Tests', function () {
 });
 
 describe('DoubleLinkedList Tests', function () {
-	var gipp = require('./../dist/gipp');
+	var gipp = require('./../gipp-transpiled');
 	var ctx = {};
 
 	beforeEach(function() {

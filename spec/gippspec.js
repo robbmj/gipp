@@ -1,7 +1,7 @@
 
 describe('Gipp Object Tests', function () {
 
-	var gipp = require('./../dist/gipp');
+	var gipp = require('./../gipp-transpiled');
 
 	it('Should return an empty collection', function () {
 		var list = gipp.LinkedList();
