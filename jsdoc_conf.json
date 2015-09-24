@@ -9,7 +9,7 @@
     },
     "plugins": ["plugins/markdown"],
     "templates": {
-        "cleverLinks": false,
+        "cleverLinks": true,
         "monospaceLinks": false
     }
 }

@@ -112,7 +112,7 @@ var Collection = (function () {
 		/**
    * Appends each element to the end of the collection.
    *
-   * @param {...*} elements - The element to be appended to the collection.
+   * @param {...E} elements - The elements to be appended to the collection.
    * @return {Collection} Returns this collection
    *
    * @example
@@ -218,20 +218,13 @@ var Collection = (function () {
 			}
 		}
 	}, {
-		key: 'cmpFtn',
-		get: function get() {
-			return function (a, b) {
-				return a - b;
-			};
-		}
+		key: 'isEmpty',
 
 		/**
    * Tests if the collection is empty
    *
    * @return {boolean} True if the collection is empty, false otherwise.
    */
-	}, {
-		key: 'isEmpty',
 		get: function get() {
 			throw new _exceptions.UnimplementedError('get size');
 		}
@@ -245,6 +238,13 @@ var Collection = (function () {
 		key: 'size',
 		get: function get() {
 			throw new _exceptions.UnimplementedError('get size');
+		}
+	}], [{
+		key: 'cmpFtn',
+		get: function get() {
+			return function (a, b) {
+				return a - b;
+			};
 		}
 	}]);
 

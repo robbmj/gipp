@@ -54,7 +54,7 @@ class Collection {
 	 *
 	 * @return {cmpFtn} The default comparison function.
 	 */
-	get cmpFtn() {
+	static get cmpFtn() {
 		return (a, b) => a - b;
 	}
 
@@ -102,7 +102,7 @@ class Collection {
 	/**
 	 * Appends each element to the end of the collection.
 	 *
-	 * @param {...*} elements - The element to be appended to the collection.
+	 * @param {...E} elements - The elements to be appended to the collection.
 	 * @return {Collection} Returns this collection
 	 *
 	 * @example

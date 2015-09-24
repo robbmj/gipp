@@ -18,6 +18,8 @@ var _collectionsListsDoublelinkedlist = require("./collections/lists/doublelinke
 
 var _collectionsListsDoublelinkedlist2 = _interopRequireDefault(_collectionsListsDoublelinkedlist);
 
+var _private__utils = require("./private/__utils");
+
 /**
  * Gip - Entry Point for library
  * @namespace
@@ -34,10 +36,15 @@ var Gip = (function () {
     /**
     	 * Returns a new linked list
     	 *
+    	 * @param {E[]?} initializer - If an initializer is passed {@link Collection#addAll} will be called passing it the initializer
+    	 * @param {cmpFtn?} - The comparison function that will be used to determine ordering and equality of elements in the collection
     	 * @return {LinkedList}
     	 */
     value: function LinkedList() {
-      return new _collectionsListsLinkedlist2["default"]();
+      var initializer = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+      var cmpFtn = arguments.length <= 1 || arguments[1] === undefined ? null : arguments[1];
+
+      return (0, _private__utils.__instantiate)(_collectionsListsLinkedlist2["default"], initializer, cmpFtn);
     }
 
     /**
@@ -48,7 +55,7 @@ var Gip = (function () {
   }, {
     key: "DoubleLinkedList",
     value: function DoubleLinkedList() {
-      return new _collectionsListsDoublelinkedlist2["default"]();
+      return (0, _private__utils.__instantiate)(_collectionsListsDoublelinkedlist2["default"], initializer, cmpFtn);
     }
   }]);
 

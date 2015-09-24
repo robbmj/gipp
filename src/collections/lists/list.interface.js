@@ -63,7 +63,7 @@ class List extends Collection {
 	/**
 	 * Appends each element to the end of the list.
 	 *
-	 * @param {...E} elements - The element to be appended to the list.
+	 * @param {...E} elements - The elements to be appended to the list.
 	 * @return {List} Returns this list
 	 *
 	 * @example
@@ -103,7 +103,7 @@ class List extends Collection {
 	 /**
 	 * Prepends each element to the front of the list.
 	 *
-	 * @param {...E} elements - The element to be prepended to the list.
+	 * @param {...E} elements - The elements to be prepended to the list.
 	 * @return {List} Returns this list
 	 *
 	 * @example

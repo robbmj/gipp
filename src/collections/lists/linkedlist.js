@@ -1,6 +1,7 @@
 
 import {ListNode} from "./private/__listnodes";
 import List from "./list.interface";
+import Collection from "./../collection.interface";
 import {EmptyListException} from "./../exceptions";
 import __LISTSYMBOLS from './private/__listsymbols';
 
@@ -22,8 +23,7 @@ export default ((size, head, back, cmpf) => {
 			this[size] = 0;
 			this[head] = null;
 			this[back] = null;
-			this[cmpf] = cmpFtn || super.cmpFtn;
-
+			this[cmpf] = cmpFtn || Collection.cmpFtn;
 		}
 
 		// Time Complexity: O(1), Space Complexity: O(1)

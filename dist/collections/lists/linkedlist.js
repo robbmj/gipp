@@ -24,6 +24,10 @@ var _listInterface = require("./list.interface");
 
 var _listInterface2 = _interopRequireDefault(_listInterface);
 
+var _collectionInterface = require("./../collection.interface");
+
+var _collectionInterface2 = _interopRequireDefault(_collectionInterface);
+
 var _exceptions = require("./../exceptions");
 
 var _private__listsymbols = require('./private/__listsymbols');
@@ -56,7 +60,7 @@ exports["default"] = (function (size, head, back, cmpf) {
 			this[size] = 0;
 			this[head] = null;
 			this[back] = null;
-			this[cmpf] = cmpFtn || _get(Object.getPrototypeOf(LinkedList.prototype), "cmpFtn", this);
+			this[cmpf] = cmpFtn || _collectionInterface2["default"].cmpFtn;
 		}
 
 		// Time Complexity: O(1), Space Complexity: O(1)

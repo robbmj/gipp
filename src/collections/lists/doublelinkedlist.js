@@ -8,8 +8,8 @@ export default ((size, head, back, cmpf) => {
 
 	/**
 	 * @classdesc Doubly Linked List
-	 * @extends LinkedList
 	 * @implements {List}
+	 * @extends LinkedList
 	 */
 	class DoubleLinkedList extends LinkedList {
 		// Time Complexity: O(1), Space Complexity: O(1)
@@ -22,7 +22,7 @@ export default ((size, head, back, cmpf) => {
 			super(cmpFtn);
 		}
 
-		/** @override */
+		/** @inheritdoc */
 		add(element) {
 			let node = new DListNode(element);
 			if (this[head] === null) {
