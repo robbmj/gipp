@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: collections/exceptions.js</title>
+    <title>JSDoc: Source: collections/trees/splaytree.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: collections/exceptions.js</h1>
+    <h1 class="page-title">Source: collections/trees/splaytree.js</h1>
 
     
 
@@ -27,29 +27,57 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>
+import BinaryTree from './binarytree.interface';
+import __BINARYTREESYMBOLS from './private/__binarytreesymbols';
 
-/**
- * @global
- */
-class UnimplementedError extends Error {
-	constructor(method) {
-		super(`This is a bug in gipp please file a bug report (including the stack trace) to (URL): ${method} is not implemented`);
+export default ((size, root, cmpf) => {
+
+	/**
+	 * @classdesc SplayTree
+	 * @implements {BinaryTree}
+	 */
+	class SplayTree extends BinaryTree {
+		/**
+		 * Creates an empty Splay Tree
+		 *
+		 * @param {cmpFtn?} - If no comparison function is passed then the [default comparison function]{@link Collection#cmpFtn} is used.
+		 */
+		constructor(cmpFtn=null) {
+			super(cmpFtn);
+		}
+
+		add(element) {
+			// TODO
+			return this;
+		}
+
+		addAll(...elements) {
+			for (let e of elements) {
+				this.add(e);
+			}
+			// TODO
+			return this;
+		}
+
+		delete(element) {
+			if (this[size] === 0) {
+				throw new EmptyCollectionError('Can\'t delete from an empty SplayTree');
+			}
+			// TODO
+			return false;
+		}
+
+		map(cb) {
+			super._throwIfNotFunction(cb);
+			let newTree = new SplayTree(this[cmpf]);
+			// TODO
+			return newTree;
+		}
 	}
-}
 
-/**
- * @global
- */
-class EmptyCollectionError extends Error {
-	constructor(msg) {
-		super(msg);
-	}
-}
+	return SplayTree;
 
-export default {
-	UnimplementedError: UnimplementedError,
-	EmptyCollectionError: EmptyCollectionError
-};
+})(__BINARYTREESYMBOLS.SIZE, __BINARYTREESYMBOLS.ROOT, __BINARYTREESYMBOLS.CMPF);
 </code></pre>
         </article>
     </section>

@@ -77,13 +77,25 @@ class Collection {
 	}
 
 	/**
-	 * This feature is available in ES 2015 only. For older versions of JavaScript use {@link Collection#forEach}
+	 * A Collection Iterator will visit each element E in a collection.
+	 * The order in which elements are visited is determined on the method
+	 * returning the iterator.
+	 *
+	 * This feature is available in ES 2015 only.
 	 *
 	 * @example
 	 * collection.addAll(1,2,3,4,5);
-	 * for (let i of collection) {
-	 * 		// do something with i
+	 * for (let e of collection) {
+	 * 	// do something with e
 	 * }
+	 *
+	 * @typedef {*} CollectionIterator
+	 */
+
+	/**
+	 * This feature is available in ES 2015 only. For older versions of JavaScript use {@link Collection#forEach}
+	 *
+	 * @return {CollectionIterator}
 	 */
 	*[Symbol.iterator]() {
 		throw new UnimplementedError('get size');
@@ -142,7 +154,7 @@ class Collection {
 	}
 
 	/**
-	 * This callback type that is passed to collection.forEach() is called `forEachCallback`.
+	 * This callback type that is passed to {@link Collection#forEach} and is called `forEachCallback`.
 	 *
 	 * @callback forEachCallback
 	 * @param {E} element - An element contained within the collection.

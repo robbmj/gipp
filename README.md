@@ -17,7 +17,7 @@ It is available in 4 flavours.
 ```javascript
 import gipp from 'gipp';
 let list = gipp.LinkedList();
-list.addAll(...[1,2,3]);
+list.addAll(...[1,2,3]); // or list.addAll(1,2,3);
 console.log(list.toString()); // [1 -> 2 -> 3]
 ```
 
@@ -28,6 +28,6 @@ console.log(list.toString()); // [1 -> 2 -> 3]
 ```javascript
 var gipp = require('gipp');
 var list = gipp.LinkedList();
-list.addAll(...[1,2,3]);
+list.addAll(1,2,3);
 console.log(list.toString()); // [1 -> 2 -> 3]
 ```

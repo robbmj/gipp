@@ -279,6 +279,89 @@ and to test for equality between elements in a collection.</p>
 
             
                 
+<h4 class="name" id="CollectionIterator">CollectionIterator</h4>
+
+
+
+
+<div class="description">
+    <p>A Collection Iterator will visit each element E in a collection.
+The order in which elements are visited is determined on the method
+returning the iterator.</p>
+<p>This feature is available in ES 2015 only.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">*</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="collections_collection.interface.js.html">collections/collection.interface.js</a>, <a href="collections_collection.interface.js.html#line79">line 79</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>collection.addAll(1,2,3,4,5);
+for (let e of collection) {
+	// do something with e
+}</code></pre>
+
+
+
+            
+                
 <h4 class="name" id="E">E</h4>
 
 
@@ -364,7 +447,7 @@ the collection's constructor.</p>
 
 
 <div class="description">
-    <p>This callback type that is passed to collection.forEach() is called <code>forEachCallback</code>.</p>
+    <p>This callback type that is passed to <a href="Collection.html#forEach"><code>Collection#forEach</code></a> and is called <code>forEachCallback</code>.</p>
 </div>
 
 
@@ -457,7 +540,7 @@ the collection's constructor.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="collections_collection.interface.js.html">collections/collection.interface.js</a>, <a href="collections_collection.interface.js.html#line144">line 144</a>
+        <a href="collections_collection.interface.js.html">collections/collection.interface.js</a>, <a href="collections_collection.interface.js.html#line156">line 156</a>
     </li></ul></dd>
     
 
@@ -588,7 +671,7 @@ the collection's constructor.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="collections_collection.interface.js.html">collections/collection.interface.js</a>, <a href="collections_collection.interface.js.html#line163">line 163</a>
+        <a href="collections_collection.interface.js.html">collections/collection.interface.js</a>, <a href="collections_collection.interface.js.html#line175">line 175</a>
     </li></ul></dd>
     
 
@@ -637,6 +720,159 @@ the collection's constructor.</p>
 
 
             
+                
+
+    
+
+    <h4 class="name" id="treeSeachCallback"><span class="type-signature"></span>treeSeachCallback<span class="signature">(element)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>This callback type that is passed to <a href="BinaryTree.html#bfs"><code>BinaryTree#bfs</code></a> and <a href="BinaryTree.html#dfs"><code>BinaryTree#dfs</code></a> and is called <code>treeSeachCallback</code>.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>element</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#E">E</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An element contained within the collection.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="collections_trees_binarytree.interface.js.html">collections/trees/binarytree.interface.js</a>, <a href="collections_trees_binarytree.interface.js.html#line149">line 149</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>True if <code>element</code> is the element being searched for, false otherwise</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+            
     
 
     
@@ -650,13 +886,13 @@ the collection's constructor.</p>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DoubleLinkedList.html">DoubleLinkedList</a></li><li><a href="EmptyCollectionError.html">EmptyCollectionError</a></li><li><a href="LinkedList.html">LinkedList</a></li><li><a href="UnimplementedError.html">UnimplementedError</a></li></ul><h3>Namespaces</h3><ul><li><a href="Gipp.html">Gipp</a></li></ul><h3>Interfaces</h3><ul><li><a href="Collection.html">Collection</a></li><li><a href="List.html">List</a></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AVLTree.html">AVLTree</a></li><li><a href="DoubleLinkedList.html">DoubleLinkedList</a></li><li><a href="EmptyCollectionError.html">EmptyCollectionError</a></li><li><a href="LinkedList.html">LinkedList</a></li><li><a href="RBTree.html">RBTree</a></li><li><a href="SplayTree.html">SplayTree</a></li><li><a href="UnimplementedError.html">UnimplementedError</a></li></ul><h3>Namespaces</h3><ul><li><a href="Gipp.html">Gipp</a></li></ul><h3>Interfaces</h3><ul><li><a href="BinaryTree.html">BinaryTree</a></li><li><a href="Collection.html">Collection</a></li><li><a href="List.html">List</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a> on Thu Sep 24 2015 13:02:57 GMT-0400 (EDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a> on Fri Sep 25 2015 15:27:51 GMT-0400 (EDT)
 </footer>
 
 <script> prettyPrint(); </script>

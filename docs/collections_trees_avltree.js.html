@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: collections/trees/avltree.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: collections/trees/avltree.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+import BinaryTree from './binarytree.interface';
+
+import __BINARYTREESYMBOLS from './private/__binarytreesymbols';
+import {AVLNode} from './private/__binarytreenodes';
+
+export default ((size, root, cmpf) => {
+	/**
+	 * @private
+	 * @class
+	 * @classdesc PrivateMethods implements the private methods for AVLTree
+	 */
+	const PrivateMethods = class {
+
+		/**
+		 * @param {AVLTree} avltree - grants the PrivateMethods instance access to the AVLTree's private properties
+		 */
+		constructor(avltree) {
+			this.avltree = avltree;
+		}
+
+		/**
+		 * @private
+		 *
+		 * Recursivle searches the tree in order to add `nodeToAdd` to the AVLTree
+		 *
+		 * @param {AVLNode} nodeToAdd - The new node to be added to the collection
+		 * @param {AVLNode} curNode - A node already in the collection, it's used to test where the newNode should be added
+		 */
+		add(nodeToAdd, curNode) {
+			const cmp = this.avltree[cmpf](nodeToAdd.element, curNode.element);
+
+			if (cmp > 0) {
+				if (curNode.right === null) {
+					curNode.right = nodeToAdd;
+					nodeToAdd.parent = curNode;
+				}
+				else {
+					this.add(nodeToAdd, curNode.right);
+				}
+			}
+			else {
+				if (curNode.left === null) {
+					curNode.left = nodeToAdd;
+					nodeToAdd.parent = curNode;
+				}
+				else {
+					this.add(nodeToAdd, curNode.left);
+				}
+			}
+
+			curNode.updateBalance();
+			this.balance(curNode);
+		}
+
+		/**
+		 * @private
+		 *
+		 * After each insertion iterate over the parent nodes of just added node and height balance the tree
+		 *
+		 * @param {AVLNode} curNode - A node that may need a rotation performed on it
+		 */
+		balance(curNode) {
+			while (curNode !== null) {
+
+				const balance = curNode.balance
+
+				if (balance > 1) {
+					const rightChild = curNode.right;
+
+					if (rightChild !== null &amp;&amp; rightChild.balance &lt; 0) {
+						curNode = this.leftRightRotation(rightChild);
+					}
+					else {
+						curNode = this.leftRotation(curNode);
+					}
+				}
+				else if (balance &lt; -1) {
+					const leftChild = curNode.left;
+
+					if (leftChild !== null &amp;&amp; leftChild.balance > 0) {
+						curNode = this.rightLeftRotation(rightChild);
+					}
+					else {
+						curNode = this.rightRotation(curNode);
+					}
+				}
+				else {
+					curNode = curNode.parent;
+				}
+			}
+		}
+
+		/**
+		 * @private
+		 *
+		 * Performs a single left rotation on the node by doing the following
+	 	 * 1. child becomes the new root.
+	     * 2. parent takes ownership of child's left child as its right child
+	 	 * 3. child takes ownership of parent as its left child
+	 	 * 4. fix the parent pointers as needed
+	 	 * 5. update node balances
+	 	 *
+	 	 * @param {AVLNode} node - The node to perform a single left rotation
+	 	 */
+		leftRotation(node) {
+			const rightChild = node.right;
+
+			// child becomes the new root.
+			rightChild.parent = node.parent;
+			node.parent = rightChild;
+
+			// parent takes ownership of child's left child as its right child
+			node.right = rightChild.left;
+			if (node.right !== null) {
+				node.right.parent = node;
+			}
+
+			// child takes ownership of parent as its left child
+			rightChild.left = node;
+
+			if (rightChild.parent !== null) {
+				// fix the parent pointers
+				if (rightChild.parent.left === node) {
+					rightChild.parent.left = rightChild;
+				}
+				else if (rightChild.parent.right === node) {
+					rightChild.parent.right = rightChild;
+				}
+			}
+			else {
+				this.avltree[root] = rightChild;
+			}
+
+			this.updateBalance(node);
+			this.updateBalance(rightChild);
+
+			return rightChild;
+		}
+
+		/**
+		 * @private
+		 *
+		 * Performs a single right rotation on the node by doing the following
+	 	 * 1. child becomes the new root.
+	     * 2. parent takes ownership of childs's right child, as its left child.
+	 	 * 3. child takes ownership of parent, as it's right child.
+	 	 * 4. fix the parent pointers as needed
+	 	 * 5. update node balances
+	 	 *
+	 	 * @param {AVLNode} node - The node to perform a single left rotation
+	 	 */
+		rightRotation(node) {
+			const leftChild = node.left;
+
+			// child becomes the new root.
+			leftChild.parent = node.parent;
+			node.parent = leftChild;
+
+			// parent takes ownership of childs's right child, as its left child.
+			node.left = leftChild.right;
+			if (node.left !== null) {
+				node.left.parent = node;
+			}
+
+			// child takes ownership of parent, as it's right child.
+			leftChild.right = node;
+
+			if (leftChild.parent !== null) {
+				// fix the parent pointers
+				if (leftChild.parent.left === node) {
+					leftChild.parent.left = leftChild;
+				}
+				else if (leftChild.parent.right === node) {
+					leftChild.parent.right = leftChild;
+				}
+			}
+			else {
+				this.avltree[root] = leftChild;
+			}
+
+			this.updateBalance(node);
+			this.updateBalance(leftChild);
+
+			return leftChild;
+		}
+
+		/** @private */
+		leftRightRotation(node) {
+			node = this.rightRotation(node);
+			node = this.leftRotation(node.parent);
+			return node;
+		}
+
+		/** @private */
+		rightLeftRotation(node) {
+			node = this.leftRotation(node);
+			node = this.rightRotation(node.parent);
+			return node;
+		}
+
+		/**
+		 * @private
+		 *
+		 * Iterates up the tree starting at `node` and updating each node's balance property
+		 *
+		 * @param {AVLNode} node
+		 */
+		updateBalance(node) {
+			while (node !== null) {
+				node.updateBalance();
+				node = node.parent;
+			}
+		}
+	}
+
+	/**
+	 * @private
+	 *
+	 * So that client code can't access object properties
+	 */
+	const helper = Symbol('helper');
+
+	/**
+	 * @classdesc AVLTree
+	 * @implements {BinaryTree}
+	 */
+	class AVLTree extends BinaryTree {
+		/**
+		 * Creates an empty AVL Tree
+		 *
+		 * @param {cmpFtn?} - If no comparison function is passed then the [default comparison function]{@link Collection#cmpFtn} is used.
+		 */
+		constructor(cmpFtn=null) {
+			super(cmpFtn);
+			this[helper] = new PrivateMethods(this);
+		}
+
+		add(element) {
+			const node = new AVLNode(element);
+			if (this[root] === null) {
+				this[root] = node;
+			}
+			else {
+				this[helper].add(node, this[root]);
+			}
+			this[size] += 1;
+			return this;
+		}
+
+		addAll(...elements) {
+			for (let e of elements) {
+				this.add(e);
+			}
+			// TODO
+			return this;
+		}
+
+		delete(element) {
+			if (this[size] === 0) {
+				throw new EmptyCollectionError('Can\'t delete from an empty AVLTree');
+			}
+			// TODO
+			return false;
+		}
+
+		map(cb) {
+			super._throwIfNotFunction(cb);
+			let newTree = new AVLTree(this[cmpf]);
+			// TODO
+			return newTree;
+		}
+	}
+
+	return AVLTree;
+
+})(__BINARYTREESYMBOLS.SIZE, __BINARYTREESYMBOLS.ROOT, __BINARYTREESYMBOLS.CMPF);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AVLTree.html">AVLTree</a></li><li><a href="DoubleLinkedList.html">DoubleLinkedList</a></li><li><a href="EmptyCollectionError.html">EmptyCollectionError</a></li><li><a href="LinkedList.html">LinkedList</a></li><li><a href="RBTree.html">RBTree</a></li><li><a href="SplayTree.html">SplayTree</a></li><li><a href="UnimplementedError.html">UnimplementedError</a></li></ul><h3>Namespaces</h3><ul><li><a href="Gipp.html">Gipp</a></li></ul><h3>Interfaces</h3><ul><li><a href="BinaryTree.html">BinaryTree</a></li><li><a href="Collection.html">Collection</a></li><li><a href="List.html">List</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a> on Fri Sep 25 2015 15:27:51 GMT-0400 (EDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

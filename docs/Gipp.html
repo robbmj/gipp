@@ -72,7 +72,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="gipp.js.html">gipp.js</a>, <a href="gipp.js.html#line11">line 11</a>
+        <a href="gipp.js.html">gipp.js</a>, <a href="gipp.js.html#line17">line 17</a>
     </li></ul></dd>
     
 
@@ -108,14 +108,14 @@
 
     
 
-    <h4 class="name" id="DoubleLinkedList"><span class="type-signature"></span>DoubleLinkedList<span class="signature">(initializer<span class="signature-attributes">nullable</span>, cmpFtn<span class="signature-attributes">nullable</span>)</span><span class="type-signature"> &rarr; {<a href="DoubleLinkedList.html">DoubleLinkedList</a>}</span></h4>
+    <h4 class="name" id="AVLTree"><span class="type-signature"></span>AVLTree<span class="signature">(initializer<span class="signature-attributes">nullable</span>, cmpFtn<span class="signature-attributes">nullable</span>)</span><span class="type-signature"> &rarr; {<a href="AVLTree.html">AVLTree</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    <p>Returns a new linked list</p>
+    <p>Returns a new AVL Tree</p>
 </div>
 
 
@@ -253,7 +253,201 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="gipp.js.html">gipp.js</a>, <a href="gipp.js.html#line29">line 29</a>
+        <a href="gipp.js.html">gipp.js</a>, <a href="gipp.js.html#line47">line 47</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="AVLTree.html">AVLTree</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="DoubleLinkedList"><span class="type-signature"></span>DoubleLinkedList<span class="signature">(initializer<span class="signature-attributes">nullable</span>, cmpFtn<span class="signature-attributes">nullable</span>)</span><span class="type-signature"> &rarr; {<a href="DoubleLinkedList.html">DoubleLinkedList</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Returns a new double linked list</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>initializer</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="global.html#E">E</a>></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If an initializer is passed <a href="Collection.html#addAll"><code>Collection#addAll</code></a> will be called passing it the initializer.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cmpFtn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#cmpFtn">cmpFtn</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The comparison function that will be used to determine ordering and equality of elements in the collection.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="gipp.js.html">gipp.js</a>, <a href="gipp.js.html#line36">line 36</a>
     </li></ul></dd>
     
 
@@ -447,7 +641,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="gipp.js.html">gipp.js</a>, <a href="gipp.js.html#line19">line 19</a>
+        <a href="gipp.js.html">gipp.js</a>, <a href="gipp.js.html#line25">line 25</a>
     </li></ul></dd>
     
 
@@ -492,6 +686,394 @@
 
 
         
+            
+
+    
+
+    <h4 class="name" id="RBTree"><span class="type-signature"></span>RBTree<span class="signature">(initializer<span class="signature-attributes">nullable</span>, cmpFtn<span class="signature-attributes">nullable</span>)</span><span class="type-signature"> &rarr; {<a href="RBTree.html">RBTree</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Returns a new Red Black Tree</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>initializer</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="global.html#E">E</a>></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If an initializer is passed <a href="Collection.html#addAll"><code>Collection#addAll</code></a> will be called passing it the initializer.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cmpFtn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#cmpFtn">cmpFtn</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The comparison function that will be used to determine ordering and equality of elements in the collection.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="gipp.js.html">gipp.js</a>, <a href="gipp.js.html#line69">line 69</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="RBTree.html">RBTree</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="SplayTree"><span class="type-signature"></span>SplayTree<span class="signature">(initializer<span class="signature-attributes">nullable</span>, cmpFtn<span class="signature-attributes">nullable</span>)</span><span class="type-signature"> &rarr; {<a href="SplayTree.html">SplayTree</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Returns a new Splay Tree</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>initializer</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="global.html#E">E</a>></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If an initializer is passed <a href="Collection.html#addAll"><code>Collection#addAll</code></a> will be called passing it the initializer.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cmpFtn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#cmpFtn">cmpFtn</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The comparison function that will be used to determine ordering and equality of elements in the collection.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="gipp.js.html">gipp.js</a>, <a href="gipp.js.html#line58">line 58</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="SplayTree.html">SplayTree</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
     
 
     
@@ -507,13 +1089,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DoubleLinkedList.html">DoubleLinkedList</a></li><li><a href="EmptyCollectionError.html">EmptyCollectionError</a></li><li><a href="LinkedList.html">LinkedList</a></li><li><a href="UnimplementedError.html">UnimplementedError</a></li></ul><h3>Namespaces</h3><ul><li><a href="Gipp.html">Gipp</a></li></ul><h3>Interfaces</h3><ul><li><a href="Collection.html">Collection</a></li><li><a href="List.html">List</a></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AVLTree.html">AVLTree</a></li><li><a href="DoubleLinkedList.html">DoubleLinkedList</a></li><li><a href="EmptyCollectionError.html">EmptyCollectionError</a></li><li><a href="LinkedList.html">LinkedList</a></li><li><a href="RBTree.html">RBTree</a></li><li><a href="SplayTree.html">SplayTree</a></li><li><a href="UnimplementedError.html">UnimplementedError</a></li></ul><h3>Namespaces</h3><ul><li><a href="Gipp.html">Gipp</a></li></ul><h3>Interfaces</h3><ul><li><a href="BinaryTree.html">BinaryTree</a></li><li><a href="Collection.html">Collection</a></li><li><a href="List.html">List</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a> on Thu Sep 24 2015 13:02:57 GMT-0400 (EDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a> on Fri Sep 25 2015 15:27:51 GMT-0400 (EDT)
 </footer>
 
 <script> prettyPrint(); </script>

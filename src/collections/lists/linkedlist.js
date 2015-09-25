@@ -128,7 +128,7 @@ export default ((size, head, back, cmpf) => {
 		// Time Complexity: O(n) where n is the size of the list, Space Complexity: O(n) where n is the size of the list
 		map(cb) {
 			super._throwIfNotFunction(cb);
-			let newList = new LinkedList();
+			let newList = new LinkedList(this[cmpf]);
 			let next = this[head];
 			while (next !== null) {
 				if (cb(next.element)) {

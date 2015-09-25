@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: collections/trees/binarytree.interface.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: collections/trees/binarytree.interface.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+import Collection from './../collection.interface';
+import __BINARYTREESYMBOLS from './private/__binarytreesymbols';
+
+export default ((size, root, cmpf) => {
+	/**
+	 * The parent interface for all Gipp Binary Trees
+	 * @interface
+	 * @augments Collection
+	 */
+	class BinaryTree extends Collection {
+
+		/**
+		 * Creates an empty Binary Tree
+		 *
+		 * @throws {UnimplementedError} If directly instantiated.
+		 *
+		 * @param {cmpFtn?} - If no comparison function is passed then the [default comparison function]{@link Collection#cmpFtn} is used.
+		 */
+		constructor(cmpFtn=null) {
+			super();
+			if (this.constructor.name === 'BinaryTree') {
+				throw new UnimplementedError('BinaryTree');
+			}
+			this[size] = 0;
+			this[root] = null;
+			this[cmpf] = cmpFtn || Collection.cmpFtn;
+		}
+
+		get size() {
+			return this[size];
+		}
+
+		get isEmpty() {
+			return this[size] === 0;
+		}
+
+		*[Symbol.iterator]() {
+			for (let e of this.inOrder()) {
+				yield e;
+			}
+		}
+
+		/**
+		 * The bfs() method implements the Breadth First Search algorithum for a Binary Tree.
+		 *
+		 * @throws {TypeError} If cb is not a function.
+		 *
+		 * @param {treeSeachCallback} cb - The callback to be applied to each element in the Binary Tree
+		 */
+		bfs(cb) {
+			super._throwIfNotFunction(cb);
+		}
+
+		contains(element) {
+			let ret = false;
+			this.bfs((e) => {
+				ret = this[cmpf](e, element) === 0;
+				return ret;
+			});
+			return ret;
+		}
+
+		/**
+		 * The dfs() method implements the Depth First Search algorithum for a Binary Tree.
+		 *
+		 * @throws {TypeError} If cb is not a function.
+		 *
+		 * @param {treeSeachCallback} cb - The callback to be applied to each element in the Binary Tree
+		 */
+		dfs(cb) {
+			super._throwIfNotFunction(cb);
+		}
+
+		forEach(cb) {
+			super._throwIfNotFunction(cb);
+			for (let e of this.inOrder()) {
+				cb(e);
+			}
+		}
+
+
+		/**
+		 * The inOrder method is an iterator that visits each node in the tree.
+		 * The In Order algorithum first visits the root node's left subtree, then the root its self,
+		 * then the right subtree.
+		 *
+		 * @return {CollectionIterator}
+		 */
+		*inOrder() {
+			const helper = function* (node) {
+				if (node.left !== null) {
+					yield* helper(node.left);
+				}
+				yield node.element;
+				if (node.right !== null) {
+					yield* helper(node.right);
+				}
+			};
+			for (let e of helper(this[root])) {
+				yield e;
+			}
+		}
+
+		/**
+		 * The preOrder method is an iterator that visits each node in the tree.
+		 * The Pre Order algorithum first visits the the root its self, then the root node's left subtree,
+		 * then the right subtree.
+		 *
+		 * @return {CollectionIterator}
+		 */
+		*preOrder() {
+			const stack = [];
+			stack.push(this[root]);
+			while (stack.lenght > 0) {
+				const node = stack.pop();
+				yield node.element;
+				if (stack.right !== null) {
+					stack.push(node.right);
+				}
+				if (stack.left !== null) {
+					stack.push(node.left);
+				}
+			}
+		}
+
+		/**
+		 * The postOrder method is an iterator that visits each node in the tree.
+		 * The Post Order algorithum first visits the root node's left subtree, then the right subtree,
+		 * then the root its self.
+		 *
+		 * @return {CollectionIterator}
+		 */
+		*postOrder() {
+			const helper = function* (node) {
+				if (node.left !== null) {
+					yield* helper(node.left);
+				}
+				if (node.right !== null) {
+					yield* helper(node.right);
+				}
+				yield node.element;
+			};
+			for (let e of helper(this[root])) {
+				yield e;
+			}
+		}
+
+		/**
+		 * This callback type that is passed to {@link BinaryTree#bfs} and {@link BinaryTree#dfs} and is called `treeSeachCallback`.
+		 *
+		 * @callback treeSeachCallback
+		 * @param {E} element - An element contained within the collection.
+		 * @return {boolean} True if `element` is the element being searched for, false otherwise
+		 */
+
+
+
+	}
+
+	return BinaryTree;
+})(__BINARYTREESYMBOLS.SIZE, __BINARYTREESYMBOLS.ROOT, __BINARYTREESYMBOLS.CMPF);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AVLTree.html">AVLTree</a></li><li><a href="DoubleLinkedList.html">DoubleLinkedList</a></li><li><a href="EmptyCollectionError.html">EmptyCollectionError</a></li><li><a href="LinkedList.html">LinkedList</a></li><li><a href="RBTree.html">RBTree</a></li><li><a href="SplayTree.html">SplayTree</a></li><li><a href="UnimplementedError.html">UnimplementedError</a></li></ul><h3>Namespaces</h3><ul><li><a href="Gipp.html">Gipp</a></li></ul><h3>Interfaces</h3><ul><li><a href="BinaryTree.html">BinaryTree</a></li><li><a href="Collection.html">Collection</a></li><li><a href="List.html">List</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a> on Fri Sep 25 2015 15:27:51 GMT-0400 (EDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
