@@ -111,6 +111,8 @@ const AVLNode = (() => {
 
 			const bal = rightHeight - leftHeight;
 
+			//console.log(`Value: ${this.element}, LeftHeight: ${leftHeight}, RightHeight: ${rightHeight}, Balance: ${bal}`);
+
 			if (bal < -1) {
 				this[balance] = -2;
 			}

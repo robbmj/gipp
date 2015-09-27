@@ -52,8 +52,12 @@ export default ((size, root, cmpf) => {
 		bfs(cb) {
 			super._throwIfNotFunction(cb);
 
+			if (this[size] === 0) {
+				return false;
+			}
+
 			// TODO: replace this with a real queue
-			const helper = (queue) => {
+			const bfsHelper = (queue) => {
 
 				if (queue.length === 0) {
 					return false;
@@ -73,14 +77,14 @@ export default ((size, root, cmpf) => {
 					queue.push(node.right);
 				}
 
-				return helper(queue);
+				return bfsHelper(queue);
 			};
 
-			return helper([this[root]]);
+			return bfsHelper([this[root]]);
 		}
 
 		contains(element) {
-			return this.bfs((e) => this[cmpf](e, element));
+			return this.bfs((e) => this[cmpf](e, element) === 0);
 		}
 
 		/**
@@ -126,7 +130,12 @@ export default ((size, root, cmpf) => {
 		 * @return {boolean} True if the tree is balnced, false otherwise
 		 */
 		isBalanced() {
-			return this.height() <= (Math.log(this[size]) * Math.LOG2E);
+			const height = this.height();
+			if (height <= 2) {
+				return true;
+			}
+			const log2Nodes = Math.log(this[size]) * Math.LOG2E;
+			return (height - 1) <= log2Nodes;
 		}
 
 		/**
@@ -144,16 +153,19 @@ export default ((size, root, cmpf) => {
 		 * for (let e of tree.inOrder()) console.log(e); // 1,2,3
 		 */
 		*inOrder() {
-			const helper = function* (node) {
+			if (this[size] === 0) {
+				return;
+			}
+			const inOrderHelper = function* (node) {
 				if (node.left !== null) {
-					yield * helper(node.left);
+					yield * inOrderHelper(node.left);
 				}
 				yield node.element;
 				if (node.right !== null) {
-					yield * helper(node.right);
+					yield * inOrderHelper(node.right);
 				}
 			};
-			yield * helper(this[root]);
+			yield * inOrderHelper(this[root]);
 		}
 
 		/**
@@ -190,6 +202,9 @@ export default ((size, root, cmpf) => {
 		 * for (let e of tree.preOrder()) console.log(e); // 2,1,3
 		 */
 		*preOrder() {
+			if (this[size] === 0) {
+				return;
+			}
 			// TODO: replace this with a real stack
 			const stack = [];
 			stack.push(this[root]);
@@ -239,16 +254,19 @@ export default ((size, root, cmpf) => {
 		 * for (let e of tree.postOrder()) console.log(e); // 1,3,2
 		 */
 		*postOrder() {
-			const helper = function* (node) {
+			if (this[size] === 0) {
+				return;
+			}
+			const postOrderHelper = function* (node) {
 				if (node.left !== null) {
-					yield * helper(node.left);
+					yield * postOrderHelper(node.left);
 				}
 				if (node.right !== null) {
-					yield * helper(node.right);
+					yield * postOrderHelper(node.right);
 				}
 				yield node.element;
 			};
-			yield * helper(this[root]);
+			yield * postOrderHelper(this[root]);
 		}
 
 		/**

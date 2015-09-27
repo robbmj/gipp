@@ -28,29 +28,38 @@ export default ((size, root, cmpf) => {
 		 * @param {AVLNode} curNode - A node already in the collection, it's used to test where the newNode should be added
 		 */
 		add(nodeToAdd, curNode) {
-			const cmp = this.avltree[cmpf](nodeToAdd.element, curNode.element);
 
-			if (cmp > 0) {
-				if (curNode.right === null) {
-					curNode.right = nodeToAdd;
-					nodeToAdd.parent = curNode;
+			while (true) {
+				const cmp = this.avltree[cmpf](nodeToAdd.element, curNode.element);
+
+				if (cmp > 0) {
+					if (curNode.right === null) {
+						curNode.right = nodeToAdd;
+						nodeToAdd.parent = curNode;
+						break;
+					}
+					else {
+						curNode = curNode.right;
+					}
 				}
 				else {
-					this.add(nodeToAdd, curNode.right);
-				}
-			}
-			else {
-				if (curNode.left === null) {
-					curNode.left = nodeToAdd;
-					nodeToAdd.parent = curNode;
-				}
-				else {
-					this.add(nodeToAdd, curNode.left);
+					if (curNode.left === null) {
+						curNode.left = nodeToAdd;
+						nodeToAdd.parent = curNode;
+						break;
+					}
+					else {
+						curNode = curNode.left;
+					}
 				}
 			}
 
-			curNode.updateBalance();
-			this.balance(curNode);
+			// traverse up the ansestor nodes updating balances and rotating as needed.
+			while (curNode !== null) {
+				curNode.updateBalance();
+				this.balance(curNode);
+				curNode = curNode.parent;
+			}
 		}
 
 		delete(element, curNode) {
@@ -117,7 +126,6 @@ export default ((size, root, cmpf) => {
 			this.balance(startBalanceAt);
 
 			return true;
-
 		}
 
 		inOrderSuccessor(node) {
@@ -166,17 +174,17 @@ export default ((size, root, cmpf) => {
 
 				const balance = curNode.balance
 
-				console.log('Balance Factor: ' + balance);
+				//console.log('Balance Factor: ' + balance);
 
 				if (balance > 1) {
 					const rightChild = curNode.right;
 
 					if (rightChild !== null && rightChild.balance < 0) {
-						console.log('Left Right Rotation');
+						//console.log('Left Right Rotation');
 						curNode = this.leftRightRotation(rightChild);
 					}
 					else {
-						console.log('Single Left Rotation');
+						//console.log('Single Left Rotation');
 						curNode = this.leftRotation(curNode);
 					}
 				}
@@ -184,11 +192,11 @@ export default ((size, root, cmpf) => {
 					const leftChild = curNode.left;
 
 					if (leftChild !== null && leftChild.balance > 0) {
-						console.log('Right Left Rotation');
+						//console.log('Right Left Rotation');
 						curNode = this.rightLeftRotation(leftChild);
 					}
 					else {
-						console.log('Single Right Rotation');
+						//console.log('Single Right Rotation');
 						curNode = this.rightRotation(curNode);
 					}
 				}
@@ -365,6 +373,16 @@ export default ((size, root, cmpf) => {
 		delete(element) {
 			if (this[size] === 0) {
 				throw new EmptyCollectionError('Can\'t delete from an empty AVLTree');
+			}
+			if (this[size] === 1) {
+				if (this[cmpf](this[root].element, element) === 0) {
+					this[root] = null;
+					this[size] = 0;
+					return true;
+				}
+				else {
+					return false;
+				}
 			}
 			const ret = this[helper].delete(element, this[root]);
 			if (ret) {
