@@ -103,7 +103,7 @@
 
     
 
-    <h4 class="name" id="cmpFtn"><span class="type-signature"></span>cmpFtn<span class="signature">(a, b)</span><span class="type-signature"> &rarr; {number}</span></h4>
+    <h4 class="name" id="CmpFtn"><span class="type-signature"></span>CmpFtn<span class="signature">(a, b)</span><span class="type-signature"> &rarr; {number}</span></h4>
 
     
 
@@ -227,7 +227,7 @@ and to test for equality between elements in a collection.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="collections_collection.interface.js.html">collections/collection.interface.js</a>, <a href="collections_collection.interface.js.html#line29">line 29</a>
+        <a href="collections_collection.interface.js.html">collections/collection.interface.js</a>, <a href="collections_collection.interface.js.html#line53">line 53</a>
     </li></ul></dd>
     
 
@@ -279,7 +279,7 @@ and to test for equality between elements in a collection.</p>
 
             
                 
-<h4 class="name" id="CollectionIterator">CollectionIterator</h4>
+<h4 class="name" id="CollectionGenerator">CollectionGenerator</h4>
 
 
 
@@ -297,7 +297,7 @@ returning the iterator.</p>
     <ul>
         <li>
             
-<span class="param-type">*</span>
+<span class="param-type">generator</span>
 
 
         </li>
@@ -336,7 +336,7 @@ returning the iterator.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="collections_collection.interface.js.html">collections/collection.interface.js</a>, <a href="collections_collection.interface.js.html#line79">line 79</a>
+        <a href="collections_collection.interface.js.html">collections/collection.interface.js</a>, <a href="collections_collection.interface.js.html#line37">line 37</a>
     </li></ul></dd>
     
 
@@ -369,7 +369,7 @@ for (let e of collection) {
 
 <div class="description">
     <p>The generic type <code>E</code> represents a value that can be contained in a collection.
-If <code>E</code> is a non primitive type, then a <a href="global.html#cmpFtn"><code>comparison function</code></a> must be provided to the
+If <code>E</code> is a non primitive type, then a <a href="global.html#CmpFtn"><code>comparison function</code></a> must be provided to the
 the collection's constructor.</p>
 <p>Gipp will not inforce that a collection be homogeneous. But it is probably a good idea.</p>
 </div>
@@ -440,14 +440,14 @@ the collection's constructor.</p>
 
     
 
-    <h4 class="name" id="forEachCallback"><span class="type-signature"></span>forEachCallback<span class="signature">(element)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="IteratorCallback"><span class="type-signature"></span>IteratorCallback<span class="signature">(element)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    <p>This callback type that is passed to <a href="Collection.html#forEach"><code>Collection#forEach</code></a> and is called <code>forEachCallback</code>.</p>
+    <p>This callback is used to iterate over a collection.</p>
 </div>
 
 
@@ -540,7 +540,7 @@ the collection's constructor.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="collections_collection.interface.js.html">collections/collection.interface.js</a>, <a href="collections_collection.interface.js.html#line156">line 156</a>
+        <a href="collections_collection.interface.js.html">collections/collection.interface.js</a>, <a href="collections_collection.interface.js.html#line66">line 66</a>
     </li></ul></dd>
     
 
@@ -571,7 +571,7 @@ the collection's constructor.</p>
 
     
 
-    <h4 class="name" id="mapCallback"><span class="type-signature"></span>mapCallback<span class="signature">(element)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    <h4 class="name" id="MapCallback"><span class="type-signature"></span>MapCallback<span class="signature">(element)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
 
     
 
@@ -671,7 +671,7 @@ the collection's constructor.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="collections_collection.interface.js.html">collections/collection.interface.js</a>, <a href="collections_collection.interface.js.html#line175">line 175</a>
+        <a href="collections_collection.interface.js.html">collections/collection.interface.js</a>, <a href="collections_collection.interface.js.html#line73">line 73</a>
     </li></ul></dd>
     
 
@@ -724,14 +724,14 @@ the collection's constructor.</p>
 
     
 
-    <h4 class="name" id="treeSeachCallback"><span class="type-signature"></span>treeSeachCallback<span class="signature">(element)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    <h4 class="name" id="SeachCallback"><span class="type-signature"></span>SeachCallback<span class="signature">(element)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
 
     
 
 
 
 <div class="description">
-    <p>This callback type that is passed to <a href="BinaryTree.html#bfs"><code>BinaryTree#bfs</code></a> and <a href="BinaryTree.html#dfs"><code>BinaryTree#dfs</code></a> and is called <code>treeSeachCallback</code>.</p>
+    <p>This callback type is used when searching a collection for an element.</p>
 </div>
 
 
@@ -824,7 +824,7 @@ the collection's constructor.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="collections_trees_binarytree.interface.js.html">collections/trees/binarytree.interface.js</a>, <a href="collections_trees_binarytree.interface.js.html#line149">line 149</a>
+        <a href="collections_collection.interface.js.html">collections/collection.interface.js</a>, <a href="collections_collection.interface.js.html#line29">line 29</a>
     </li></ul></dd>
     
 
@@ -892,7 +892,7 @@ the collection's constructor.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a> on Fri Sep 25 2015 15:27:51 GMT-0400 (EDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a> on Sun Sep 27 2015 10:16:51 GMT-0400 (EDT)
 </footer>
 
 <script> prettyPrint(); </script>

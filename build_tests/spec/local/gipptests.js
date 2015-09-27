@@ -1,5 +1,5 @@
 
-var gippInterfaceTests = require('./../../lib/gipp_interface_tests');
+var gippInterfaceTests = require('./../../lib/get_suite').gipp_interface;
 var getGip = require('./../../lib/get_gipp');
 
 describe('LinkedList Tests Local: gipp-transpiled', function () {

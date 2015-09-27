@@ -12,7 +12,7 @@ export default ((size, root, cmpf) => {
 		/**
 		 * Creates an empty Red Black Tree
 		 *
-		 * @param {cmpFtn?} - If no comparison function is passed then the [default comparison function]{@link Collection#cmpFtn} is used.
+		 * @param {CmpFtn?} - If no comparison function is passed then the [default comparison function]{@link Collection#cmpFtn} is used.
 		 */
 		constructor(cmpFtn=null) {
 			super(cmpFtn);

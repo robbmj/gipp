@@ -16,7 +16,7 @@ export default ((size, head, back, cmpf) => {
 		/**
 		 * Creates an empty singly linked list
 		 *
-		 * @param {cmpFtn?} - If no comparison function is passed then the [default comparison function]{@link Collection#cmpFtn} is used.
+		 * @param {CmpFtn?} - If no comparison function is passed then the [default comparison function]{@link Collection#cmpFtn} is used.
 		 */
 		constructor(cmpFtn=null) {
 			super();

@@ -114,6 +114,11 @@ class List extends Collection {
 	 * // If however you are using ES 2015 unshiftAll() can be called in the following ways:
 	 * list.unshiftAll(1,2,3,4,5);
 	 * list.unshiftAll(...[1,2,3,4,5]);
+	 *
+	 * @example
+	 * // unshiftAll() prepends elements to the front of the list in the reverse order of the arguments
+	 * list.unshiftAll(1,2,3,4,5);
+	 * list.toString() // [1 -> 2 -> 3 -> 4 -> 5]
 	 */
 	unshiftAll(...elements) {
 		throw new UnimplementedError('unsift');

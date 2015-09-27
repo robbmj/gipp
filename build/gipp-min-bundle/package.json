@@ -15,8 +15,5 @@
   "bugs": {
     "url": "https://github.com/robbmj/gipp/issues"
   },
-  "homepage": "https://github.com/robbmj/gipp#readme",
-  "dependencies": {
-    "babel-runtime": "^5.8.24"
-  }
+  "homepage": "https://github.com/robbmj/gipp#readme"
 }

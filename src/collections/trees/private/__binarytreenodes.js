@@ -39,6 +39,17 @@ const BinaryNode = (() => {
 		isLeaf() {
 			return this[left] === null && this[right] === null;
 		}
+
+		hasOneChild() {
+			return this[left] === null ^ this[right] === null;
+		}
+
+		getSingleChild() {
+			if (this.hasOneChild()) {
+				return this[left] === null ? this[right] : this[left];
+			}
+			return null;
+		}
 	};
 }());
 
@@ -101,7 +112,7 @@ const AVLNode = (() => {
 			const bal = rightHeight - leftHeight;
 
 			if (bal < -1) {
-				this[balance] = -1;
+				this[balance] = -2;
 			}
 			else if (bal > 1) {
 				this[balance] = 2;

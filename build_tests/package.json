@@ -7,9 +7,9 @@
   "author": "Michael Robb <michael.robb.prog@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "jasmine": "2.3",
-    "gipp-transpiled": "^0.0.2",
     "gipp-bundle": "^0.0.2",
-    "gipp-min-bundle": "^0.0.2"
+    "gipp-min-bundle": "^0.0.2",
+    "gipp-transpiled": "^0.0.2",
+    "jasmine": "^2.3.2"
   }
 }

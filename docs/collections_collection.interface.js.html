@@ -34,7 +34,7 @@ import {UnimplementedError} from "./exceptions";
  *
  * A Collection in Gipp should be homogeneous, however it is not required.
  *
- * If a collection contains non primitive elements then a [comparison function]{@link cmpFtn} must be provided
+ * If a collection contains non primitive elements then a [comparison function]{@link CmpFtn} must be provided
  * to the collection's constructor.
  *
  *
@@ -46,7 +46,7 @@ class Collection {
 
 	/**
 	 * The generic type `E` represents a value that can be contained in a collection.
-	 * If `E` is a non primitive type, then a [comparison function]{@link cmpFtn} must be provided to the
+	 * If `E` is a non primitive type, then a [comparison function]{@link CmpFtn} must be provided to the
 	 * the collection's constructor.
 	 *
 	 * Gipp will not inforce that a collection be homogeneous. But it is probably a good idea.
@@ -54,17 +54,56 @@ class Collection {
 	 * @typedef {*} E
  	 */
 
+ 	/**
+	 * This callback type is used when searching a collection for an element.
+	 *
+	 * @callback SeachCallback
+	 * @param {E} element - An element contained within the collection.
+	 * @return {boolean} True if `element` is the element being searched for, false otherwise
+	 */
+
+	/**
+	 * A Collection Iterator will visit each element E in a collection.
+	 * The order in which elements are visited is determined on the method
+	 * returning the iterator.
+	 *
+	 * This feature is available in ES 2015 only.
+	 *
+	 * @example
+	 * collection.addAll(1,2,3,4,5);
+	 * for (let e of collection) {
+	 * 	// do something with e
+	 * }
+	 *
+	 * @typedef {generator} CollectionGenerator
+	 */
+
 	/**
 	 * A comparison function is used to determine the ordering of a collection
 	 * and to test for equality between elements in a collection.
 	 *
-	 * @callback cmpFtn
+	 * @callback CmpFtn
 	 * @param {E} a - An element contained within the collection.
 	 * @param {E} b - An element contained within the collection.
 	 * @return {number}
 	 *	**-1** if `a` is less than `b`&lt;br />
 	 *	**1** if `a` is greater than `b`&lt;br />
 	 *	**0** if `a` is equal to `b`.
+	 */
+
+	/**
+	 * This callback is used to iterate over a collection.
+	 *
+	 * @callback IteratorCallback
+	 * @param {E} element - An element contained within the collection.
+	 */
+
+	/**
+	 * This callback type that is passed to collection.map() is called `mapCallback`.
+	 *
+	 * @callback MapCallback
+	 * @param {E} element - An element contained within the collection.
+	 * @return {boolean} True if the element should be contained in the new collection, false otherwise.
 	 */
 
 	/**
@@ -77,10 +116,10 @@ class Collection {
 	}
 
 	/**
-	 * Returns the default [comparison function]{@link cmpFtn}. This function is sutable only for primitive types
+	 * Returns the default [comparison function]{@link CmpFtn}. This function is sutable only for primitive types
 	 * and homogeneous arrays of primitive types.
 	 *
-	 * @return {cmpFtn} The default comparison function.
+	 * @return {CmpFtn} The default comparison function.
 	 */
 	static get cmpFtn() {
 		return (a, b) => a - b;
@@ -105,25 +144,9 @@ class Collection {
 	}
 
 	/**
-	 * A Collection Iterator will visit each element E in a collection.
-	 * The order in which elements are visited is determined on the method
-	 * returning the iterator.
-	 *
-	 * This feature is available in ES 2015 only.
-	 *
-	 * @example
-	 * collection.addAll(1,2,3,4,5);
-	 * for (let e of collection) {
-	 * 	// do something with e
-	 * }
-	 *
-	 * @typedef {*} CollectionIterator
-	 */
-
-	/**
 	 * This feature is available in ES 2015 only. For older versions of JavaScript use {@link Collection#forEach}
 	 *
-	 * @return {CollectionIterator}
+	 * @return {CollectionGenerator}
 	 */
 	*[Symbol.iterator]() {
 		throw new UnimplementedError('get size');
@@ -182,18 +205,15 @@ class Collection {
 	}
 
 	/**
-	 * This callback type that is passed to {@link Collection#forEach} and is called `forEachCallback`.
-	 *
-	 * @callback forEachCallback
-	 * @param {E} element - An element contained within the collection.
-	 */
-
-	/**
 	 * The forEach() method executes a provided function once per collection element.
+	 *
+	 * forEach does not garuntee any relationship between the ordering of values being added to the collection
+	 * and the order in witch forEach iterates over the collection. It just garuentees to vist each element in the
+	 * collection once.
 	 *
 	 * @throws {TypeError} If cb is not a function.
 	 *
-	 * @param {forEachCallback} cb - The callback that will be applied to each element in the collection.
+	 * @param {IteratorCallback} cb - The callback that will be applied to each element in the collection.
 	 * @return {Collection} Returns this collection.
 	 */
 	forEach(cb) {
@@ -201,19 +221,11 @@ class Collection {
 	}
 
 	/**
-	 * This callback type that is passed to collection.map() is called `mapCallback`.
-	 *
-	 * @callback mapCallback
-	 * @param {E} element - An element contained within the collection.
-	 * @return {boolean} True if the element should be contained in the new collection, false otherwise.
-	 */
-
-	/**
 	 * The map() method creates a new collection with the results of calling a provided function on every element in this collection.
 	 *
 	 * @throws {TypeError} If cb is not a function.
 	 *
-	 * @param {mapCallback} cb - The callback that will be applied to each element in the collection.
+	 * @param {MapCallback} cb - The callback that will be applied to each element in the collection.
 	 * @return {Collection} A new collection with the results of calling a provided function on every element in this collection.
 	 */
 	map(cb) {
@@ -229,6 +241,7 @@ class Collection {
 		throw new UnimplementedError('get size');
 	}
 
+	/** @private */
 	_throwIfNotFunction(cb) {
 		if (typeof cb !== 'function') {
 			throw new TypeError((typeof cb) + ' is not a function');
@@ -253,7 +266,7 @@ export default Collection;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a> on Fri Sep 25 2015 15:27:51 GMT-0400 (EDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a> on Sun Sep 27 2015 10:16:51 GMT-0400 (EDT)
 </footer>
 
 <script> prettyPrint(); </script>

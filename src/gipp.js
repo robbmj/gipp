@@ -19,7 +19,7 @@ class Gipp {
  	 * Returns a new linked list
  	 *
  	 * @param {E[]?} initializer - If an initializer is passed {@link Collection#addAll} will be called passing it the initializer.
- 	 * @param {cmpFtn?} - The comparison function that will be used to determine ordering and equality of elements in the collection.
+ 	 * @param {CmpFtn?} cmpFtn - The comparison function that will be used to determine ordering and equality of elements in the collection.
  	 * @return {LinkedList}
  	 */
 	LinkedList(initializer=[], cmpFtn=null) {
@@ -30,7 +30,7 @@ class Gipp {
  	 * Returns a new double linked list
  	 *
  	 * @param {E[]?} initializer - If an initializer is passed {@link Collection#addAll} will be called passing it the initializer.
- 	 * @param {cmpFtn?} - The comparison function that will be used to determine ordering and equality of elements in the collection.
+ 	 * @param {CmpFtn?} cmpFtn - The comparison function that will be used to determine ordering and equality of elements in the collection.
  	 * @return {DoubleLinkedList}
  	 */
 	DoubleLinkedList(initializer=[], cmpFtn=null) {
@@ -41,7 +41,7 @@ class Gipp {
  	 * Returns a new AVL Tree
  	 *
  	 * @param {E[]?} initializer - If an initializer is passed {@link Collection#addAll} will be called passing it the initializer.
- 	 * @param {cmpFtn?} - The comparison function that will be used to determine ordering and equality of elements in the collection.
+ 	 * @param {CmpFtn?} cmpFtn - The comparison function that will be used to determine ordering and equality of elements in the collection.
  	 * @return {AVLTree}
  	 */
 	AVLTree(initializer=[], cmpFtn=null) {
@@ -52,7 +52,7 @@ class Gipp {
  	 * Returns a new Splay Tree
  	 *
  	 * @param {E[]?} initializer - If an initializer is passed {@link Collection#addAll} will be called passing it the initializer.
- 	 * @param {cmpFtn?} - The comparison function that will be used to determine ordering and equality of elements in the collection.
+ 	 * @param {CmpFtn?} cmpFtn - The comparison function that will be used to determine ordering and equality of elements in the collection.
  	 * @return {SplayTree}
  	 */
 	SplayTree(initializer=[], cmpFtn=null) {
@@ -63,7 +63,7 @@ class Gipp {
  	 * Returns a new Red Black Tree
  	 *
  	 * @param {E[]?} initializer - If an initializer is passed {@link Collection#addAll} will be called passing it the initializer.
- 	 * @param {cmpFtn?} - The comparison function that will be used to determine ordering and equality of elements in the collection.
+ 	 * @param {CmpFtn?} cmpFtn - The comparison function that will be used to determine ordering and equality of elements in the collection.
  	 * @return {RBTree}
  	 */
 	RBTree(initializer=[], cmpFtn=null) {

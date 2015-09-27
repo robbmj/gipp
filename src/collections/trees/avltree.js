@@ -53,6 +53,107 @@ export default ((size, root, cmpf) => {
 			this.balance(curNode);
 		}
 
+		delete(element, curNode) {
+
+			while (curNode !== null) {
+				const cmp = this.avltree[cmpf](element, curNode.element);
+				if (cmp > 0) {
+					curNode = curNode.right;
+				}
+				else if (cmp < 0) {
+					curNode = curNode.left
+				}
+				else {
+					break;
+				}
+			}
+
+			if (curNode === null) {
+				return false;
+			}
+
+			let startBalanceAt = null;
+			if (curNode.isLeaf()) {
+
+				// case 1) If node has no children (i.e., is a leaf), delete node.
+
+				startBalanceAt = this.deleteLeafNode(curNode);
+			}
+			else if (curNode.hasOneChild()) {
+
+				// case 2) If node has one child,
+				// let node' be the child of node.
+				// Notice: node' cannot have a child, since subtrees can differ in
+				// height by at most one
+				// replace the element value of node with the element value of node'
+				// delete node' (a leaf)
+
+				startBalanceAt = this.deleteNodeWithSingleChild(curNode);
+			}
+			else {
+
+				// case 3) If node has two children,
+				// find node's successor z (which has no left child)
+				// replace node's element with z's element, and -delete z.
+				// [since z has at most one child, so we use case (1) or (2) to delete z]
+
+				const leftMostChild = this.inOrderSuccessor(curNode);
+				curNode.element = leftMostChild.element;
+				if (leftMostChild.isLeaf()) {
+					startBalanceAt = this.deleteLeafNode(leftMostChild);
+				}
+				else {
+					startBalanceAt = this.deleteNodeWithSingleChild(leftMostChild);
+				}
+			}
+
+
+			// Go from the deleted leaf towards the
+  			// root and at each ancestor of that leaf:
+  			// update the balance factor
+  			// rebalance with rotations if necessary.
+
+			startBalanceAt.updateBalance();
+			this.balance(startBalanceAt);
+
+			return true;
+
+		}
+
+		inOrderSuccessor(node) {
+			let successor = node.right;
+			while (successor.left !== null) {
+				successor = successor.left;
+			}
+			return successor;
+		}
+
+
+		deleteLeafNode(node) {
+			if (node.parent.right === node) {
+				node.parent.right = null;
+			}
+			else {
+				node.parent.left = null;
+			}
+			const parent = node.parent;
+			node.parent = null;
+			return parent;
+		}
+
+		deleteNodeWithSingleChild(node) {
+			const child = node.getSingleChild();
+			node.element = child.element;
+			child.parent = null;
+			if (node.right === child) {
+				node.right = null;
+			}
+			else {
+				node.left = null;
+			}
+			return node;
+		}
+
 		/**
 		 * @private
 		 *
@@ -65,13 +166,17 @@ export default ((size, root, cmpf) => {
 
 				const balance = curNode.balance
 
+				console.log('Balance Factor: ' + balance);
+
 				if (balance > 1) {
 					const rightChild = curNode.right;
 
 					if (rightChild !== null && rightChild.balance < 0) {
+						console.log('Left Right Rotation');
 						curNode = this.leftRightRotation(rightChild);
 					}
 					else {
+						console.log('Single Left Rotation');
 						curNode = this.leftRotation(curNode);
 					}
 				}
@@ -79,9 +184,11 @@ export default ((size, root, cmpf) => {
 					const leftChild = curNode.left;
 
 					if (leftChild !== null && leftChild.balance > 0) {
-						curNode = this.rightLeftRotation(rightChild);
+						console.log('Right Left Rotation');
+						curNode = this.rightLeftRotation(leftChild);
 					}
 					else {
+						console.log('Single Right Rotation');
 						curNode = this.rightRotation(curNode);
 					}
 				}
@@ -96,7 +203,7 @@ export default ((size, root, cmpf) => {
 		 *
 		 * Performs a single left rotation on the node by doing the following
 	 	 * 1. child becomes the new root.
-	     * 2. parent takes ownership of child's left child as its right child
+		 * 2. parent takes ownership of child's left child as its right child
 	 	 * 3. child takes ownership of parent as its left child
 	 	 * 4. fix the parent pointers as needed
 	 	 * 5. update node balances
@@ -143,7 +250,7 @@ export default ((size, root, cmpf) => {
 		 *
 		 * Performs a single right rotation on the node by doing the following
 	 	 * 1. child becomes the new root.
-	     * 2. parent takes ownership of childs's right child, as its left child.
+		 * 2. parent takes ownership of childs's right child, as its left child.
 	 	 * 3. child takes ownership of parent, as it's right child.
 	 	 * 4. fix the parent pointers as needed
 	 	 * 5. update node balances
@@ -229,7 +336,7 @@ export default ((size, root, cmpf) => {
 		/**
 		 * Creates an empty AVL Tree
 		 *
-		 * @param {cmpFtn?} - If no comparison function is passed then the [default comparison function]{@link Collection#cmpFtn} is used.
+		 * @param {CmpFtn?} - If no comparison function is passed then the [default comparison function]{@link Collection#cmpFtn} is used.
 		 */
 		constructor(cmpFtn=null) {
 			super(cmpFtn);
@@ -259,8 +366,11 @@ export default ((size, root, cmpf) => {
 			if (this[size] === 0) {
 				throw new EmptyCollectionError('Can\'t delete from an empty AVLTree');
 			}
-			// TODO
-			return false;
+			const ret = this[helper].delete(element, this[root]);
+			if (ret) {
+				this[size] -= 1;
+			}
+			return ret;
 		}
 
 		map(cb) {
