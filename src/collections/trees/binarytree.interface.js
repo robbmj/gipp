@@ -1,5 +1,8 @@
 
 import Collection from './../collection.interface';
+import Stack from './../stacks/stack';
+import ListQueue from './../queues/listqueue';
+
 import __BINARYTREESYMBOLS from './private/__binarytreesymbols';
 
 export default ((size, root, cmpf) => {
@@ -56,31 +59,32 @@ export default ((size, root, cmpf) => {
 				return false;
 			}
 
-			// TODO: replace this with a real queue
 			const bfsHelper = (queue) => {
 
-				if (queue.length === 0) {
+				if (queue.isEmpty) {
 					return false;
 				}
 
-				const node = queue.shift();
+				const node = queue.dequeue();
 
 				if (cb(node.element)) {
 					return true;
 				}
 
 				if (node.left !== null) {
-					queue.push(node.left);
+					queue.enqueue(node.left);
 				}
 
 				if (node.right !== null) {
-					queue.push(node.right);
+					queue.enqueue(node.right);
 				}
 
 				return bfsHelper(queue);
 			};
 
-			return bfsHelper([this[root]]);
+			const queue = new ListQueue(this[cmpf]);
+			queue.enqueue(this[root]);
+			return bfsHelper(queue);
 		}
 
 		contains(element) {
@@ -205,16 +209,15 @@ export default ((size, root, cmpf) => {
 			if (this[size] === 0) {
 				return;
 			}
-			// TODO: replace this with a real stack
-			const stack = [];
+			const stack = new Stack(this[cmpf]);
 			stack.push(this[root]);
-			while (stack.lenght > 0) {
+			while (stack.length > 0) {
 				const node = stack.pop();
 				yield node.element;
-				if (stack.right !== null) {
+				if (node.right !== null) {
 					stack.push(node.right);
 				}
-				if (stack.left !== null) {
+				if (node.left !== null) {
 					stack.push(node.left);
 				}
 			}

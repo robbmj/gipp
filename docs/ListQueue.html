@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: DoubleLinkedList</title>
+    <title>JSDoc: Class: ListQueue</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: DoubleLinkedList</h1>
+    <h1 class="page-title">Class: ListQueue</h1>
 
     
 
@@ -28,9 +28,7 @@
 
 <header>
     
-        <h2>DoubleLinkedList</h2>
-        
-            <div class="class-description"><p>Doubly Linked List</p></div>
+        <h2>ListQueue</h2>
         
     
 </header>
@@ -41,17 +39,15 @@
         
 
     
-    <h2>Constructor</h2>
-    
 
-    <h4 class="name" id="DoubleLinkedList"><span class="type-signature"></span>new DoubleLinkedList<span class="signature">(cmpFtn<span class="signature-attributes">nullable</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="ListQueue"><span class="type-signature"></span>new ListQueue<span class="signature">(cmpFtn<span class="signature-attributes">nullable</span>)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    <p>Creates an empty Doubly Linked List</p>
+    <p>Creates an empty queue</p>
 </div>
 
 
@@ -143,7 +139,7 @@
     <dt class="implements">Implements:</dt>
     <dd class="implements"><ul>
         
-            <li><a href="List.html">List</a></li>
+            <li><a href="Queue.html">Queue</a></li>
         
     </ul></dd>
     
@@ -163,7 +159,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="collections_lists_doublelinkedlist.js.html">collections/lists/doublelinkedlist.js</a>, <a href="collections_lists_doublelinkedlist.js.html#line14">line 14</a>
+        <a href="collections_queues_listqueue.js.html">collections/queues/listqueue.js</a>, <a href="collections_queues_listqueue.js.html#line13">line 13</a>
     </li></ul></dd>
     
 
@@ -193,17 +189,6 @@
     </div>
 
     
-        <h3 class="subsection-title">Extends</h3>
-
-        
-
-
-    <ul>
-        <li><a href="LinkedList.html">LinkedList</a></li>
-    </ul>
-
-
-    
 
     
 
@@ -213,6 +198,158 @@
 
     
 
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="isEmpty"><span class="type-signature"></span>isEmpty<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>Tests if the collection is empty</p>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Collection.html#isEmpty">Collection#isEmpty</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="implements">Implements:</dt>
+    <dd class="implements"><ul>
+        
+            <li><a href="Queue.html#isEmpty">Queue#isEmpty</a></li>
+        
+    </ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="collections_collection.interface.js.html">collections/collection.interface.js</a>, <a href="collections_collection.interface.js.html#line105">line 105</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="size"><span class="type-signature"></span>size<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>Returns the number of elements contained in the collection.</p>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Collection.html#size">Collection#size</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="implements">Implements:</dt>
+    <dd class="implements"><ul>
+        
+            <li><a href="Queue.html#size">Queue#size</a></li>
+        
+    </ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="collections_collection.interface.js.html">collections/collection.interface.js</a>, <a href="collections_collection.interface.js.html#line114">line 114</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
     
 
     
@@ -315,7 +452,7 @@
     <dt class="implements">Implements:</dt>
     <dd class="implements"><ul>
         
-            <li><a href="List.html#add">List#add</a></li>
+            <li><a href="Queue.html#add">Queue#add</a></li>
         
     </ul></dd>
     
@@ -374,6 +511,358 @@
     <dd>
         
 <span class="param-type"><a href="Collection.html">Collection</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="addAll"><span class="type-signature"></span>addAll<span class="signature">(&hellip;elements)</span><span class="type-signature"> &rarr; {<a href="Collection.html">Collection</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Appends each element to the end of the collection.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>elements</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#E">E</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The elements to be appended to the collection.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Collection.html#addAll">Collection#addAll</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="implements">Implements:</dt>
+    <dd class="implements"><ul>
+        
+            <li><a href="Queue.html#addAll">Queue#addAll</a></li>
+        
+    </ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="collections_collection.interface.js.html">collections/collection.interface.js</a>, <a href="collections_collection.interface.js.html#line153">line 153</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Returns this collection</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Collection.html">Collection</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>// If using ES 5 addAll() must be called using individual arguments:
+collection.addAll(1,2,3,4,5);</code></pre>
+
+    <pre class="prettyprint"><code>// If however you are using ES 2015 addAll() can be called in the following ways:
+collection.addAll(1,2,3,4,5);
+collection.addAll(...[1,2,3,4,5]);</code></pre>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="contains"><span class="type-signature"></span>contains<span class="signature">(element)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Searches the collection for element.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>element</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#E">E</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The element to search for.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Collection.html#contains">Collection#contains</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="implements">Implements:</dt>
+    <dd class="implements"><ul>
+        
+            <li><a href="Queue.html#contains">Queue#contains</a></li>
+        
+    </ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="collections_collection.interface.js.html">collections/collection.interface.js</a>, <a href="collections_collection.interface.js.html#line163">line 163</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>True if element is contained in the collection false otherwise.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
 
 
     </dd>
@@ -480,7 +969,7 @@
     <dt class="implements">Implements:</dt>
     <dd class="implements"><ul>
         
-            <li><a href="List.html#delete">List#delete</a></li>
+            <li><a href="Queue.html#delete">Queue#delete</a></li>
         
     </ul></dd>
     
@@ -582,14 +1071,125 @@
 
     
 
-    <h4 class="name" id="indexOf"><span class="type-signature"></span>indexOf<span class="signature">(element)</span><span class="type-signature"> &rarr; {number}</span></h4>
+    <h4 class="name" id="dequeue"><span class="type-signature"></span>dequeue<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="global.html#E">E</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    <p>The indexOf() method returns the first index at which a given element can be found in the list, or -1 if it is not present.</p>
+    <p>Returns and removes the last element of the queue</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="implements">Implements:</dt>
+    <dd class="implements"><ul>
+        
+            <li><a href="Queue.html#dequeue">Queue#dequeue</a></li>
+        
+    </ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="collections_queues_queue.interface.js.html">collections/queues/queue.interface.js</a>, <a href="collections_queues_queue.interface.js.html#line53">line 53</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The last element in the queue</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="global.html#E">E</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="enqueue"><span class="type-signature"></span>enqueue<span class="signature">(element)</span><span class="type-signature"> &rarr; {<a href="Queue.html">Queue</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Prepends an element to the front on the queue. The same is true for <a href="Queue.html#add"><code>Queue#add</code></a></p>
 </div>
 
 
@@ -641,7 +1241,7 @@
 
             
 
-            <td class="description last"><p>The element to locate in the list.</p></td>
+            <td class="description last"><p>The element to be added to the queue</p></td>
         </tr>
 
     
@@ -660,11 +1260,6 @@
     
 
     
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="LinkedList.html#indexOf">LinkedList#indexOf</a>
-    </li></ul></dd>
-    
 
     
 
@@ -674,7 +1269,7 @@
     <dt class="implements">Implements:</dt>
     <dd class="implements"><ul>
         
-            <li><a href="List.html#indexOf">List#indexOf</a></li>
+            <li><a href="Queue.html#enqueue">Queue#enqueue</a></li>
         
     </ul></dd>
     
@@ -694,7 +1289,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="collections_lists_list.interface.js.html">collections/lists/list.interface.js</a>, <a href="collections_lists_list.interface.js.html#line28">line 28</a>
+        <a href="collections_queues_queue.interface.js.html">collections/queues/queue.interface.js</a>, <a href="collections_queues_queue.interface.js.html#line63">line 63</a>
     </li></ul></dd>
     
 
@@ -720,10 +1315,6 @@
 <h5>Returns:</h5>
 
         
-<div class="param-desc">
-    <p>The first index at which a given element can be found in the list, or -1 if it is not present.</p>
-</div>
-
 
 
 <dl>
@@ -732,7 +1323,7 @@
     </dt>
     <dd>
         
-<span class="param-type">number</span>
+<span class="param-type"><a href="Queue.html">Queue</a></span>
 
 
     </dd>
@@ -747,484 +1338,14 @@
 
     
 
-    <h4 class="name" id="lastIndexOf"><span class="type-signature"></span>lastIndexOf<span class="signature">(element)</span><span class="type-signature"> &rarr; {number}</span></h4>
+    <h4 class="name" id="enqueueAll"><span class="type-signature"></span>enqueueAll<span class="signature">(&hellip;elements)</span><span class="type-signature"> &rarr; {<a href="Queue.html">Queue</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    <p>The lastIndexOf() method returns the last index at which a given element can be found in the list, or -1 if it is not present.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>element</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#E">E</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The element to locate in the list.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="LinkedList.html#lastIndexOf">LinkedList#lastIndexOf</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-    <dt class="implements">Implements:</dt>
-    <dd class="implements"><ul>
-        
-            <li><a href="List.html#lastIndexOf">List#lastIndexOf</a></li>
-        
-    </ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="collections_lists_list.interface.js.html">collections/lists/list.interface.js</a>, <a href="collections_lists_list.interface.js.html#line38">line 38</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>The last index at which a given element can be found in the list, or -1 if it is not present.</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">number</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="pop"><span class="type-signature"></span>pop<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="global.html#E">E</a>}</span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Returns the last element in the list.</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="implements">Implements:</dt>
-    <dd class="implements"><ul>
-        
-            <li><a href="List.html#pop">List#pop</a></li>
-        
-    </ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="collections_lists_list.interface.js.html">collections/lists/list.interface.js</a>, <a href="collections_lists_list.interface.js.html#line49">line 49</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-<h5>Throws:</h5>
-
-        
-
-<dl>
-    <dt>
-        <div class="param-desc">
-        <p>If no elements are contained within the collection.</p>
-        </div>
-    </dt>
-    <dd></dd>
-    <dt>
-        <dl>
-            <dt>
-                Type
-            </dt>
-            <dd>
-                
-<span class="param-type"><a href="EmptyCollectionError.html">EmptyCollectionError</a></span>
-
-
-            </dd>
-        </dl>
-    </dt>
-    <dd></dd>
-</dl>
-
-
-    
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>The last element in the list.</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="global.html#E">E</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="push"><span class="type-signature"></span>push<span class="signature">(element)</span><span class="type-signature"> &rarr; {<a href="List.html">List</a>}</span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Appends element to the end of the list.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>element</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#E">E</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>the element to be appended to the list.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="LinkedList.html#push">LinkedList#push</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-    <dt class="implements">Implements:</dt>
-    <dd class="implements"><ul>
-        
-            <li><a href="List.html#push">List#push</a></li>
-        
-    </ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="collections_lists_list.interface.js.html">collections/lists/list.interface.js</a>, <a href="collections_lists_list.interface.js.html#line59">line 59</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>Returns this list.</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="List.html">List</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="pushAll"><span class="type-signature"></span>pushAll<span class="signature">(&hellip;elements)</span><span class="type-signature"> &rarr; {<a href="List.html">List</a>}</span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Appends each element to the end of the list.</p>
+    <p>Prepends each element to the front on the queue. The same is true for <a href="Queue.html#addAll"><code>Queue#addAll</code></a></p>
 </div>
 
 
@@ -1288,7 +1409,7 @@
 
             
 
-            <td class="description last"><p>The elements to be appended to the list.</p></td>
+            <td class="description last"><p>The elements to be added to the queue</p></td>
         </tr>
 
     
@@ -1307,11 +1428,6 @@
     
 
     
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="LinkedList.html#pushAll">LinkedList#pushAll</a>
-    </li></ul></dd>
-    
 
     
 
@@ -1321,7 +1437,7 @@
     <dt class="implements">Implements:</dt>
     <dd class="implements"><ul>
         
-            <li><a href="List.html#pushAll">List#pushAll</a></li>
+            <li><a href="Queue.html#enqueueAll">Queue#enqueueAll</a></li>
         
     </ul></dd>
     
@@ -1341,7 +1457,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="collections_lists_list.interface.js.html">collections/lists/list.interface.js</a>, <a href="collections_lists_list.interface.js.html#line78">line 78</a>
+        <a href="collections_queues_queue.interface.js.html">collections/queues/queue.interface.js</a>, <a href="collections_queues_queue.interface.js.html#line73">line 73</a>
     </li></ul></dd>
     
 
@@ -1367,10 +1483,6 @@
 <h5>Returns:</h5>
 
         
-<div class="param-desc">
-    <p>Returns this list</p>
-</div>
-
 
 
 <dl>
@@ -1379,7 +1491,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="List.html">List</a></span>
+<span class="param-type"><a href="Queue.html">Queue</a></span>
 
 
     </dd>
@@ -1388,30 +1500,23 @@
     
 
 
-    <h5>Examples</h5>
-    
-    <pre class="prettyprint"><code>// If using ES 5 pushAll() must be called using individual arguments:
-list.pushAll(1,2,3,4,5);</code></pre>
-
-    <pre class="prettyprint"><code>// If however you are using ES 2015 pushAll() can be called in the following ways:
-list.pushAll(1,2,3,4,5);
-list.pushAll(...[1,2,3,4,5]);</code></pre>
-
-
 
         
             
 
     
 
-    <h4 class="name" id="reverseForEach"><span class="type-signature"></span>reverseForEach<span class="signature">(cb)</span><span class="type-signature"> &rarr; {<a href="Collection.html">Collection</a>}</span></h4>
+    <h4 class="name" id="forEach"><span class="type-signature"></span>forEach<span class="signature">(cb)</span><span class="type-signature"> &rarr; {<a href="Collection.html">Collection</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    <p>Same as <a href="Collection.html#forEach"><code>Collection#forEach</code></a> just starts at the tail of the list.</p>
+    <p>The forEach() method executes a provided function once per collection element.</p>
+<p>forEach does not garuntee any relationship between the ordering of values being added to the collection
+and the order in witch forEach iterates over the collection. It just garuentees to vist each element in the
+collection once.</p>
 </div>
 
 
@@ -1453,7 +1558,7 @@ list.pushAll(...[1,2,3,4,5]);</code></pre>
             <td class="type">
             
                 
-<span class="param-type">forEachCallback</span>
+<span class="param-type"><a href="global.html#IteratorCallback">IteratorCallback</a></span>
 
 
             
@@ -1482,11 +1587,23 @@ list.pushAll(...[1,2,3,4,5]);</code></pre>
     
 
     
-
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Collection.html#forEach">Collection#forEach</a>
+    </li></ul></dd>
     
 
     
 
+    
+
+    
+    <dt class="implements">Implements:</dt>
+    <dd class="implements"><ul>
+        
+            <li><a href="Queue.html#forEach">Queue#forEach</a></li>
+        
+    </ul></dd>
     
 
     
@@ -1504,7 +1621,7 @@ list.pushAll(...[1,2,3,4,5]);</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="collections_lists_doublelinkedlist.js.html">collections/lists/doublelinkedlist.js</a>, <a href="collections_lists_doublelinkedlist.js.html#line149">line 149</a>
+        <a href="collections_collection.interface.js.html">collections/collection.interface.js</a>, <a href="collections_collection.interface.js.html#line191">line 191</a>
     </li></ul></dd>
     
 
@@ -1586,14 +1703,14 @@ list.pushAll(...[1,2,3,4,5]);</code></pre>
 
     
 
-    <h4 class="name" id="shift"><span class="type-signature"></span>shift<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="global.html#E">E</a>}</span></h4>
+    <h4 class="name" id="map"><span class="type-signature"></span>map<span class="signature">(cb)</span><span class="type-signature"> &rarr; {<a href="Collection.html">Collection</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    <p>Returns the first element in the list.</p>
+    <p>The map() method creates a new collection with the results of calling a provided function on every element in this collection.</p>
 </div>
 
 
@@ -1602,6 +1719,55 @@ list.pushAll(...[1,2,3,4,5]);</code></pre>
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#MapCallback">MapCallback</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The callback that will be applied to each element in the collection.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -1615,6 +1781,11 @@ list.pushAll(...[1,2,3,4,5]);</code></pre>
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Collection.html#map">Collection#map</a>
+    </li></ul></dd>
+    
 
     
 
@@ -1624,7 +1795,7 @@ list.pushAll(...[1,2,3,4,5]);</code></pre>
     <dt class="implements">Implements:</dt>
     <dd class="implements"><ul>
         
-            <li><a href="List.html#shift">List#shift</a></li>
+            <li><a href="Queue.html#map">Queue#map</a></li>
         
     </ul></dd>
     
@@ -1644,7 +1815,7 @@ list.pushAll(...[1,2,3,4,5]);</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="collections_lists_list.interface.js.html">collections/lists/list.interface.js</a>, <a href="collections_lists_list.interface.js.html#line89">line 89</a>
+        <a href="collections_collection.interface.js.html">collections/collection.interface.js</a>, <a href="collections_collection.interface.js.html#line203">line 203</a>
     </li></ul></dd>
     
 
@@ -1672,7 +1843,7 @@ list.pushAll(...[1,2,3,4,5]);</code></pre>
 <dl>
     <dt>
         <div class="param-desc">
-        <p>If no elements are contained within the list.</p>
+        <p>If cb is not a function.</p>
         </div>
     </dt>
     <dd></dd>
@@ -1683,7 +1854,7 @@ list.pushAll(...[1,2,3,4,5]);</code></pre>
             </dt>
             <dd>
                 
-<span class="param-type"><a href="EmptyCollectionError.html">EmptyCollectionError</a></span>
+<span class="param-type">TypeError</span>
 
 
             </dd>
@@ -1700,7 +1871,7 @@ list.pushAll(...[1,2,3,4,5]);</code></pre>
 
         
 <div class="param-desc">
-    <p>The first element in the list.</p>
+    <p>A new collection with the results of calling a provided function on every element in this collection.</p>
 </div>
 
 
@@ -1711,7 +1882,7 @@ list.pushAll(...[1,2,3,4,5]);</code></pre>
     </dt>
     <dd>
         
-<span class="param-type"><a href="global.html#E">E</a></span>
+<span class="param-type"><a href="Collection.html">Collection</a></span>
 
 
     </dd>
@@ -1726,14 +1897,14 @@ list.pushAll(...[1,2,3,4,5]);</code></pre>
 
     
 
-    <h4 class="name" id="toString"><span class="type-signature"></span>toString<span class="signature">()</span><span class="type-signature"> &rarr; {String}</span></h4>
+    <h4 class="name" id="peek"><span class="type-signature"></span>peek<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="global.html#E">E</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    <p>Returns a string representation of the collection.</p>
+    <p>Returns but does not remove the last element in the queue</p>
 </div>
 
 
@@ -1757,11 +1928,6 @@ list.pushAll(...[1,2,3,4,5]);</code></pre>
     
 
     
-    <dt class="tag-overrides">Overrides:</dt>
-    <dd class="tag-overrides"><ul class="dummy"><li>
-        <a href="LinkedList.html#toString">LinkedList#toString</a>
-    </li></ul></dd>
-    
 
     
 
@@ -1769,7 +1935,7 @@ list.pushAll(...[1,2,3,4,5]);</code></pre>
     <dt class="implements">Implements:</dt>
     <dd class="implements"><ul>
         
-            <li><a href="List.html#toString">List#toString</a></li>
+            <li><a href="Queue.html#peek">Queue#peek</a></li>
         
     </ul></dd>
     
@@ -1789,7 +1955,7 @@ list.pushAll(...[1,2,3,4,5]);</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="collections_lists_linkedlist.js.html">collections/lists/linkedlist.js</a>, <a href="collections_lists_linkedlist.js.html#line256">line 256</a>
+        <a href="collections_queues_queue.interface.js.html">collections/queues/queue.interface.js</a>, <a href="collections_queues_queue.interface.js.html#line84">line 84</a>
     </li></ul></dd>
     
 
@@ -1816,7 +1982,7 @@ list.pushAll(...[1,2,3,4,5]);</code></pre>
 
         
 <div class="param-desc">
-    <p>A string representation of the collection.</p>
+    <p>The last element in the queue</p>
 </div>
 
 
@@ -1827,7 +1993,7 @@ list.pushAll(...[1,2,3,4,5]);</code></pre>
     </dt>
     <dd>
         
-<span class="param-type">String</span>
+<span class="param-type"><a href="global.html#E">E</a></span>
 
 
     </dd>
@@ -1842,14 +2008,14 @@ list.pushAll(...[1,2,3,4,5]);</code></pre>
 
     
 
-    <h4 class="name" id="unshift"><span class="type-signature"></span>unshift<span class="signature">(element)</span><span class="type-signature"> &rarr; {<a href="List.html">List</a>}</span></h4>
+    <h4 class="name" id="poll"><span class="type-signature"></span>poll<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="global.html#E">E</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    <p>Prepends element to the front of the list.</p>
+    <p>Returns but does not remove the first element in the queue</p>
 </div>
 
 
@@ -1858,55 +2024,6 @@ list.pushAll(...[1,2,3,4,5]);</code></pre>
 
 
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>element</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#E">E</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The element to be appended to the list.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -1929,7 +2046,7 @@ list.pushAll(...[1,2,3,4,5]);</code></pre>
     <dt class="implements">Implements:</dt>
     <dd class="implements"><ul>
         
-            <li><a href="List.html#unshift">List#unshift</a></li>
+            <li><a href="Queue.html#poll">Queue#poll</a></li>
         
     </ul></dd>
     
@@ -1949,7 +2066,7 @@ list.pushAll(...[1,2,3,4,5]);</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="collections_lists_list.interface.js.html">collections/lists/list.interface.js</a>, <a href="collections_lists_list.interface.js.html#line99">line 99</a>
+        <a href="collections_queues_queue.interface.js.html">collections/queues/queue.interface.js</a>, <a href="collections_queues_queue.interface.js.html#line95">line 95</a>
     </li></ul></dd>
     
 
@@ -1976,7 +2093,7 @@ list.pushAll(...[1,2,3,4,5]);</code></pre>
 
         
 <div class="param-desc">
-    <p>Returns this list.</p>
+    <p>The first element in the queue</p>
 </div>
 
 
@@ -1987,204 +2104,13 @@ list.pushAll(...[1,2,3,4,5]);</code></pre>
     </dt>
     <dd>
         
-<span class="param-type"><a href="List.html">List</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="unshiftAll"><span class="type-signature"></span>unshiftAll<span class="signature">(&hellip;elements)</span><span class="type-signature"> &rarr; {<a href="List.html">List</a>}</span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Prepends each element to the front of the list.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>elements</code></td>
-            
-
-            <td class="type">
-            
-                
 <span class="param-type"><a href="global.html#E">E</a></span>
 
 
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                    &lt;repeatable><br>
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The elements to be prepended to the list.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="LinkedList.html#unshiftAll">LinkedList#unshiftAll</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-    <dt class="implements">Implements:</dt>
-    <dd class="implements"><ul>
-        
-            <li><a href="List.html#unshiftAll">List#unshiftAll</a></li>
-        
-    </ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="collections_lists_list.interface.js.html">collections/lists/list.interface.js</a>, <a href="collections_lists_list.interface.js.html#line123">line 123</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>Returns this list</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="List.html">List</a></span>
-
-
     </dd>
 </dl>
 
     
-
-
-    <h5>Examples</h5>
-    
-    <pre class="prettyprint"><code>// If using ES 5 unshiftAll() must be called using individual arguments:
-list.unshiftAll(1,2,3,4,5);</code></pre>
-
-    <pre class="prettyprint"><code>// If however you are using ES 2015 unshiftAll() can be called in the following ways:
-list.unshiftAll(1,2,3,4,5);
-list.unshiftAll(...[1,2,3,4,5]);</code></pre>
-
-    <pre class="prettyprint"><code>// unshiftAll() prepends elements to the front of the list in the reverse order of the arguments
-list.unshiftAll(1,2,3,4,5);
-list.toString() // [1 -> 2 -> 3 -> 4 -> 5]</code></pre>
 
 
 

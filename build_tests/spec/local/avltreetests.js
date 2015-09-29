@@ -13,3 +13,11 @@ describe('AVLTree Tests Local: gipp-transpiled', function () {
 	setUp(suites, getGipp.transpiled, 'AVLTree');
 });
 
+describe('AVLTree Tests Local: gipp-transpiled', function () {
+	setUp(suites, getGipp.bundle, 'AVLTree');
+});
+
+describe('AVLTree Tests Local: gipp-transpiled', function () {
+	setUp(suites, getGipp.min, 'AVLTree');
+});
+

@@ -7,6 +7,12 @@ import AVLTree from './collections/trees/avltree';
 import SplayTree from './collections/trees/splaytree';
 import RBTree from './collections/trees/rbtree';
 
+import Stack from './collections/stacks/stack';
+
+import ListQueue from './collections/queues/listqueue';
+
+import MaxHeap from './collections/heaps/maxheap';
+import MinHeap from './collections/heaps/minheap';
 
 import {__instantiate} from "./private/__utils";
 
@@ -70,6 +76,49 @@ class Gipp {
 		return __instantiate(RBTree, initializer, cmpFtn);
 	}
 
+	/**
+ 	 * Returns a new Stack
+ 	 *
+ 	 * @param {E[]?} initializer - If an initializer is passed {@link Collection#addAll} will be called passing it the initializer.
+ 	 * @param {CmpFtn?} cmpFtn - The comparison function that will be used to determine ordering and equality of elements in the collection.
+ 	 * @return {Stack}
+ 	 */
+	Stack(initializer=[], cmpFtn=null) {
+		return __instantiate(Stack, initializer, cmpFtn);
+	}
+
+	/**
+ 	 * Returns a new ListQueue
+ 	 *
+ 	 * @param {E[]?} initializer - If an initializer is passed {@link Collection#addAll} will be called passing it the initializer.
+ 	 * @param {CmpFtn?} cmpFtn - The comparison function that will be used to determine ordering and equality of elements in the collection.
+ 	 * @return {ListQueue}
+ 	 */
+	ListQueue(initializer=[], cmpFtn=null) {
+		return __instantiate(ListQueue, initializer, cmpFtn);
+	}
+
+	/**
+ 	 * Returns a new MaxHeap
+ 	 *
+ 	 * @param {E[]?} initializer - If an initializer is passed {@link Collection#addAll} will be called passing it the initializer.
+ 	 * @param {CmpFtn?} cmpFtn - The comparison function that will be used to determine ordering and equality of elements in the collection.
+ 	 * @return {MaxHeap}
+ 	 */
+	MaxHeap(initializer=[], cmpFtn=null) {
+		return __instantiate(MaxHeap, initializer, cmpFtn);
+	}
+
+	/**
+ 	 * Returns a new MinHeap
+ 	 *
+ 	 * @param {E[]?} initializer - If an initializer is passed {@link Collection#addAll} will be called passing it the initializer.
+ 	 * @param {CmpFtn?} cmpFtn - The comparison function that will be used to determine ordering and equality of elements in the collection.
+ 	 * @return {MinHeap}
+ 	 */
+	MinHeap(initializer=[], cmpFtn=null) {
+		return __instantiate(MinHeap, initializer, cmpFtn);
+	}
 }
 
 const gipp = new Gipp();

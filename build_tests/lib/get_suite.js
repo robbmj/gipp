@@ -18,5 +18,9 @@ module.exports = {
 	gipp_interface: getSuite('gipp_interface_suite'),
 
 
-	avltree: getSuite('avltree_suite')
+	avltree: getSuite('avltree_suite'),
+
+	stack: getSuite('stack_suite'),
+
+	listqueue: getSuite('listqueue_suite')
 };

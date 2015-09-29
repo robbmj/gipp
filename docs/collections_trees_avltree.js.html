@@ -56,29 +56,38 @@ export default ((size, root, cmpf) => {
 		 * @param {AVLNode} curNode - A node already in the collection, it's used to test where the newNode should be added
 		 */
 		add(nodeToAdd, curNode) {
-			const cmp = this.avltree[cmpf](nodeToAdd.element, curNode.element);
 
-			if (cmp > 0) {
-				if (curNode.right === null) {
-					curNode.right = nodeToAdd;
-					nodeToAdd.parent = curNode;
+			while (true) {
+				const cmp = this.avltree[cmpf](nodeToAdd.element, curNode.element);
+
+				if (cmp > 0) {
+					if (curNode.right === null) {
+						curNode.right = nodeToAdd;
+						nodeToAdd.parent = curNode;
+						break;
+					}
+					else {
+						curNode = curNode.right;
+					}
 				}
 				else {
-					this.add(nodeToAdd, curNode.right);
-				}
-			}
-			else {
-				if (curNode.left === null) {
-					curNode.left = nodeToAdd;
-					nodeToAdd.parent = curNode;
-				}
-				else {
-					this.add(nodeToAdd, curNode.left);
+					if (curNode.left === null) {
+						curNode.left = nodeToAdd;
+						nodeToAdd.parent = curNode;
+						break;
+					}
+					else {
+						curNode = curNode.left;
+					}
 				}
 			}
 
-			curNode.updateBalance();
-			this.balance(curNode);
+			// traverse up the ansestor nodes updating balances and rotating as needed.
+			while (curNode !== null) {
+				curNode.updateBalance();
+				this.balance(curNode);
+				curNode = curNode.parent;
+			}
 		}
 
 		delete(element, curNode) {
@@ -145,7 +154,6 @@ export default ((size, root, cmpf) => {
 			this.balance(startBalanceAt);
 
 			return true;
-
 		}
 
 		inOrderSuccessor(node) {
@@ -194,17 +202,17 @@ export default ((size, root, cmpf) => {
 
 				const balance = curNode.balance
 
-				console.log('Balance Factor: ' + balance);
+				//console.log('Balance Factor: ' + balance);
 
 				if (balance > 1) {
 					const rightChild = curNode.right;
 
 					if (rightChild !== null &amp;&amp; rightChild.balance &lt; 0) {
-						console.log('Left Right Rotation');
+						//console.log('Left Right Rotation');
 						curNode = this.leftRightRotation(rightChild);
 					}
 					else {
-						console.log('Single Left Rotation');
+						//console.log('Single Left Rotation');
 						curNode = this.leftRotation(curNode);
 					}
 				}
@@ -212,11 +220,11 @@ export default ((size, root, cmpf) => {
 					const leftChild = curNode.left;
 
 					if (leftChild !== null &amp;&amp; leftChild.balance > 0) {
-						console.log('Right Left Rotation');
+						//console.log('Right Left Rotation');
 						curNode = this.rightLeftRotation(leftChild);
 					}
 					else {
-						console.log('Single Right Rotation');
+						//console.log('Single Right Rotation');
 						curNode = this.rightRotation(curNode);
 					}
 				}
@@ -231,7 +239,7 @@ export default ((size, root, cmpf) => {
 		 *
 		 * Performs a single left rotation on the node by doing the following
 	 	 * 1. child becomes the new root.
-	     * 2. parent takes ownership of child's left child as its right child
+		 * 2. parent takes ownership of child's left child as its right child
 	 	 * 3. child takes ownership of parent as its left child
 	 	 * 4. fix the parent pointers as needed
 	 	 * 5. update node balances
@@ -278,7 +286,7 @@ export default ((size, root, cmpf) => {
 		 *
 		 * Performs a single right rotation on the node by doing the following
 	 	 * 1. child becomes the new root.
-	     * 2. parent takes ownership of childs's right child, as its left child.
+		 * 2. parent takes ownership of childs's right child, as its left child.
 	 	 * 3. child takes ownership of parent, as it's right child.
 	 	 * 4. fix the parent pointers as needed
 	 	 * 5. update node balances
@@ -394,6 +402,16 @@ export default ((size, root, cmpf) => {
 			if (this[size] === 0) {
 				throw new EmptyCollectionError('Can\'t delete from an empty AVLTree');
 			}
+			if (this[size] === 1) {
+				if (this[cmpf](this[root].element, element) === 0) {
+					this[root] = null;
+					this[size] = 0;
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
 			const ret = this[helper].delete(element, this[root]);
 			if (ret) {
 				this[size] -= 1;
@@ -426,13 +444,13 @@ export default ((size, root, cmpf) => {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AVLTree.html">AVLTree</a></li><li><a href="DoubleLinkedList.html">DoubleLinkedList</a></li><li><a href="EmptyCollectionError.html">EmptyCollectionError</a></li><li><a href="LinkedList.html">LinkedList</a></li><li><a href="RBTree.html">RBTree</a></li><li><a href="SplayTree.html">SplayTree</a></li><li><a href="UnimplementedError.html">UnimplementedError</a></li></ul><h3>Namespaces</h3><ul><li><a href="Gipp.html">Gipp</a></li></ul><h3>Interfaces</h3><ul><li><a href="BinaryTree.html">BinaryTree</a></li><li><a href="Collection.html">Collection</a></li><li><a href="List.html">List</a></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AVLTree.html">AVLTree</a></li><li><a href="DoubleLinkedList.html">DoubleLinkedList</a></li><li><a href="EmptyCollectionError.html">EmptyCollectionError</a></li><li><a href="IllegalArgumentError.html">IllegalArgumentError</a></li><li><a href="LinkedList.html">LinkedList</a></li><li><a href="ListQueue.html">ListQueue</a></li><li><a href="RBTree.html">RBTree</a></li><li><a href="SplayTree.html">SplayTree</a></li><li><a href="Stack.html">Stack</a></li><li><a href="UnimplementedError.html">UnimplementedError</a></li></ul><h3>Namespaces</h3><ul><li><a href="Gipp.html">Gipp</a></li></ul><h3>Interfaces</h3><ul><li><a href="BinaryTree.html">BinaryTree</a></li><li><a href="Collection.html">Collection</a></li><li><a href="List.html">List</a></li><li><a href="Queue.html">Queue</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a> on Sun Sep 27 2015 10:16:51 GMT-0400 (EDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a> on Mon Sep 28 2015 13:21:55 GMT-0400 (EDT)
 </footer>
 
 <script> prettyPrint(); </script>

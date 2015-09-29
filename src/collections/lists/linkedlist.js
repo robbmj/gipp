@@ -2,7 +2,7 @@
 import {ListNode} from "./private/__listnodes";
 import List from "./list.interface";
 import Collection from "./../collection.interface";
-import {EmptyListException} from "./../exceptions";
+import {EmptyCollectionError} from "./../exceptions";
 import __LISTSYMBOLS from './private/__listsymbols';
 
 export default ((size, head, back, cmpf) => {

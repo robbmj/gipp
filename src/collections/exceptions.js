@@ -18,7 +18,17 @@ class EmptyCollectionError extends Error {
 	}
 }
 
+/**
+ * @global
+ */
+class IllegalArgumentError extends Error {
+	constructor(msg) {
+		super(msg);
+	}
+}
+
 export default {
 	UnimplementedError: UnimplementedError,
-	EmptyCollectionError: EmptyCollectionError
+	EmptyCollectionError: EmptyCollectionError,
+	IllegalArgumentError: IllegalArgumentError
 };

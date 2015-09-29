@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: collections/trees/splaytree.js</title>
+    <title>JSDoc: Source: collections/queues/listqueue.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: collections/trees/splaytree.js</h1>
+    <h1 class="page-title">Source: collections/queues/listqueue.js</h1>
 
     
 
@@ -27,57 +27,120 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>
-import BinaryTree from './binarytree.interface';
-import __BINARYTREESYMBOLS from './private/__binarytreesymbols';
+import DoubleLinkedList from './../lists/doublelinkedlist';
+import Queue from './queue.interface';
+import {EmptyCollectionError} from "./../exceptions";
 
-export default ((size, root, cmpf) => {
+const ListQueue = (() => {
+
+	const list = Symbol('list');
 
 	/**
-	 * @classdesc SplayTree
-	 * @implements {BinaryTree}
+	 * @implements {Queue}
 	 */
-	class SplayTree extends BinaryTree {
+	class ListQueue extends Queue {
 		/**
-		 * Creates an empty Splay Tree
+		 * Creates an empty queue
 		 *
 		 * @param {CmpFtn?} - If no comparison function is passed then the [default comparison function]{@link Collection#cmpFtn} is used.
 		 */
 		constructor(cmpFtn=null) {
-			super(cmpFtn);
+			super();
+			/**
+			 * @private
+			 *
+			 * This ququw is implmented with a doubly linked list.
+			 */
+			this[list] = new DoubleLinkedList(cmpFtn);
+		}
+
+		get size() {
+			return this[list].size;
+		}
+
+		get isEmpty() {
+			return this[list].isEmpty;
+		}
+
+		*[Symbol.iterator]() {
+			yield * this[list];
 		}
 
 		add(element) {
-			// TODO
+			this[list].add(element);
 			return this;
 		}
 
 		addAll(...elements) {
-			for (let e of elements) {
-				this.add(e);
-			}
-			// TODO
+			this[list].addAll(...elements);
 			return this;
 		}
 
+		contains(element) {
+			return this[list].contains(element);
+		}
+
 		delete(element) {
-			if (this[size] === 0) {
-				throw new EmptyCollectionError('Can\'t delete from an empty SplayTree');
+			if (this.isEmpty) {
+				throw new EmptyCollectionError('Can\'t delete() from an empty queue');
 			}
-			// TODO
-			return false;
+			return this[list].delete(element);
+		}
+
+		dequeue() {
+			if (this.isEmpty) {
+				throw new EmptyCollectionError('Can\'t delete() from an empty queue');
+			}
+			return this[list].shift();
+		}
+
+		enqueue(element) {
+			return this.add(element);
+		}
+
+		enqueueAll(...elements) {
+			return this.addAll(...elements);
+		}
+
+		forEach(cb) {
+			this[list].forEach(cb);
 		}
 
 		map(cb) {
-			super._throwIfNotFunction(cb);
-			let newTree = new SplayTree(this[cmpf]);
-			// TODO
-			return newTree;
+			let newList = this[list].map(cb);
+			let newQueue = new Queue();
+			newQueue[list] = newList;
+			return newQueue;
+		}
+
+		peek() {
+			for (let e of this[list]) {
+				return e;
+			}
+			throw new EmptyCollectionError('Can\'t peek() on an empty queue');
+		}
+
+		poll() {
+			if (this.isEmpty) {
+				throw new EmptyCollectionError('Can\'t pop() from an empty stack');
+			}
+			const ret = this[list].pop();
+			this[list].push(ret);
+			return ret;
+		}
+
+		pop() {
+			if (this.isEmpty) {
+				throw new EmptyCollectionError('Can\'t pop() from an empty stack');
+			}
+			return this[list].shift();
 		}
 	}
 
-	return SplayTree;
+	return ListQueue;
+})();
 
-})(__BINARYTREESYMBOLS.SIZE, __BINARYTREESYMBOLS.ROOT, __BINARYTREESYMBOLS.CMPF);
+export default Stack;
 </code></pre>
         </article>
     </section>
