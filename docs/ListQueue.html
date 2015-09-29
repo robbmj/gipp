@@ -159,7 +159,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="collections_queues_listqueue.js.html">collections/queues/listqueue.js</a>, <a href="collections_queues_listqueue.js.html#line13">line 13</a>
+        <a href="collections_queues_listqueue.js.html">collections/queues/listqueue.js</a>, <a href="collections_queues_listqueue.js.html#line15">line 15</a>
     </li></ul></dd>
     
 
@@ -200,6 +200,75 @@
 
     
         <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="capacity"><span class="type-signature"></span>capacity<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>Returns the maximum number of elements the queue can hold</p>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="implements">Implements:</dt>
+    <dd class="implements"><ul>
+        
+            <li><a href="Queue.html#capacity">Queue#capacity</a></li>
+        
+    </ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="collections_queues_queue.interface.js.html">collections/queues/queue.interface.js</a>, <a href="collections_queues_queue.interface.js.html#line32">line 32</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
 
         
             
@@ -1078,7 +1147,7 @@ collection.addAll(...[1,2,3,4,5]);</code></pre>
 
 
 <div class="description">
-    <p>Returns and removes the last element of the queue</p>
+    <p>Returns and removes the head element of the queue</p>
 </div>
 
 
@@ -1129,7 +1198,7 @@ collection.addAll(...[1,2,3,4,5]);</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="collections_queues_queue.interface.js.html">collections/queues/queue.interface.js</a>, <a href="collections_queues_queue.interface.js.html#line53">line 53</a>
+        <a href="collections_queues_queue.interface.js.html">collections/queues/queue.interface.js</a>, <a href="collections_queues_queue.interface.js.html#line56">line 56</a>
     </li></ul></dd>
     
 
@@ -1156,7 +1225,7 @@ collection.addAll(...[1,2,3,4,5]);</code></pre>
 
         
 <div class="param-desc">
-    <p>The last element in the queue</p>
+    <p>The head element in the queue</p>
 </div>
 
 
@@ -1189,7 +1258,10 @@ collection.addAll(...[1,2,3,4,5]);</code></pre>
 
 
 <div class="description">
-    <p>Prepends an element to the front on the queue. The same is true for <a href="Queue.html#add"><code>Queue#add</code></a></p>
+    <p>Adds an element to the tail of the queue. If adding the element to the queue
+would cause its size to be grater than its capacity then the head element of the
+queue is removed.</p>
+<p>The same is true for <a href="Queue.html#add"><code>Queue#add</code></a></p>
 </div>
 
 
@@ -1241,7 +1313,7 @@ collection.addAll(...[1,2,3,4,5]);</code></pre>
 
             
 
-            <td class="description last"><p>The element to be added to the queue</p></td>
+            <td class="description last"><p>The element to be added to the tail queue</p></td>
         </tr>
 
     
@@ -1289,7 +1361,7 @@ collection.addAll(...[1,2,3,4,5]);</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="collections_queues_queue.interface.js.html">collections/queues/queue.interface.js</a>, <a href="collections_queues_queue.interface.js.html#line63">line 63</a>
+        <a href="collections_queues_queue.interface.js.html">collections/queues/queue.interface.js</a>, <a href="collections_queues_queue.interface.js.html#line70">line 70</a>
     </li></ul></dd>
     
 
@@ -1345,7 +1417,10 @@ collection.addAll(...[1,2,3,4,5]);</code></pre>
 
 
 <div class="description">
-    <p>Prepends each element to the front on the queue. The same is true for <a href="Queue.html#addAll"><code>Queue#addAll</code></a></p>
+    <p>Prepends each element to the front on the queue. If adding the element to the queue
+would cause its size to be grater than its capacity then the first element of the
+queue is removed.</p>
+<p>The same is true for <a href="Queue.html#addAll"><code>Queue#addAll</code></a></p>
 </div>
 
 
@@ -1457,7 +1532,7 @@ collection.addAll(...[1,2,3,4,5]);</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="collections_queues_queue.interface.js.html">collections/queues/queue.interface.js</a>, <a href="collections_queues_queue.interface.js.html#line73">line 73</a>
+        <a href="collections_queues_queue.interface.js.html">collections/queues/queue.interface.js</a>, <a href="collections_queues_queue.interface.js.html#line84">line 84</a>
     </li></ul></dd>
     
 
@@ -1904,7 +1979,7 @@ collection once.</p>
 
 
 <div class="description">
-    <p>Returns but does not remove the last element in the queue</p>
+    <p>Returns but does not remove the head of the queue</p>
 </div>
 
 
@@ -1955,7 +2030,7 @@ collection once.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="collections_queues_queue.interface.js.html">collections/queues/queue.interface.js</a>, <a href="collections_queues_queue.interface.js.html#line84">line 84</a>
+        <a href="collections_queues_queue.interface.js.html">collections/queues/queue.interface.js</a>, <a href="collections_queues_queue.interface.js.html#line95">line 95</a>
     </li></ul></dd>
     
 
@@ -1982,7 +2057,7 @@ collection once.</p>
 
         
 <div class="param-desc">
-    <p>The last element in the queue</p>
+    <p>The head element in the queue</p>
 </div>
 
 
@@ -2015,7 +2090,7 @@ collection once.</p>
 
 
 <div class="description">
-    <p>Returns but does not remove the first element in the queue</p>
+    <p>Returns but does not remove the tail element of the queue</p>
 </div>
 
 
@@ -2066,7 +2141,7 @@ collection once.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="collections_queues_queue.interface.js.html">collections/queues/queue.interface.js</a>, <a href="collections_queues_queue.interface.js.html#line95">line 95</a>
+        <a href="collections_queues_queue.interface.js.html">collections/queues/queue.interface.js</a>, <a href="collections_queues_queue.interface.js.html#line106">line 106</a>
     </li></ul></dd>
     
 
@@ -2093,7 +2168,7 @@ collection once.</p>
 
         
 <div class="param-desc">
-    <p>The first element in the queue</p>
+    <p>The tail element on the queue</p>
 </div>
 
 
@@ -2130,13 +2205,13 @@ collection once.</p>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AVLTree.html">AVLTree</a></li><li><a href="DoubleLinkedList.html">DoubleLinkedList</a></li><li><a href="EmptyCollectionError.html">EmptyCollectionError</a></li><li><a href="IllegalArgumentError.html">IllegalArgumentError</a></li><li><a href="LinkedList.html">LinkedList</a></li><li><a href="ListQueue.html">ListQueue</a></li><li><a href="RBTree.html">RBTree</a></li><li><a href="SplayTree.html">SplayTree</a></li><li><a href="Stack.html">Stack</a></li><li><a href="UnimplementedError.html">UnimplementedError</a></li></ul><h3>Namespaces</h3><ul><li><a href="Gipp.html">Gipp</a></li></ul><h3>Interfaces</h3><ul><li><a href="BinaryTree.html">BinaryTree</a></li><li><a href="Collection.html">Collection</a></li><li><a href="List.html">List</a></li><li><a href="Queue.html">Queue</a></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AVLTree.html">AVLTree</a></li><li><a href="DoubleLinkedList.html">DoubleLinkedList</a></li><li><a href="EmptyCollectionError.html">EmptyCollectionError</a></li><li><a href="IllegalArgumentError.html">IllegalArgumentError</a></li><li><a href="LinkedList.html">LinkedList</a></li><li><a href="ListQueue.html">ListQueue</a></li><li><a href="MaxHeap.html">MaxHeap</a></li><li><a href="MinHeap.html">MinHeap</a></li><li><a href="RBTree.html">RBTree</a></li><li><a href="SplayTree.html">SplayTree</a></li><li><a href="Stack.html">Stack</a></li><li><a href="UnimplementedError.html">UnimplementedError</a></li></ul><h3>Namespaces</h3><ul><li><a href="Gipp.html">Gipp</a></li></ul><h3>Interfaces</h3><ul><li><a href="BinaryHeap.html">BinaryHeap</a></li><li><a href="BinaryTree.html">BinaryTree</a></li><li><a href="Collection.html">Collection</a></li><li><a href="List.html">List</a></li><li><a href="Queue.html">Queue</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a> on Mon Sep 28 2015 13:21:55 GMT-0400 (EDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a> on Tue Sep 29 2015 12:06:50 GMT-0400 (EDT)
 </footer>
 
 <script> prettyPrint(); </script>

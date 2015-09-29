@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Stack</title>
+    <title>JSDoc: Interface: BinaryHeap</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Stack</h1>
+    <h1 class="page-title">Interface: BinaryHeap</h1>
 
     
 
@@ -28,11 +28,9 @@
 
 <header>
     
-        <h2>Stack</h2>
+        <h2>BinaryHeap</h2>
         
-            <div class="class-description"><p>A Stack is a Last In First Out (LIFO) data structure.</p>
-<p>This Stack pushes elements on to the head of the stack, the Stack also
-pops elements from the head of the stack.</p></div>
+            <div class="class-description"><p>The parent interface for all Gipp Binary Heaps</p></div>
         
     
 </header>
@@ -41,92 +39,10 @@ pops elements from the head of the stack.</p></div>
     <div class="container-overview">
     
         
-
-    
-    <h2>Constructor</h2>
-    
-
-    <h4 class="name" id="Stack"><span class="type-signature"></span>new Stack<span class="signature">(cmpFtn<span class="signature-attributes">nullable</span>)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Creates an empty stack</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
+            <div class="description"><p>Creates an empty Binary Heap</p></div>
         
 
         
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>cmpFtn</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#CmpFtn">CmpFtn</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-                    &lt;nullable><br>
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>If no comparison function is passed then the <code>default comparison function</code> is used.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
 
 
 <dl class="details">
@@ -141,13 +57,6 @@ pops elements from the head of the stack.</p></div>
 
     
 
-    
-    <dt class="implements">Implements:</dt>
-    <dd class="implements"><ul>
-        
-            <li><a href="Collection.html">Collection</a></li>
-        
-    </ul></dd>
     
 
     
@@ -165,7 +74,7 @@ pops elements from the head of the stack.</p></div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="collections_stacks_stack.js.html">collections/stacks/stack.js</a>, <a href="collections_stacks_stack.js.html#line18">line 18</a>
+        <a href="collections_heaps_binaryheap.interface.js.html">collections/heaps/binaryheap.interface.js</a>, <a href="collections_heaps_binaryheap.interface.js.html#line170">line 170</a>
     </li></ul></dd>
     
 
@@ -177,22 +86,20 @@ pops elements from the head of the stack.</p></div>
 </dl>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
     
     </div>
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="Collection.html">Collection</a></li>
+    </ul>
+
 
     
 
@@ -233,16 +140,14 @@ pops elements from the head of the stack.</p></div>
     
 
     
-
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="Collection.html#isEmpty">Collection#isEmpty</a>
+    </li></ul></dd>
     
 
     
-    <dt class="implements">Implements:</dt>
-    <dd class="implements"><ul>
-        
-            <li><a href="Collection.html#isEmpty">Collection#isEmpty</a></li>
-        
-    </ul></dd>
+
     
 
     
@@ -302,16 +207,14 @@ pops elements from the head of the stack.</p></div>
     
 
     
-
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="Collection.html#size">Collection#size</a>
+    </li></ul></dd>
     
 
     
-    <dt class="implements">Implements:</dt>
-    <dd class="implements"><ul>
-        
-            <li><a href="Collection.html#size">Collection#size</a></li>
-        
-    </ul></dd>
+
     
 
     
@@ -436,16 +339,14 @@ pops elements from the head of the stack.</p></div>
     
 
     
-
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="Collection.html#add">Collection#add</a>
+    </li></ul></dd>
     
 
     
-    <dt class="implements">Implements:</dt>
-    <dd class="implements"><ul>
-        
-            <li><a href="Collection.html#add">Collection#add</a></li>
-        
-    </ul></dd>
+
     
 
     
@@ -608,16 +509,14 @@ pops elements from the head of the stack.</p></div>
     
 
     
-
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="Collection.html#addAll">Collection#addAll</a>
+    </li></ul></dd>
     
 
     
-    <dt class="implements">Implements:</dt>
-    <dd class="implements"><ul>
-        
-            <li><a href="Collection.html#addAll">Collection#addAll</a></li>
-        
-    </ul></dd>
+
     
 
     
@@ -778,16 +677,14 @@ collection.addAll(...[1,2,3,4,5]);</code></pre>
     
 
     
-
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="Collection.html#contains">Collection#contains</a>
+    </li></ul></dd>
     
 
     
-    <dt class="implements">Implements:</dt>
-    <dd class="implements"><ul>
-        
-            <li><a href="Collection.html#contains">Collection#contains</a></li>
-        
-    </ul></dd>
+
     
 
     
@@ -938,16 +835,14 @@ collection.addAll(...[1,2,3,4,5]);</code></pre>
     
 
     
-
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="Collection.html#delete">Collection#delete</a>
+    </li></ul></dd>
     
 
     
-    <dt class="implements">Implements:</dt>
-    <dd class="implements"><ul>
-        
-            <li><a href="Collection.html#delete">Collection#delete</a></li>
-        
-    </ul></dd>
+
     
 
     
@@ -1130,16 +1025,14 @@ collection once.</p>
     
 
     
-
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="Collection.html#forEach">Collection#forEach</a>
+    </li></ul></dd>
     
 
     
-    <dt class="implements">Implements:</dt>
-    <dd class="implements"><ul>
-        
-            <li><a href="Collection.html#forEach">Collection#forEach</a></li>
-        
-    </ul></dd>
+
     
 
     
@@ -1239,6 +1132,106 @@ collection once.</p>
 
     
 
+    <h4 class="name" id="height"><span class="type-signature"></span>height<span class="signature">()</span><span class="type-signature"> &rarr; {number}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>The length from the root of the tree to furthest leaf</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="collections_heaps_binaryheap.interface.js.html">collections/heaps/binaryheap.interface.js</a>, <a href="collections_heaps_binaryheap.interface.js.html#line260">line 260</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
     <h4 class="name" id="map"><span class="type-signature"></span>map<span class="signature">(cb)</span><span class="type-signature"> &rarr; {<a href="Collection.html">Collection</a>}</span></h4>
 
     
@@ -1317,18 +1310,16 @@ collection once.</p>
     
 
     
-
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Collection.html#map">Collection#map</a>
+    </li></ul></dd>
     
 
     
 
     
-    <dt class="implements">Implements:</dt>
-    <dd class="implements"><ul>
-        
-            <li><a href="Collection.html#map">Collection#map</a></li>
-        
-    </ul></dd>
+
     
 
     
@@ -1428,14 +1419,14 @@ collection once.</p>
 
     
 
-    <h4 class="name" id="peek"><span class="type-signature"></span>peek<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="global.html#E">E</a>}</span></h4>
+    <h4 class="name" id="toString"><span class="type-signature"></span>toString<span class="signature">()</span><span class="type-signature"> &rarr; {String}</span></h4>
 
     
 
 
 
 <div class="description">
-    <p>Returns but does not remove the head of the stack</p>
+    <p>Returns a string representation of the collection.</p>
 </div>
 
 
@@ -1459,6 +1450,11 @@ collection once.</p>
     
 
     
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="Collection.html#toString">Collection#toString</a>
+    </li></ul></dd>
+    
 
     
 
@@ -1479,7 +1475,7 @@ collection once.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="collections_stacks_stack.js.html">collections/stacks/stack.js</a>, <a href="collections_stacks_stack.js.html#line89">line 89</a>
+        <a href="collections_collection.interface.js.html">collections/collection.interface.js</a>, <a href="collections_collection.interface.js.html#line212">line 212</a>
     </li></ul></dd>
     
 
@@ -1506,7 +1502,7 @@ collection once.</p>
 
         
 <div class="param-desc">
-    <p>The head of the stack</p>
+    <p>A string representation of the collection.</p>
 </div>
 
 
@@ -1517,421 +1513,7 @@ collection once.</p>
     </dt>
     <dd>
         
-<span class="param-type"><a href="global.html#E">E</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="pop"><span class="type-signature"></span>pop<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="global.html#E">E</a>}</span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Returns and removes the head of the stack</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="collections_stacks_stack.js.html">collections/stacks/stack.js</a>, <a href="collections_stacks_stack.js.html#line103">line 103</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>The head element of the stack</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="global.html#E">E</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="push"><span class="type-signature"></span>push<span class="signature">(element)</span><span class="type-signature"> &rarr; {<a href="Stack.html">Stack</a>}</span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>adds an elemnt to the head of the stack</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>element</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#E">E</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The element to append to the stack</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="collections_stacks_stack.js.html">collections/stacks/stack.js</a>, <a href="collections_stacks_stack.js.html#line116">line 116</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="Stack.html">Stack</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="pushAll"><span class="type-signature"></span>pushAll<span class="signature">(&hellip;elements)</span><span class="type-signature"> &rarr; {<a href="Stack.html">Stack</a>}</span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Pushes each element on to the head of the stack</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>elements</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#E">E</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                    &lt;repeatable><br>
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The elements to push on to the stack</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="collections_stacks_stack.js.html">collections/stacks/stack.js</a>, <a href="collections_stacks_stack.js.html#line126">line 126</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="Stack.html">Stack</a></span>
+<span class="param-type">String</span>
 
 
     </dd>
