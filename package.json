@@ -1,13 +1,13 @@
 {
   "name": "gipp",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Data structures and algo library",
   "main": "dist/gipp.js",
-  "author": "Michael Robb <michael.robb.prog@gmail.com>",
+  "author": "Michael J Robb",
   "homepage": "https://github.com/robbmj/gipp#readme",
   "repository": {
-    "type" : "git"
-  , "url" : "https://github.com/robbmj/gipp.git"
+    "type": "git",
+    "url": "https://github.com/robbmj/gipp.git"
   },
   "bugs": {
     "url": "https://github.com/robbmj/gipp/issues"
@@ -17,7 +17,6 @@
     "start": "gulp watch",
     "docs": "./node_modules/.bin/jsdoc src -r -d docs -c jsdoc_conf.json"
   },
-  "author": "Michael J Robb",
   "license": "MIT",
   "devDependencies": {
     "babel": "^5.8.23",
