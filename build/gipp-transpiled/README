@@ -64,7 +64,7 @@ while (queue.size > 0) {
 </script>
 ```
 
-Gipp currently has implementations the following data structures:
+Gipp currently has implementations for the following data structures:
 
  - Linked List
  - Double Linked List
@@ -83,7 +83,7 @@ With plans to implement:
 
 #### Before Gipp is released at 1.x the interface may change
 
-All collections in Gipp present the same interface, the methods include:
+All collections in Gipp implement the collection interface, the methods include:
 
  - `get size() -> number`
  - `get isEmpty() -> boolean`
@@ -96,7 +96,7 @@ All collections in Gipp present the same interface, the methods include:
  - `map(cb) -> Collection`
  - `toString() -> string`
 
-Each collection is guaranteed to implement these methods. There are plans to add a few more methods to the collection interface, they include:
+There are plans to add a few more methods to the collection interface, they include:
 
  - `clear() -> void`
  - `deleteAll(E) -> number`
