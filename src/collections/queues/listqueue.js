@@ -23,10 +23,10 @@ const ListQueue = (() => {
 			/**
 			 * @private
 			 *
-			 * This ququw is implmented with a doubly linked list.
+			 * This queue is implmented with a doubly linked list.
 			 */
 			this[list] = new DoubleLinkedList(cmpFtn);
-			this[cap] = Number.MAX_VALUE;
+			this[cap] = Number.POSITIVE_INFINITY;
 		}
 
 		get capacity() {

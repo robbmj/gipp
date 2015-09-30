@@ -36,7 +36,7 @@ class Queue extends Collection {
 	/**
 	 * Sets the maximum number of elements the queue can hold. Throws {@link IllegalArgumentError} If `capacity` is less than or equal to 0.
 	 *
-	 * @default Number.MAX_VALUE
+	 * @default Number.POSITIVE_INFINITY
 	 *
 	 * @throws {IllegalArgumentError} If `capacity` is less than or equal to 0.
 	 *

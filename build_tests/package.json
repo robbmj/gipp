@@ -1,6 +1,6 @@
 {
   "name": "gipp-tests",
-  "description": "Tests for gipp - will never be published",
+  "description": "Tests for gipp - will never be published to npm",
   "scripts": {
     "test": "jasmine"
   },

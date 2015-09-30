@@ -2,6 +2,8 @@
 import BinaryTree from './binarytree.interface';
 import __BINARYTREESYMBOLS from './private/__binarytreesymbols';
 
+import {UnimplementedError} from "./../exceptions";
+
 export default ((size, root, cmpf) => {
 
 	/**
@@ -16,6 +18,7 @@ export default ((size, root, cmpf) => {
 		 */
 		constructor(cmpFtn=null) {
 			super(cmpFtn);
+			throw new UnimplementedError();
 		}
 
 		add(element) {

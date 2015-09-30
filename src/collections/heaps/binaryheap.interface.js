@@ -41,7 +41,7 @@ export default ((size, heap, cmpf) => {
 			}
 		}
 
-		// TODO: rewrite as a iteritively and cleaner
+		// TODO: rewrite iteritively and cleaner
 		heapDown(index) {
 
 			const leftIndex = this.leftChild(index);
@@ -97,47 +97,13 @@ export default ((size, heap, cmpf) => {
 			return index < this.heap.size;
 		}
 
-		*bfTraversal() {
-
-			function* bfTraversalHelper(queue) {
-				if (queue.isEmpty) {
-					return;
-				}
-
-				const index = queue.dequeue();
-				const leftIndex = this.leftChild(index);
-				const rightIndex = this.rightChild(index);
-
-				yield this.heap[heap][index];
-
-				if (this.indexExists(leftIndex)) {
-					queue.enqueue(leftIndex);
-				}
-
-				if (this.indexExists(rightIndex)) {
-					queue.enqueue(rightIndex);
-				}
-
-				yield * bfTraversalHelper.call(this, queue);
-			}
-
-			const queue = new ListQueue(this.heap[cmpf]);
-			queue.enqueue(0);
-
-			yield * bfTraversalHelper.call(this, queue);
-		}
-
 		swap(from, to) {
-			console.log(`Swaping ${this.heap[heap][from]} for ${this.heap[heap][to]}`);
 			[this.heap[heap][from], this.heap[heap][to]] = [this.heap[heap][to] , this.heap[heap][from]];
 		}
 
 		reclaim() {
-			let newHeap = new Array(this.heap[size] * 2);
-			for (let e of this.heap[heap]) {
-				newHeap.push(e);
-			}
-			this.heap[heap] = newHeap;
+			const capacity = Math.max(DEFAULT_CAPACITY, this.heap.size * 2);
+			this.heap[heap].splice(capacity);
 		}
 
 		shouldReclaim() {
@@ -146,7 +112,7 @@ export default ((size, heap, cmpf) => {
 			return this.capacity > DEFAULT_CAPACITY &&
 					// if the length of the array is 4 times greater than the
 					// actual number of elements in the heap
-					(this.capacity >> 2) > size;
+					(this.capacity) > size * 4;
 		}
 
 		reclaimIfNeeded() {
@@ -195,10 +161,9 @@ export default ((size, heap, cmpf) => {
 		}
 
 		*[Symbol.iterator]() {
-			if (this.isEmpty) {
-				return;
+			for (let i = 0; i < this.size; i++) {
+				yield this[heap][i];
 			}
-			yield * this[helper].bfTraversal(0);
 		}
 
 		add(element) {
@@ -237,7 +202,7 @@ export default ((size, heap, cmpf) => {
 		}
 
 		contains(element) {
-			for (let e of this) {
+			for (let e of this[heap]) {
 				if (this[cmpf](e, element) === 0) {
 					return true;
 				}
@@ -262,6 +227,38 @@ export default ((size, heap, cmpf) => {
 			return (log2Nodes + 1) | 0;
 		}
 
+		/**
+		 * Returns but does not remove the root of the heap
+		 *
+		 * @return {E}
+		 */
+		peek() {
+			return this[heap][0];
+		}
+
+		/**
+		 * Returns and removes the root of the heap.
+		 *
+		 * @return {E}
+		 */
+		shift() {
+			const ret = this.peek();
+			this.delete(ret);
+			return ret;
+		}
+
+		/**
+ 		 * Returns a string represention of the heap.
+ 		 *
+ 		 * @example
+ 		 * //		5
+ 		 * //	1 		4
+ 		 * //0     -1 2		3
+ 		 *
+ 		 * heap.toString(); // |5|1,4|0,-1,2,3|
+ 		 *
+ 		 * @return {string} A string representation of the heap
+ 		 */
 		toString() {
 
 			function isPowerOf2(n) {
@@ -276,19 +273,6 @@ export default ((size, heap, cmpf) => {
 			else {
 				str += '|' + this[heap][0] + '|';
 			}
-
-			/*for (let i = 1; i < this.size; i++) {
-				const e = this[heap][i];
-
-				if (isPowerOf2(i)) {
-					str = str.substring(0, str.length-1);
-					str += `|${e},`;
-				}
-				else {
-					str += `${e},`;
-				}
-			}*/
-
 
 			let i = 0;
 			for (let e of this) {
@@ -307,13 +291,6 @@ export default ((size, heap, cmpf) => {
 			}
 
 			return str.substring(0, str.length - 1) + '|}';
-
-			/*let str = 'Heap: {';
-			for (let e of this) {
-				str += `${e}, `;
-			}
-			str = str.substring(0, str.length - 2);
-			return str + '}';*/
 		}
 	}
 

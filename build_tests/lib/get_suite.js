@@ -22,5 +22,8 @@ module.exports = {
 
 	stack: getSuite('stack_suite'),
 
-	listqueue: getSuite('listqueue_suite')
+	listqueue: getSuite('listqueue_suite'),
+
+	maxheap: getSuite('maxheap_suite'),
+	minheap: getSuite('minheap_suite')
 };
