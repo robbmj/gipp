@@ -1,6 +1,6 @@
 {
   "name": "gipp-bundle",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "JavaScript Data Structure Library",
   "main": "index.js",
   "scripts": {
