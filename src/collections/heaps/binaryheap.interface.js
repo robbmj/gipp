@@ -129,7 +129,11 @@ export default ((size, heap, cmpf) => {
 	const helper = Symbol('helper');
 
 	/**
-	 * The parent interface for all Gipp Binary Heaps
+	 * @classdesc The parent interface for all Gipp Binary Heaps.
+	 * All insert and delete operations on a Binary Heap have an
+	 * amortized `O(log n)` time complexity.
+	 *
+	 * @since 0.1.0
 	 * @interface
 	 * @augments Collection
 	 */
@@ -174,6 +178,12 @@ export default ((size, heap, cmpf) => {
 		}
 
 		addAll(...elements) {
+
+			if (this.isEmpty) {
+				// TODO: heapify in place ???
+				// maybe not, as this may have the side effect of destroying the input
+			}
+
 			for (let e of elements) {
 				this.add(e);
 			}
@@ -188,6 +198,7 @@ export default ((size, heap, cmpf) => {
 				}
 				index++;
 			}
+
 			if (!this[helper].indexExists(index)) {
 				return false;
 			}
@@ -220,6 +231,7 @@ export default ((size, heap, cmpf) => {
 		/**
 		 * The length from the root of the tree to furthest leaf
 		 *
+	 	 * @since 0.1.0
 		 * @return {number}
 		 */
 		height() {
@@ -230,6 +242,7 @@ export default ((size, heap, cmpf) => {
 		/**
 		 * Returns but does not remove the root of the heap
 		 *
+	 	 * @since 0.1.0
 		 * @return {E}
 		 */
 		peek() {
@@ -239,6 +252,7 @@ export default ((size, heap, cmpf) => {
 		/**
 		 * Returns and removes the root of the heap.
 		 *
+	 	 * @since 0.1.0
 		 * @return {E}
 		 */
 		shift() {
@@ -250,19 +264,20 @@ export default ((size, heap, cmpf) => {
 		/**
  		 * Returns a string represention of the heap.
  		 *
+	 	 * @since 0.1.0
  		 * @example
- 		 * //		5
- 		 * //	1 		4
- 		 * //0     -1 2		3
+ 		 * //			5
+ 		 * //	1 				4
+ 		 * //0     -1 		2		3
  		 *
- 		 * heap.toString(); // |5|1,4|0,-1,2,3|
+ 		 * heap.toString(); //"Heap: {|5|1,4|0,-1,2,3|}"
  		 *
  		 * @return {string} A string representation of the heap
  		 */
 		toString() {
 
 			function isPowerOf2(n) {
-				return (n & (n - 1)) === 0;
+				return n > 0 && (n & (n - 1)) === 0;
 			}
 
 			let str = 'Heap: {';

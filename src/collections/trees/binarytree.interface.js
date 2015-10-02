@@ -8,6 +8,8 @@ import __BINARYTREESYMBOLS from './private/__binarytreesymbols';
 export default ((size, root, cmpf) => {
 	/**
 	 * The parent interface for all Gipp Binary Trees
+	 *
+	 * @since 0.1.0
 	 * @interface
 	 * @augments Collection
 	 */
@@ -48,7 +50,7 @@ export default ((size, root, cmpf) => {
 		 * The bfs() method implements the Breadth First Search algorithum for a Binary Tree.
 		 *
 		 * @throws {TypeError} If cb is not a function.
-		 *
+		 * @since 0.1.0
 		 * @param {SeachCallback} cb - The callback to be applied to each element in the Binary Tree
 		 * @return {boolean} Returns true if the element was found, false otherwise.
 		 */
@@ -88,7 +90,23 @@ export default ((size, root, cmpf) => {
 		}
 
 		contains(element) {
-			return this.bfs((e) => this[cmpf](e, element) === 0);
+			if (this.isEmpty) {
+				return false;
+			}
+			let node = this[root];
+			while (node !== null) {
+				const cmp = this[cmpf](element, node.element);
+				if (cmp === 0) {
+					return true;
+				}
+				else if (cmp > 0) {
+					node = node.right;
+				}
+				else {
+					node = node.left;
+				}
+			}
+			return false;
 		}
 
 		/**
@@ -113,7 +131,7 @@ export default ((size, root, cmpf) => {
 
 		/**
 		 * The length from the root of the tree to furthest leaf
-		 *
+		 * @since 0.1.0
 		 * @return {number}
 		 */
 		height() {
@@ -130,7 +148,7 @@ export default ((size, root, cmpf) => {
 
 		/**
 		 * A Binary Tree is balanced if its height is less than or equal to the log (base 2) its size
-		 *
+		 * @since 0.1.0
 		 * @return {boolean} True if the tree is balnced, false otherwise
 		 */
 		isBalanced() {
@@ -150,6 +168,7 @@ export default ((size, root, cmpf) => {
 		 * The method is available in ES 2015 only, to perform an in order traversal in < ES 2015
 		 * use {@link BinaryTree#inOrderTraversal} instead.
 		 *
+		 * @since 0.1.0
 		 * @return {CollectionGenerator}
 		 *
 		 * @example
@@ -176,7 +195,7 @@ export default ((size, root, cmpf) => {
 		 * @see {@link BinaryTree#inOrder}
 		 *
 		 * @throws {TypeError} If cb is not a function.
-		 *
+		 * @since 0.1.0
 		 * @example
 		 * tree.addAll(2,1,3);
 		 * tree.inOrderTraversal(function (e) { console.log(e); }); // 1,2,3
@@ -198,7 +217,7 @@ export default ((size, root, cmpf) => {
 		 *
 		 * The method is available in ES 2015 only, to perform an in order traversal in < ES 2015
 		 * use {@link BinaryTree#preOrderTraversal} instead.
-		 *
+		 * @since 0.1.0
 		 * @return {CollectionGenerator}
 		 *
 		 * @example
@@ -227,7 +246,7 @@ export default ((size, root, cmpf) => {
 		 * @see {@link BinaryTree#preOrder}
 		 *
 		 * @throws {TypeError} If cb is not a function.
-		 *
+		 * @since 0.1.0
 		 * @example
 		 * tree.addAll(2,1,3);
 		 * tree.preOrderTraversal(function (e) { console.log(e); }); // 2,1,3
@@ -249,7 +268,7 @@ export default ((size, root, cmpf) => {
 		 *
 		 * The method is available in ES 2015 only, to perform an in order traversal in < ES 2015
 		 * use {@link BinaryTree#preOrderTraversal} instead.
-		 *
+		 * @since 0.1.0
 		 * @return {CollectionGenerator}
 		 *
 		 * @example
@@ -276,20 +295,19 @@ export default ((size, root, cmpf) => {
 		 * @see {@link BinaryTree#postOrder}
 		 *
 		 * @throws {TypeError} If cb is not a function.
-		 *
+		 * @since 0.1.0
 		 * @example
 		 * tree.addAll(2,1,3);
 		 * tree.inPostTraversal(function (e) { console.log(e); }); // 1,3,2
 		 *
 		 * @param {IteratorCallback}
 		 */
-		 postOrderTraversal(cb) {
-		 	super._throwIfNotFunction(cb);
-		 	for (let e of this.postOrder()) {
-		 		cb(e);
-		 	}
-		 }
-
+		postOrderTraversal(cb) {
+			super._throwIfNotFunction(cb);
+			for (let e of this.postOrder()) {
+				cb(e);
+			}
+		}
 
 		toString() {
 			let str = '{';

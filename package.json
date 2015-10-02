@@ -15,7 +15,7 @@
   "scripts": {
     "test": "cd test && jasmine",
     "start": "gulp watch",
-    "docs": "./node_modules/.bin/jsdoc src -r -d docs -c jsdoc_conf.json"
+    "docs": "./node_modules/.bin/jsdoc src -r -d docs -c jsdoc_conf.json -R ./README.md"
   },
   "license": "MIT",
   "devDependencies": {

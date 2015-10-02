@@ -8,8 +8,20 @@ import __LISTSYMBOLS from './private/__listsymbols';
 export default ((size, head, back, cmpf) => {
 
 	 /**
-	  * @classdesc Singly Linked List
+	  * @since 0.1.0
 	  * @implements {List}
+	  * @classdesc Singly Linked List
+	  *
+	  * All insert operations occur in `O(1)` time, with the excpetion of the `*All` methods
+	  * that have a complexity of `O(N)` where `N` is the size of the argument.
+	  *
+	  * `shift(), peek(), poll(), size and isEmpty` have a time
+	  * complexity `O(1)`, however `pop()` has a time complexity of `O(N)` where `N` is
+	  * the size of the list. If you will be using the `pop()` method frequently
+	  * consider using a {@link DoubleLinkedList} instead.
+	  *
+	  * `contains(), delete(), indexOf(), lastIndexOf(), forEach(), map(), toString() and *[Symbol.iterator]`
+	  * all have time complexities of `O(N)` where `N` is the size of the list.
 	  */
 	class LinkedList extends List {
 		// Time Complexity: O(1), Space Complexity: O(1)
@@ -41,6 +53,7 @@ export default ((size, head, back, cmpf) => {
 			let next = this[head];
 			while (next != null) {
 				yield next.element;
+				next = next.next;
 			}
 		}
 
@@ -172,6 +185,14 @@ export default ((size, head, back, cmpf) => {
 				next = next.next;
 			}
 			return lastIndex;
+		}
+
+		peek() {
+			return this[head].element;
+		}
+
+		poll() {
+			return this[back].element;
 		}
 
 		// Time Complexity: O(n) where n is the size of the list, Space Complexity: O(1)

@@ -42,6 +42,106 @@
 
 
 
+    <section>
+        <article><h1>Gipp</h1><p>Is a Data Structure and Algorithm library written in ES 2015 (JavaScript 6). Its main design goals are to be predictable and easy to learn.</p>
+<h4>It is available in 4 flavours.</h4><ol>
+<li>As a ES 2015 library: <code>gipp</code></li>
+<li>Transpiled using babel for compatibility with ES 5: <code>gipp-transpiled</code></li>
+<li>Transpiled and bundled using browserfy: <code>gipp-bundle</code></li>
+<li>A minified version of the of the browserfy file: <code>gipp-min-bundle</code></li>
+</ol>
+<h3>To install Gipp</h3><p><code>npm install gipp</code></p>
+<pre class="prettyprint source lang-javascript"><code>import gipp from 'gipp';
+const list = gipp.LinkedList();
+list.addAll(...[1,2,3]); // or list.addAll(1,2,3);
+for (let e of list) {
+    console.log(`${e} `); // 1 2 3
+}</code></pre><h3>To install Gipp-Transpiled</h3><p><code>npm install gipp-transpiled</code></p>
+<pre class="prettyprint source lang-javascript"><code>var gipp = require('gipp-transpiled');
+var tree = gipp.AVLTree();
+tree.addAll(1,2,3,4,5,6);
+console.log(tree.toString()); // {4, 2, 5, 1, 3, 6}</code></pre><h3>To install Gipp-Bundle</h3><p><code>npm install gipp-bundle</code></p>
+<pre class="prettyprint source lang-html"><code>&lt;script src=&quot;./node_modules/gipp-bundle/gipp.bundle.js&quot;>&lt;/script>
+&lt;script type=&quot;text/javascript&quot;>
+var heap = gipp.MaxHeap();
+heap.add(1).add(2).addAll(3,4,5);
+while (!heap.isEmpty) {
+    document.write(heap.max() + ' '); // 5 4 3 2 1
+}
+&lt;/script></code></pre><h3>To install Gipp-Min-Bundle</h3><p><code>npm install gipp-bundle</code></p>
+<pre class="prettyprint source lang-html"><code>&lt;script src=&quot;./node_modules/gipp-min-bundle/gipp.bundle.js&quot;>&lt;/script>
+&lt;script type=&quot;text/javascript&quot;>
+var queue = gipp.ListQueue();
+queue.enqueueAll(4,1,2,5,3);
+while (queue.size > 0) {
+    document.write(queue.dequeue() + ' '); // 4 1 2 5 3
+}
+&lt;/script></code></pre><p>Gipp currently has implementations for the following data structures:</p>
+<ul>
+<li>Linked List</li>
+<li>Double Linked List</li>
+<li>AVL Tree</li>
+<li>Min Heap</li>
+<li>Max Heap</li>
+<li>Queue</li>
+<li>Stack</li>
+<li>Priority Queue</li>
+</ul>
+<p>With plans to implement:</p>
+<ul>
+<li>Red Black Tree</li>
+<li>Splay Tree</li>
+<li>Graph (in the form of adjacency lists)</li>
+</ul>
+<h4>Before Gipp is released at 1.x the interface may change</h4><p>All collections in Gipp implement the collection interface, the methods include:</p>
+<ul>
+<li><code>get size() -&gt; number</code></li>
+<li><code>get isEmpty() -&gt; boolean</code></li>
+<li><code>*[Symbol.iterator]() -&gt; Generator</code></li>
+<li><code>add(E) -&gt; Collection</code></li>
+<li><code>addAll(...E) -&gt; Collection</code></li>
+<li><code>contains(E) -&gt; boolean</code></li>
+<li><code>delete(E) -&gt; boolean</code></li>
+<li><code>forEach(cb) -&gt; void</code></li>
+<li><code>map(cb) -&gt; Collection</code></li>
+<li><code>toString() -&gt; string</code></li>
+</ul>
+<p>There are plans to add a few more methods to the collection interface, they include:</p>
+<ul>
+<li><code>clear() -&gt; void</code></li>
+<li><code>deleteAll(E) -&gt; number</code></li>
+<li><code>toArray() -&gt; Array</code></li>
+</ul>
+<h4>Constructor Methods</h4><p>Gipp exposes methods intended to create objects on your behalf.</p>
+<pre class="prettyprint source"><code>// returns a new empty Stack object with a default comparison function
+gipp.Stack();
+
+// returns a new Stack object with a default comparison function
+// and calls addAll(...[1,2,3])
+gipp.Stack([1,2,3]);
+
+// returns a new Stack object with a custom comparison function
+gipp.Stack(function (a, b) { return b - a; });
+
+// returns a new Stack object with a custom comparison function
+// and calls addAll(...[{n:1},{n:2},{n:3}])
+gipp.Stack([{n:1},{n:2},{n:3}], (a,b) => a.n - b.n);</code></pre><p>These initialization patterns apply to each collection in Gipp. Once a collection is instantiated the comparison function is <strong>immutable</strong>.</p>
+<h3>Things Worth Mentioning</h3><ul>
+<li><p>Gipp favours throwing exceptions over returning a flag such as <code>null</code> or <code>undefined</code> when an operation can't be completed. An example would be <code>List#shift</code>.</p>
+<pre class="prettyprint source"><code> let list = gipp.LinkedList();
+ list.shift(); // throws an EmptyCollectionError
+ list.unshift(null);
+ list.shift(); // returns null</code></pre><p> As a result it <strong>should</strong> be safe to store <code>null</code> in a collection.</p>
+</li>
+<li><p>Gipp will not enforce that a collection be homogeneous.</p>
+</li>
+</ul>
+<ul>
+<li>Gipp collections are not <code>Sets</code> you may have multiple duplicate values in a collection.</li>
+</ul>
+<h3>Documentation</h3><p>For now the documentation is included in the repo. The documentation is built with JSDocs, unfortunately at this time JSDocs has limited support for ES 2015 syntax. As a result a few methods are missing from the documentation.</p></article>
+    </section>
+
 
 
 
@@ -50,13 +150,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AVLTree.html">AVLTree</a></li><li><a href="DoubleLinkedList.html">DoubleLinkedList</a></li><li><a href="EmptyCollectionError.html">EmptyCollectionError</a></li><li><a href="IllegalArgumentError.html">IllegalArgumentError</a></li><li><a href="LinkedList.html">LinkedList</a></li><li><a href="ListQueue.html">ListQueue</a></li><li><a href="MaxHeap.html">MaxHeap</a></li><li><a href="MinHeap.html">MinHeap</a></li><li><a href="RBTree.html">RBTree</a></li><li><a href="SplayTree.html">SplayTree</a></li><li><a href="Stack.html">Stack</a></li><li><a href="UnimplementedError.html">UnimplementedError</a></li></ul><h3>Namespaces</h3><ul><li><a href="Gipp.html">Gipp</a></li></ul><h3>Interfaces</h3><ul><li><a href="BinaryHeap.html">BinaryHeap</a></li><li><a href="BinaryTree.html">BinaryTree</a></li><li><a href="Collection.html">Collection</a></li><li><a href="List.html">List</a></li><li><a href="Queue.html">Queue</a></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AVLTree.html">AVLTree</a></li><li><a href="DoubleLinkedList.html">DoubleLinkedList</a></li><li><a href="EmptyCollectionError.html">EmptyCollectionError</a></li><li><a href="IllegalArgumentError.html">IllegalArgumentError</a></li><li><a href="LinkedList.html">LinkedList</a></li><li><a href="ListQueue.html">ListQueue</a></li><li><a href="MaxHeap.html">MaxHeap</a></li><li><a href="MinHeap.html">MinHeap</a></li><li><a href="PriorityQueue.html">PriorityQueue</a></li><li><a href="RBTree.html">RBTree</a></li><li><a href="SplayTree.html">SplayTree</a></li><li><a href="Stack.html">Stack</a></li><li><a href="UnimplementedError.html">UnimplementedError</a></li></ul><h3>Namespaces</h3><ul><li><a href="Gipp.html">Gipp</a></li></ul><h3>Interfaces</h3><ul><li><a href="BinaryHeap.html">BinaryHeap</a></li><li><a href="BinaryTree.html">BinaryTree</a></li><li><a href="Collection.html">Collection</a></li><li><a href="List.html">List</a></li><li><a href="Queue.html">Queue</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a> on Wed Sep 30 2015 12:46:32 GMT-0400 (EDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a> on Fri Oct 02 2015 12:47:33 GMT-0400 (EDT)
 </footer>
 
 <script> prettyPrint(); </script>

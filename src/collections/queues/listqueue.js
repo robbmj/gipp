@@ -1,16 +1,32 @@
 
+
 import DoubleLinkedList from './../lists/doublelinkedlist';
+import Collection from "./../collection.interface";
 import Queue from './queue.interface';
+
 import {EmptyCollectionError} from "./../exceptions";
 import {IllegalArgumentError} from "./../exceptions";
 
 const ListQueue = (() => {
 
 	const list = Symbol('list');
+	const cmpf = Symbol('cmpf');
 	const cap = Symbol('cap');
 
 	/**
 	 * @implements {Queue}
+	 * @since 0.1.0
+	 * @classdesc
+	 * A ListQueue is a First In First Out (FIFO) data structure
+ 	 *
+ 	 * Elements are `enqueued()` to the tail of the queue.
+ 	 *
+ 	 * Elemetns are `dequeued()` from the head of the queue.
+ 	 *
+ 	 * - `add, enqueue, dequeue, peek, poll, size and isEmpty` have `O(1)` time complexity.
+ 	 * - `addAll and enqueueAll` have time complexities of `O(N)` where `N` is the size of the argument.
+ 	 * - `contains delete, *[Symbol.iterator], forEach, map and toString`
+ 	 *    have time complexities of `O(N)` where `N` is the size of the queue.
 	 */
 	class ListQueue extends Queue {
 		/**
@@ -20,12 +36,8 @@ const ListQueue = (() => {
 		 */
 		constructor(cmpFtn=null) {
 			super();
-			/**
-			 * @private
-			 *
-			 * This queue is implmented with a doubly linked list.
-			 */
-			this[list] = new DoubleLinkedList(cmpFtn);
+			this[cmpf] = this[cmpf] = cmpFtn || Collection.cmpFtn;
+			this[list] = new DoubleLinkedList(this[cmpf]);
 			this[cap] = Number.POSITIVE_INFINITY;
 		}
 
@@ -116,11 +128,20 @@ const ListQueue = (() => {
 
 		poll() {
 			if (this.isEmpty) {
-				throw new EmptyCollectionError('Can\'t pop() from an empty queue');
+				throw new EmptyCollectionError('Can\'t poll() from an empty queue');
 			}
-			const ret = this[list].pop();
-			this[list].add(ret);
-			return ret;
+			return this[list].poll();;
+		}
+
+		toString() {
+			let s = 'ListQueue: [';
+			if (this.isEmpty) {
+				return s + ']';
+			}
+			for (let e of this[list]) {
+				s += `${e}, `;
+			}
+			return s.substring(0, s.length - 2) + ']';
 		}
 	}
 

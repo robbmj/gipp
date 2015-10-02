@@ -1,5 +1,4 @@
 
-
 import LinkedList from "./collections/lists/linkedlist";
 import DoubleLinkedList from "./collections/lists/doublelinkedlist";
 
@@ -10,6 +9,7 @@ import RBTree from './collections/trees/rbtree';
 import Stack from './collections/stacks/stack';
 
 import ListQueue from './collections/queues/listqueue';
+import PriorityQueue from './collections/queues/priorityqueue';
 
 import MaxHeap from './collections/heaps/maxheap';
 import MinHeap from './collections/heaps/minheap';
@@ -96,6 +96,17 @@ class Gipp {
  	 */
 	ListQueue(initializer=[], cmpFtn=null) {
 		return __instantiate(ListQueue, initializer, cmpFtn);
+	}
+
+	/**
+ 	 * Returns a new PriorityQueue
+ 	 *
+ 	 * @param {E[]?} initializer - If an initializer is passed {@link Collection#addAll} will be called passing it the initializer.
+ 	 * @param {CmpFtn?} cmpFtn - The comparison function that will be used to determine ordering and equality of elements in the collection.
+ 	 * @return {PriorityQueue}
+ 	 */
+	PriorityQueue(initializer=[], cmpFtn=null) {
+		return __instantiate(PriorityQueue, initializer, cmpFtn);
 	}
 
 	/**

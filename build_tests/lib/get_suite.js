@@ -22,7 +22,9 @@ module.exports = {
 
 	stack: getSuite('stack_suite'),
 
+	queue_interface: getSuite('queue_interface_suite'),
 	listqueue: getSuite('listqueue_suite'),
+	priorityqueue: getSuite('priorityqueue_suite'),
 
 	maxheap: getSuite('maxheap_suite'),
 	minheap: getSuite('minheap_suite')

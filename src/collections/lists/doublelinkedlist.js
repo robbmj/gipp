@@ -7,7 +7,14 @@ import __LISTSYMBOLS from './private/__listsymbols';
 export default ((size, head, back, cmpf) => {
 
 	/**
-	 * @classdesc Doubly Linked List
+	 * @classdesc Doubly Linked List.
+	 * All operations have the same time complexity and those of {@link LinkedList},
+	 * with the exception that `pop` has a time complexity of O(1).
+	 *
+	 * Operations that index into the list will traverse the list from the beginning
+	 * or the end, whichever is closer to the specified index.
+	 *
+	 * @since 0.1.0
 	 * @implements {List}
 	 * @extends LinkedList
 	 */
@@ -16,6 +23,7 @@ export default ((size, head, back, cmpf) => {
 		/**
 		 * Creates an empty Doubly Linked List
 		 *
+	 	 * @since 0.1.0
 		 * @param {CmpFtn?} - If no comparison function is passed then the [default comparison function]{@link Collection#cmpFtn} is used.
 		 */
 		constructor(cmpFtn=null) {
@@ -83,7 +91,21 @@ export default ((size, head, back, cmpf) => {
 		/**
 		 * @todo override lastIndexOf
 		 */
-
+		lastIndexOf(element) {
+			if (this.isEmpty) {
+				return -1;
+			}
+			let node = this[back];
+			let index = this.size - 1;
+			while (node !== null) {
+				if (this[cmpf](node.element, element) === 0) {
+					return index;
+				}
+				node = node.prev;
+				index -= 1;
+			}
+			return -1;
+		}
 
 		/** @inheritdoc */
 		pop() {
@@ -141,6 +163,7 @@ export default ((size, head, back, cmpf) => {
 		/**
 		 * Same as {@link Collection#forEach} just starts at the tail of the list.
 		 *
+	 	 * @since 0.1.0
 		 * @throws {TypeError} If cb is not a function.
 	 	 *
 	 	 * @param {forEachCallback} cb - The callback that will be applied to each element in the collection.

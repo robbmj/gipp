@@ -337,7 +337,10 @@ export default ((size, root, cmpf) => {
 	const helper = Symbol('helper');
 
 	/**
-	 * @classdesc AVLTree
+	 * @classdesc An AVLTree is a Balanced Binary Search Tree
+	 * insertions, deletions and searches have `O(log n)` time complexity.
+	 *
+	 * @since 0.1.0
 	 * @implements {BinaryTree}
 	 */
 	class AVLTree extends BinaryTree {

@@ -73,13 +73,13 @@ Gipp currently has implementations for the following data structures:
  - Max Heap
  - Queue
  - Stack
+ - Priority Queue
 
 With plans to implement:
 
  - Red Black Tree
  - Splay Tree
  - Graph (in the form of adjacency lists)
- - Priority Queue
 
 #### Before Gipp is released at 1.x the interface may change
 

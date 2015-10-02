@@ -87,10 +87,10 @@ const Stack = (() => {
 		 * @return {E} The head of the stack
 		 */
 		peek() {
-			for (let e of this[list]) {
-				return e;
+			if (this.isEmpty) {
+				throw new EmptyCollectionError('Can\'t peek() from an empty stack');
 			}
-			throw new EmptyCollectionError('Can\'t peek() on an empty stack');
+			return this[list].peek();
 		}
 
 		/**
@@ -126,6 +126,17 @@ const Stack = (() => {
 		pushAll(...elements) {
 			this.addAll(...elements);
 			return this;
+		}
+
+		toString() {
+			let s = 'Stack: [';
+			if (this.isEmpty) {
+				return s + ']';
+			}
+			for (let e of this) {
+				s += `${e}, `;
+			}
+			return s.substring(0, s.length - 2) + ']';
 		}
 	}
 

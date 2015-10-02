@@ -3,14 +3,27 @@ import Collection from "./../collection.interface";
 import {UnimplementedError} from "./../exceptions";
 
 /**
- * @classdesc The parent interface for all Gipp queues
- * A queue is a First In First Out (FIFO) data structure
  *
- * Elements are added(enqueued) to the tail of the queue
- * Elemetns are dequeued from the head of the queue.
  *
+ * @since 0.1.0
  * @interface
  * @augments Collection
+ *
+ * @classdesc The parent interface for all Gipp queues.
+ * All queues in Gipp have an optional maximum capacity. If
+ * an insertion into the queue would cause the size of the queue
+ * to be greater than the capacity, then the head of the queue
+ * is removed. The default capacity of all queues is `Number.POSITIVE_INFINITY`.
+ *
+ * @example
+ * let queue = gipp.ListQueue();
+ * queue.capacity = 2;
+ * queue.enqueueAll(1,2);
+ * queue.enqueue(3); // 1 is silently removed from the head of the queue.
+ *
+ * let queue = gipp.ListQueue();
+ * queue.enqueueAll(1,2,3);
+ * queue.capacity = 2; // 1 is silently removed from the head of the queue.
  */
 class Queue extends Collection {
 
@@ -72,8 +85,8 @@ class Queue extends Collection {
 	}
 
 	/**
-	 * Prepends each element to the front on the queue. If adding the element to the queue
-	 * would cause its size to be grater than its capacity then the first element of the
+	 * Adds each element to the tail of the queue. If adding the element to the queue
+	 * would cause its size to be grater than its capacity then the head element of the
 	 * queue is removed.
 	 *
 	 * The same is true for {@link Queue#addAll}
@@ -82,7 +95,7 @@ class Queue extends Collection {
 	 * @return {Queue}
 	 */
 	enqueueAll(...elements) {
-
+		throw new UnimplementedError('enqueueAll');
 	}
 
 	/**

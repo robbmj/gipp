@@ -10,6 +10,7 @@ export default ((heap, cmpf) => {
 	 *  1. Elements are added at the left most null subtree
 	 *  2. All child elements are smaller than their parent elements
 	 *
+	 * @since 0.1.0
 	 * @arguments BinaryHeap
 	 */
 	class MaxHeap extends BinaryHeap {
@@ -51,6 +52,7 @@ export default ((heap, cmpf) => {
 		/**
 		 * Returns and removes the largest element in the heap.
 		 *
+	 	 * @since 0.1.0
 		 * @return {E}
 		 */
 		max() {

@@ -2,6 +2,7 @@
 
 /**
  * @global
+ * @since 0.1.0
  */
 class UnimplementedError extends Error {
 	constructor(method) {
@@ -11,6 +12,7 @@ class UnimplementedError extends Error {
 
 /**
  * @global
+ * @since 0.1.0
  */
 class EmptyCollectionError extends Error {
 	constructor(msg) {
@@ -20,6 +22,7 @@ class EmptyCollectionError extends Error {
 
 /**
  * @global
+ * @since 0.1.0
  */
 class IllegalArgumentError extends Error {
 	constructor(msg) {

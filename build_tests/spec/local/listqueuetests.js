@@ -5,6 +5,7 @@ var setUp = require('./../../lib/set_up');
 
 var suites = [
 	getSuite.collection_interface,
+	getSuite.queue_interface,
 	getSuite.listqueue
 ];
 

@@ -4,6 +4,8 @@ import {UnimplementedError} from "./../exceptions";
 
 /**
  * The parent interface for all Gipp Lists
+ *
+ * @since 0.1.0
  * @interface
  * @augments Collection
  */
@@ -40,20 +42,42 @@ class List extends Collection {
 	}
 
 	/**
-	 * Returns the last element in the list.
+	 * Returns but does not remove the head of the list.
+	 *
+	 * @since 0.2.0
+	 * @throws {EmptyCollectionError} If the list is empty
+	 * @return {E}
+	 */
+	peek() {
+		throw new UnimplementedError('peek');
+	}
+
+	/**
+	 * Returns but does not remove the tail of the list.
+	 *
+	 * @since 0.2.0
+	 * @throws {EmptyCollectionError} If the list is empty
+	 * @return {E}
+	 */
+	poll() {
+		throw new UnimplementedError('poll');
+	}
+
+	/**
+	 * Returns the tail element of the list.
 	 *
 	 * @throws {EmptyCollectionError} If no elements are contained within the collection.
 	 *
-	 * @return {E} The last element in the list.
+	 * @return {E} The tail of the list.
 	 */
 	pop() {
 		throw new UnimplementedError('pop');
 	}
 
 	/**
-	 * Appends element to the end of the list.
+	 * Appends element to the tail of the list.
 	 *
-	 * @param {E} element - the element to be appended to the list.
+	 * @param {E} element - the element to be appended to the tail of list.
 	 * @return {List} Returns this list.
 	 */
 	push(element) {
@@ -61,7 +85,7 @@ class List extends Collection {
 	}
 
 	/**
-	 * Appends each element to the end of the list.
+	 * Appends each element to the tail of the list.
 	 *
 	 * @param {...E} elements - The elements to be appended to the list.
 	 * @return {List} Returns this list
@@ -80,20 +104,20 @@ class List extends Collection {
 	}
 
 	/**
-	 * Returns the first element in the list.
+	 * Returns the head element of the list.
 	 *
 	 * @throws {EmptyCollectionError} If no elements are contained within the list.
 	 *
-	 * @return {E} The first element in the list.
+	 * @return {E} The head element in the list.
 	 */
 	shift() {
 		throw new UnimplementedError('shift');
 	}
 
 	/**
-	 * Prepends element to the front of the list.
+	 * Prepends element to the head of the list.
 	 *
-	 * @param {E} element - The element to be appended to the list.
+	 * @param {E} element - The element to be prepended to the list.
 	 * @return {List} Returns this list.
 	 */
 	unshift(element) {
@@ -101,7 +125,7 @@ class List extends Collection {
 	}
 
 	 /**
-	 * Prepends each element to the front of the list.
+	 * Prepends each element to the head of the list.
 	 *
 	 * @param {...E} elements - The elements to be prepended to the list.
 	 * @return {List} Returns this list
@@ -116,7 +140,7 @@ class List extends Collection {
 	 * list.unshiftAll(...[1,2,3,4,5]);
 	 *
 	 * @example
-	 * // unshiftAll() prepends elements to the front of the list in the reverse order of the arguments
+	 * // unshiftAll() prepends elements to the head of the list in the reverse order of the arguments
 	 * list.unshiftAll(1,2,3,4,5);
 	 * list.toString() // [1 -> 2 -> 3 -> 4 -> 5]
 	 */

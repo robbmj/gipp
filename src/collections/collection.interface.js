@@ -23,6 +23,7 @@ class Collection {
 	 *
 	 * Gipp will not inforce that a collection be homogeneous. But it is probably a good idea.
 	 *
+	 * @since 0.1.0
 	 * @typedef {*} E
  	 */
 
@@ -47,6 +48,7 @@ class Collection {
 	 * 	// do something with e
 	 * }
 	 *
+	 * @since 0.1.0
 	 * @typedef {generator} CollectionGenerator
 	 */
 
@@ -54,6 +56,7 @@ class Collection {
 	 * A comparison function is used to determine the ordering of a collection
 	 * and to test for equality between elements in a collection.
 	 *
+	 * @since 0.1.0
 	 * @callback CmpFtn
 	 * @param {E} a - An element contained within the collection.
 	 * @param {E} b - An element contained within the collection.
@@ -66,6 +69,7 @@ class Collection {
 	/**
 	 * This callback is used to iterate over a collection.
 	 *
+	 * @since 0.1.0
 	 * @callback IteratorCallback
 	 * @param {E} element - An element contained within the collection.
 	 */
@@ -73,6 +77,7 @@ class Collection {
 	/**
 	 * This callback type that is passed to collection.map() is called `mapCallback`.
 	 *
+	 * @since 0.1.0
 	 * @callback MapCallback
 	 * @param {E} element - An element contained within the collection.
 	 * @return {boolean} True if the element should be contained in the new collection, false otherwise.
@@ -82,8 +87,8 @@ class Collection {
 	 * @throws {UnimplementedError} If directly instantiated.
 	 */
 	constructor() {
-		if (this.constructor.name === 'IList') {
-			throw new UnimplementedError('IList');
+		if (this.constructor.name === 'Collection') {
+			throw new UnimplementedError('Collection');
 		}
 	}
 
@@ -91,6 +96,7 @@ class Collection {
 	 * Returns the default [comparison function]{@link CmpFtn}. This function is sutable only for primitive types
 	 * and homogeneous arrays of primitive types.
 	 *
+	 * @since 0.1.0
 	 * @return {CmpFtn} The default comparison function.
 	 */
 	static get cmpFtn() {
@@ -100,15 +106,17 @@ class Collection {
 	/**
 	 * Tests if the collection is empty
 	 *
+	 * @since 0.1.0
 	 * @return {boolean} True if the collection is empty, false otherwise.
 	 */
 	get isEmpty() {
-		throw new UnimplementedError('get size');
+		throw new UnimplementedError('isEmpty');
 	}
 
 	/**
 	 * Returns the number of elements contained in the collection.
 	 *
+	 * @since 0.1.0
 	 * @return {number} the number of elements contained in the collection.
 	 */
 	get size() {
@@ -118,15 +126,17 @@ class Collection {
 	/**
 	 * This feature is available in ES 2015 only. For older versions of JavaScript use {@link Collection#forEach}
 	 *
+	 * @since 0.1.0
 	 * @return {CollectionGenerator}
 	 */
 	*[Symbol.iterator]() {
-		throw new UnimplementedError('get size');
+		throw new UnimplementedError('*[Symbol.iterator]');
 	}
 
 	/**
 	 * Appends element to the end of the collection.
 	 *
+	 * @since 0.1.0
 	 * @param {E} element - The element to be appended to the collection.
 	 * @return {Collection} Returns this collection.
 	 */
@@ -137,6 +147,7 @@ class Collection {
 	/**
 	 * Appends each element to the end of the collection.
 	 *
+	 * @since 0.1.0
 	 * @param {...E} elements - The elements to be appended to the collection.
 	 * @return {Collection} Returns this collection
 	 *
@@ -157,6 +168,7 @@ class Collection {
 	/**
 	 * Searches the collection for element.
 	 *
+	 * @since 0.1.0
 	 * @param {E} element - The element to search for.
 	 * @return {boolean} True if element is contained in the collection false otherwise.
 	 */
@@ -167,6 +179,7 @@ class Collection {
 	/**
 	 * Removes the first element in the collection that has a value === element.
 	 *
+	 * @since 0.1.0
 	 * @throws {EmptyCollectionError} If the collection is empty.
 	 *
 	 * @param {E} element - The element to be removed from the collection.
@@ -183,6 +196,7 @@ class Collection {
 	 * and the order in witch forEach iterates over the collection. It just garuentees to vist each element in the
 	 * collection once.
 	 *
+	 * @since 0.1.0
 	 * @throws {TypeError} If cb is not a function.
 	 *
 	 * @param {IteratorCallback} cb - The callback that will be applied to each element in the collection.
@@ -195,6 +209,7 @@ class Collection {
 	/**
 	 * The map() method creates a new collection with the results of calling a provided function on every element in this collection.
 	 *
+	 * @since 0.1.0
 	 * @throws {TypeError} If cb is not a function.
 	 *
 	 * @param {MapCallback} cb - The callback that will be applied to each element in the collection.
@@ -207,10 +222,11 @@ class Collection {
 	/**
 	 * Returns a string representation of the collection.
 	 *
+	 * @since 0.1.0
 	 * @return {String} A string representation of the collection.
 	 */
 	toString() {
-		throw new UnimplementedError('get size');
+		throw new UnimplementedError('toString');
 	}
 
 	/** @private */
