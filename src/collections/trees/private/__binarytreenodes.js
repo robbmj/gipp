@@ -1,6 +1,9 @@
 
+import {IllegalArgumentError} from "./../../exceptions";
+
 const BinaryNode = (() => {
 
+	const parent = Symbol('parent');
 	const left = Symbol('left');
 	const right = Symbol('right');
 	const elem = Symbol('elem');
@@ -10,6 +13,15 @@ const BinaryNode = (() => {
 			this[elem] = element;
 			this[left] = null;
 			this[right] = null;
+			this[parent] = null;
+		}
+
+		get parent() {
+			return this[parent];
+		}
+
+		set parent(parentNode) {
+			this[parent] = parentNode;
 		}
 
 		get element() {
@@ -55,24 +67,14 @@ const BinaryNode = (() => {
 
 const AVLNode = (() => {
 
-	const parent = Symbol('parent');
 	const balance = Symbol('balance');
 	const height = Symbol('height');
 
 	return class AVLNode extends BinaryNode {
 		constructor(element) {
 			super(element);
-			this[parent] = null;
 			this[balance] = 0;
 			this[height] = 0;
-		}
-
-		get parent() {
-			return this[parent];
-		}
-
-		set parent(parentNode) {
-			this[parent] = parentNode;
 		}
 
 		get balance() {
@@ -126,4 +128,63 @@ const AVLNode = (() => {
 	};
 }());
 
-export default {"AVLNode": AVLNode};
+const RBNode = (() => {
+
+	const isBlack = Symbol('balance');
+	const blackHeight = Symbol('blackHeight');
+
+	return class RBNode extends BinaryNode {
+		constructor(element) {
+			super(element);
+			this[isBlack] = RBNode.RED;
+		}
+
+		static get RED() {
+			return false;
+		}
+
+		static get BLACK() {
+			return true;
+		}
+
+		isBlack() {
+			return this[isBlack];
+		}
+
+		get color() {
+			return this[isBlack];
+		}
+
+		set color(color) {
+			if (typeof color !== 'boolean') {
+				throw new IllegalArgumentError();
+			}
+			this[isBlack] = color;
+		}
+
+		toggleColor() {
+			this[isBlack] = !this[isBlack];
+			return this[isBlack];
+		}
+
+		blackHeight() {
+			if (this.isLeaf) {
+				return 1;
+			}
+
+			let count = 0,
+				// don't count the root node.
+				cur = this.left !== null ? this.left : this.right;
+
+			while (cur !== null) {
+				if (cur.isBlack()) {
+					count += 1;
+				}
+				cur = cur.left !== null ? cur.left : cur.right
+			}
+			return count;
+		}
+	};
+}());
+
+export default {"AVLNode": AVLNode, "RBNode": RBNode};

@@ -6,7 +6,7 @@ let ListNode = (() => {
 
 	return class ListNode {
 		constructor(element) {
-			this[elem] = element
+			this[elem] = element;
 			this[next] = null;
 		}
 

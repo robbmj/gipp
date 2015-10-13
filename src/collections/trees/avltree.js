@@ -404,6 +404,10 @@ export default ((size, root, cmpf) => {
 			}
 			return newTree;
 		}
+
+		toString() {
+			return 'AVLTree: ' + super.toString();
+		}
 	}
 
 	return AVLTree;
